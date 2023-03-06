@@ -20,6 +20,15 @@
 		ECA98CF329B3953F008DDFED /* TeacherCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CF229B3953F008DDFED /* TeacherCardsViewController.swift */; };
 		ECA98CF629B3A3EE008DDFED /* CardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CF529B3A3EE008DDFED /* CardsTableViewCell.swift */; };
 		ECEA37E429B4E53800A069C8 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37E329B4E53800A069C8 /* LogInViewController.swift */; };
+		ECEA37E629B4EE9500A069C8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37E529B4EE9500A069C8 /* ChatViewController.swift */; };
+		ECEA37EC29B5138000A069C8 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37EB29B5138000A069C8 /* APICaller.swift */; };
+		ECEA37F129B59C8D00A069C8 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37F029B59C8D00A069C8 /* SpeechRecognizer.swift */; };
+		ECEA37F329B59EDE00A069C8 /* ChatViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37F229B59EDE00A069C8 /* ChatViewControllerExtension.swift */; };
+		ECEA37FA29B5F85900A069C8 /* SenderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37F929B5F85900A069C8 /* SenderViewCell.swift */; };
+		ECEA37FC29B5F87800A069C8 /* ResponseViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37FB29B5F87800A069C8 /* ResponseViewCell.swift */; };
+		ECEA37FE29B60FFA00A069C8 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */; };
+		ECEA380029B619E100A069C8 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37FF29B619E100A069C8 /* ChatView.swift */; };
+		ECEA380229B61A8300A069C8 /* BotResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA380129B61A8300A069C8 /* BotResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +67,15 @@
 		ECA98CF229B3953F008DDFED /* TeacherCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherCardsViewController.swift; sourceTree = "<group>"; };
 		ECA98CF529B3A3EE008DDFED /* CardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsTableViewCell.swift; sourceTree = "<group>"; };
 		ECEA37E329B4E53800A069C8 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		ECEA37E529B4EE9500A069C8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		ECEA37EB29B5138000A069C8 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		ECEA37F029B59C8D00A069C8 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		ECEA37F229B59EDE00A069C8 /* ChatViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewControllerExtension.swift; sourceTree = "<group>"; };
+		ECEA37F929B5F85900A069C8 /* SenderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderViewCell.swift; sourceTree = "<group>"; };
+		ECEA37FB29B5F87800A069C8 /* ResponseViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseViewCell.swift; sourceTree = "<group>"; };
+		ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
+		ECEA37FF29B619E100A069C8 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		ECEA380129B61A8300A069C8 /* BotResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotResponse.swift; sourceTree = "<group>"; };
 		FFD238D09A312435EE95C246 /* Pods_bot_teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bot_teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -129,6 +147,7 @@
 		ECA98CB829B37248008DDFED /* bot_teacher */ = {
 			isa = PBXGroup;
 			children = (
+				ECEA37EA29B5136900A069C8 /* ChatGPTService */,
 				ECA98CF429B3A3A9008DDFED /* Views */,
 				ECA98CEF29B394D5008DDFED /* ViewControllers */,
 				ECA98CEC29B3927E008DDFED /* Model */,
@@ -163,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				ECA98CED29B392FF008DDFED /* Teacher.swift */,
+				ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -172,6 +192,8 @@
 			children = (
 				ECA98CF229B3953F008DDFED /* TeacherCardsViewController.swift */,
 				ECEA37E329B4E53800A069C8 /* LogInViewController.swift */,
+				ECEA37E529B4EE9500A069C8 /* ChatViewController.swift */,
+				ECEA37F229B59EDE00A069C8 /* ChatViewControllerExtension.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -180,8 +202,21 @@
 			isa = PBXGroup;
 			children = (
 				ECA98CF529B3A3EE008DDFED /* CardsTableViewCell.swift */,
+				ECEA37F929B5F85900A069C8 /* SenderViewCell.swift */,
+				ECEA37FB29B5F87800A069C8 /* ResponseViewCell.swift */,
+				ECEA37FF29B619E100A069C8 /* ChatView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		ECEA37EA29B5136900A069C8 /* ChatGPTService */ = {
+			isa = PBXGroup;
+			children = (
+				ECEA37EB29B5138000A069C8 /* APICaller.swift */,
+				ECEA37F029B59C8D00A069C8 /* SpeechRecognizer.swift */,
+				ECEA380129B61A8300A069C8 /* BotResponse.swift */,
+			);
+			path = ChatGPTService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,9 +397,18 @@
 				ECA98CF329B3953F008DDFED /* TeacherCardsViewController.swift in Sources */,
 				ECA98CF629B3A3EE008DDFED /* CardsTableViewCell.swift in Sources */,
 				ECEA37E429B4E53800A069C8 /* LogInViewController.swift in Sources */,
+				ECEA37FA29B5F85900A069C8 /* SenderViewCell.swift in Sources */,
+				ECEA380029B619E100A069C8 /* ChatView.swift in Sources */,
+				ECEA380229B61A8300A069C8 /* BotResponse.swift in Sources */,
+				ECEA37E629B4EE9500A069C8 /* ChatViewController.swift in Sources */,
 				ECA98CEE29B392FF008DDFED /* Teacher.swift in Sources */,
+				ECEA37FE29B60FFA00A069C8 /* MessageModel.swift in Sources */,
+				ECEA37F129B59C8D00A069C8 /* SpeechRecognizer.swift in Sources */,
+				ECEA37F329B59EDE00A069C8 /* ChatViewControllerExtension.swift in Sources */,
+				ECEA37FC29B5F87800A069C8 /* ResponseViewCell.swift in Sources */,
 				ECA98CBA29B37248008DDFED /* AppDelegate.swift in Sources */,
 				ECA98CBC29B37248008DDFED /* SceneDelegate.swift in Sources */,
+				ECEA37EC29B5138000A069C8 /* APICaller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +588,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bot_teacher/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the meeting. Audio recordings are discarded after transcription.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "You can view a text transcription of your meeting in the app.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -572,6 +618,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bot_teacher/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the meeting. Audio recordings are discarded after transcription.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "You can view a text transcription of your meeting in the app.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

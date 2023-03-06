@@ -7,7 +7,8 @@
 
 import UIKit
 
-class TeacherCardsViewController: UIViewController {
+class TeacherCardsViewController: UIViewController{
+
     
     // MARK: -UI
     private lazy var tableVw: UITableView = {
@@ -74,7 +75,20 @@ extension TeacherCardsViewController: UITableViewDataSource {
         
         cell.configure(with: teacher)
         
+        cell.delegate = self
+        
         return cell
+    }
+    
+
+}
+
+extension TeacherCardsViewController: CardsTableViewCellDelegate {
+    
+    func didTapButton(with teacher: Teacher) {
+        let vc = ChatViewController()
+        vc.setup(with: teacher)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     

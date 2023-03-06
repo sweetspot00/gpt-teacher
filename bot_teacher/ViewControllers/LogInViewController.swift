@@ -44,24 +44,14 @@ class LogInViewController: UIViewController {
         button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
-        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(openTeachersList), for: .touchUpInside)
         return button
         
     }()
     
-    @objc func buttonTapped() {
+    @objc func openTeachersList() {
         let vc = TeacherCardsViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

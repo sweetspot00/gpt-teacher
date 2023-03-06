@@ -8,9 +8,17 @@
 import UIKit
 import SnapKit
 
+protocol CardsTableViewCellDelegate: AnyObject {
+    func didTapButton(with teacher: Teacher)
+}
+
 class CardsTableViewCell: UITableViewCell {
 
     static let cellId = "CardsTableViewCell"
+    
+    weak var delegate: CardsTableViewCellDelegate?
+    
+    private var cellTeacher = initTeacher()
     
     // MARK: - UI
     
@@ -52,17 +60,24 @@ class CardsTableViewCell: UITableViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = .white
         button.setImage(UIImage(systemName: "plus.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 32)), for: .normal)
+        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         return button
     }()
+    
+    @IBAction func didTapButton() {
+        delegate!.didTapButton(with: cellTeacher)
+    }
+          
     
     // MARK: -LifeCycle
     override func layoutSubviews() {
         super.layoutSubviews()
-//        containerVw.layer.cornerRadius = 10
         
     }
     
     func configure(with item: Teacher) {
+        
+        cellTeacher = item
         
         self.contentView.addSubview(containerVw)
         
@@ -81,20 +96,21 @@ class CardsTableViewCell: UITableViewCell {
         
         self.containerVw.backgroundColor = item.color
         
+        // image
         teacherImgView.snp.makeConstraints { make in
-            
             make.width.height.equalTo(60)
             make.left.equalTo(containerVw.snp.left).offset(20)
             make.top.equalTo(containerVw.snp.top).offset(20)
             
         }
         
+        // name
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(teacherImgView.snp.top)
             make.left.equalTo(teacherImgView.snp.right).offset(5)
-        
         }
         
+        // info
         infoLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(5)
             make.left.equalTo(teacherImgView.snp.right).offset(5)
@@ -102,6 +118,7 @@ class CardsTableViewCell: UITableViewCell {
             make.right.equalToSuperview().offset(-20)
         }
         
+        // button
         playButton.snp.makeConstraints { make in
             make.top.equalTo(teacherImgView.snp.bottom).offset(100)
             make.left.equalToSuperview().offset(30)
@@ -112,39 +129,7 @@ class CardsTableViewCell: UITableViewCell {
         infoLabel.text = item.info
         teacherImgView.image = UIImage(named: item.name)
         
-        
-//        contentStackVw.addArrangedSubview(nameLabel)
-//        contentStackVw.addArrangedSubview(infoLabel)
-
-        
-        
-//        NSLayoutConstraint.activate([
-//
-//            containerVw.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 8),
-//            containerVw.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -8),
-//            containerVw.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 8),
-//            containerVw.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -8),
-//
-//            teacherImgView.heightAnchor.constraint(equalToConstant: 50),
-//            teacherImgView.widthAnchor.constraint(equalToConstant: 50),
-//            teacherImgView.topAnchor.constraint(equalTo: contentStackVw.topAnchor),
-//            teacherImgView.leadingAnchor.constraint(equalTo: containerVw.leadingAnchor, constant: 8),
-//
-//
-//            // contentStackView
-//            contentStackVw.topAnchor.constraint(equalTo: self.containerVw.topAnchor, constant: 16),
-//            contentStackVw.bottomAnchor.constraint(equalTo: self.containerVw.bottomAnchor, constant: -16),
-//            contentStackVw.leadingAnchor.constraint(equalTo: self.containerVw.leadingAnchor, constant: 8),
-//            contentStackVw.trailingAnchor.constraint(equalTo: self.containerVw.trailingAnchor, constant: -8),
-//
-//            // button
-//            playButton.heightAnchor.constraint(equalToConstant: 44),
-//            playButton.widthAnchor.constraint(equalToConstant: 44),
-//            playButton.trailingAnchor.constraint(equalTo: containerVw.trailingAnchor, constant: -8),
-//            playButton.centerYAnchor.constraint(equalTo: containerVw.centerYAnchor)
-//
-//
-//        ])
+    
     }
     
     
