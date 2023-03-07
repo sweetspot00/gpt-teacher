@@ -22,13 +22,11 @@
 		ECEA37E429B4E53800A069C8 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37E329B4E53800A069C8 /* LogInViewController.swift */; };
 		ECEA37E629B4EE9500A069C8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37E529B4EE9500A069C8 /* ChatViewController.swift */; };
 		ECEA37EC29B5138000A069C8 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37EB29B5138000A069C8 /* APICaller.swift */; };
-		ECEA37F129B59C8D00A069C8 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37F029B59C8D00A069C8 /* SpeechRecognizer.swift */; };
-		ECEA37F329B59EDE00A069C8 /* ChatViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37F229B59EDE00A069C8 /* ChatViewControllerExtension.swift */; };
-		ECEA37FA29B5F85900A069C8 /* SenderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37F929B5F85900A069C8 /* SenderViewCell.swift */; };
-		ECEA37FC29B5F87800A069C8 /* ResponseViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37FB29B5F87800A069C8 /* ResponseViewCell.swift */; };
 		ECEA37FE29B60FFA00A069C8 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */; };
 		ECEA380029B619E100A069C8 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37FF29B619E100A069C8 /* ChatView.swift */; };
 		ECEA380229B61A8300A069C8 /* BotResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA380129B61A8300A069C8 /* BotResponse.swift */; };
+		ECEA380429B74F5400A069C8 /* MessageCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA380329B74F5400A069C8 /* MessageCellView.swift */; };
+		ECEA381329B7702300A069C8 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA380B29B7702300A069C8 /* SpeechRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,13 +67,12 @@
 		ECEA37E329B4E53800A069C8 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		ECEA37E529B4EE9500A069C8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		ECEA37EB29B5138000A069C8 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
-		ECEA37F029B59C8D00A069C8 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
-		ECEA37F229B59EDE00A069C8 /* ChatViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewControllerExtension.swift; sourceTree = "<group>"; };
-		ECEA37F929B5F85900A069C8 /* SenderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderViewCell.swift; sourceTree = "<group>"; };
-		ECEA37FB29B5F87800A069C8 /* ResponseViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseViewCell.swift; sourceTree = "<group>"; };
 		ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		ECEA37FF29B619E100A069C8 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		ECEA380129B61A8300A069C8 /* BotResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotResponse.swift; sourceTree = "<group>"; };
+		ECEA380329B74F5400A069C8 /* MessageCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellView.swift; sourceTree = "<group>"; };
+		ECEA380B29B7702300A069C8 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		ECEA381A29B77AA000A069C8 /* bot-teacherTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "bot-teacherTests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		FFD238D09A312435EE95C246 /* Pods_bot_teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bot_teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -164,6 +161,7 @@
 		ECA98CCF29B37249008DDFED /* bot_teacherTests */ = {
 			isa = PBXGroup;
 			children = (
+				ECEA381A29B77AA000A069C8 /* bot-teacherTests-Info.plist */,
 				ECA98CD029B37249008DDFED /* bot_teacherTests.swift */,
 			);
 			path = bot_teacherTests;
@@ -181,6 +179,7 @@
 		ECA98CEC29B3927E008DDFED /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				ECEA380B29B7702300A069C8 /* SpeechRecognizer.swift */,
 				ECA98CED29B392FF008DDFED /* Teacher.swift */,
 				ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */,
 			);
@@ -193,7 +192,6 @@
 				ECA98CF229B3953F008DDFED /* TeacherCardsViewController.swift */,
 				ECEA37E329B4E53800A069C8 /* LogInViewController.swift */,
 				ECEA37E529B4EE9500A069C8 /* ChatViewController.swift */,
-				ECEA37F229B59EDE00A069C8 /* ChatViewControllerExtension.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -201,9 +199,8 @@
 		ECA98CF429B3A3A9008DDFED /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ECEA380329B74F5400A069C8 /* MessageCellView.swift */,
 				ECA98CF529B3A3EE008DDFED /* CardsTableViewCell.swift */,
-				ECEA37F929B5F85900A069C8 /* SenderViewCell.swift */,
-				ECEA37FB29B5F87800A069C8 /* ResponseViewCell.swift */,
 				ECEA37FF29B619E100A069C8 /* ChatView.swift */,
 			);
 			path = Views;
@@ -213,7 +210,6 @@
 			isa = PBXGroup;
 			children = (
 				ECEA37EB29B5138000A069C8 /* APICaller.swift */,
-				ECEA37F029B59C8D00A069C8 /* SpeechRecognizer.swift */,
 				ECEA380129B61A8300A069C8 /* BotResponse.swift */,
 			);
 			path = ChatGPTService;
@@ -397,15 +393,13 @@
 				ECA98CF329B3953F008DDFED /* TeacherCardsViewController.swift in Sources */,
 				ECA98CF629B3A3EE008DDFED /* CardsTableViewCell.swift in Sources */,
 				ECEA37E429B4E53800A069C8 /* LogInViewController.swift in Sources */,
-				ECEA37FA29B5F85900A069C8 /* SenderViewCell.swift in Sources */,
+				ECEA381329B7702300A069C8 /* SpeechRecognizer.swift in Sources */,
 				ECEA380029B619E100A069C8 /* ChatView.swift in Sources */,
 				ECEA380229B61A8300A069C8 /* BotResponse.swift in Sources */,
 				ECEA37E629B4EE9500A069C8 /* ChatViewController.swift in Sources */,
 				ECA98CEE29B392FF008DDFED /* Teacher.swift in Sources */,
 				ECEA37FE29B60FFA00A069C8 /* MessageModel.swift in Sources */,
-				ECEA37F129B59C8D00A069C8 /* SpeechRecognizer.swift in Sources */,
-				ECEA37F329B59EDE00A069C8 /* ChatViewControllerExtension.swift in Sources */,
-				ECEA37FC29B5F87800A069C8 /* ResponseViewCell.swift in Sources */,
+				ECEA380429B74F5400A069C8 /* MessageCellView.swift in Sources */,
 				ECA98CBA29B37248008DDFED /* AppDelegate.swift in Sources */,
 				ECA98CBC29B37248008DDFED /* SceneDelegate.swift in Sources */,
 				ECEA37EC29B5138000A069C8 /* APICaller.swift in Sources */,
@@ -646,6 +640,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "bot-teacherTests-Info.plist";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "toy.bot-teacherTests";
@@ -665,6 +662,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "bot-teacherTests-Info.plist";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "toy.bot-teacherTests";

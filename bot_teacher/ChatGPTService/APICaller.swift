@@ -7,24 +7,30 @@
 
 import Foundation
 import OpenAISwift
+import Async
 
 final class APICaller {
+    
     static let shared = APICaller()
     
     @frozen enum Constants {
-        static let key = "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"
+        static let key = "somekey"
     }
     
-    private var client: OpenAISwift?
+    public var client: OpenAISwift?
     
-    private init() {}
+    init() {}
     
     public func setup() {
         self.client = OpenAISwift(authToken: Constants.key)
     }
     
-    public func getResponse(input: String, completion: @escaping (Result<String, Error>) -> Void) {
-        client?.sendCompletion(with: input, completionHandler: { result in
+    public func getClient() -> OpenAISwift {
+        return client!
+    }
+    
+    public func getGPTResponse(client: OpenAISwift, input: String, completion: @escaping (Result<String, Error>) -> Void) {
+        client.sendCompletion(with: input, completionHandler: { result in
             switch result {
             case .success(let model):
                 let output = model.choices.first?.text ?? ""
@@ -34,4 +40,6 @@ final class APICaller {
             }
         })
     }
+    
+   
 }

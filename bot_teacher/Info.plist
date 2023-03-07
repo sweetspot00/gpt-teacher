@@ -4,6 +4,10 @@
 <dict>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
+        <key>NSMicrophoneUsageDescription</key>
+        <string>Need microphone access for uploading audio</string>
+		<key>UIApplicationSupportsTabbedSceneCollection</key>
+		<false/>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 		<key>UISceneConfigurations</key>
@@ -17,6 +21,8 @@
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
 					<string>Main</string>
+					<key>UISceneClassName</key>
+					<string></string>
 				</dict>
 			</array>
 		</dict>

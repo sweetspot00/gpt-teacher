@@ -6,18 +6,18 @@
 //
 
 import Foundation
+import OpenAISwift
+import Async
 
-
-func getBotResponse(message: String) -> String {
-    let tempMessage = message.lowercased()
-    
-    if tempMessage.contains("hello") {
-        return "Hey there!"
-    } else if tempMessage.contains("goodbye") {
-        return "Talk to you later!"
-    } else if tempMessage.contains("how are you") {
-        return "I'm fine, how about you?"
-    } else {
-        return "That's cool."
-    }
+public func getGPTResponse(client: OpenAISwift, input: String, completion: @escaping (String) -> Void) {
+    client.sendCompletion(with: input, completionHandler: { result in
+        switch result {
+        case .success(let model):
+            let output = model.choices.first?.text ?? ""
+            completion(output)
+        case .failure(_):
+            completion("error")
+//            completion(.failure(error))
+        }
+    })
 }

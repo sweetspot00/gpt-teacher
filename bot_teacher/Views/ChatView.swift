@@ -6,95 +6,118 @@
 //
 
 import SwiftUI
+import OpenAISwift
+import AVFoundation
 
 struct ChatView: View {
-    @State private var messageText = ""
+    var chatTeacher: Teacher
+    @State var client: OpenAISwift
+    @State var messagesModels: [MessageModel] = []
+    @State var isRecording: Bool = false
     @State var messages: [String] = ["Have a chat with Steve Jobs!"]
+    @StateObject var speechRecognizer = SpeechRecognizer()
     
+    // Create a speech synthesizer.
+    let synthesizer = AVSpeechSynthesizer()
+
     var body: some View {
+        //        NavigationView {
+        //            VStack {
+        //                Text("My View")
+        //            }
+        //            .navigationBarTitle("Title")
+        //        }
         VStack {
             HStack {
-            
-                Image("Steve Jobs")
+                
+                Image(chatTeacher.name)
+                    .resizable()
                     .font(.system(size: 26))
                     .foregroundColor(Color.blue)
+                    .aspectRatio(contentMode: .fit)
+                
             }
             
             ScrollView {
-                ForEach(messages, id: \.self) { message in
-                    // If the message contains [USER], that means it's us
-                    if message.contains("[USER]") {
-                        let newMessage = message.replacingOccurrences(of: "[USER]", with: "")
-                        
-                        // User message styles
-                        HStack {
-                            Spacer()
-                            Text(newMessage)
-                                .padding()
-                                .foregroundColor(Color.white)
-                                .background(Color.blue.opacity(0.8))
-                                .cornerRadius(10)
-                                .padding(.horizontal, 16)
-                                .padding(.bottom, 10)
-                        }
-                    } else {
-                        
-                        // Bot message styles
-                        HStack {
-                            Text(message)
-                                .padding()
-                                .background(Color.gray.opacity(0.15))
-                                .cornerRadius(10)
-                                .padding(.horizontal, 16)
-                                .padding(.bottom, 10)
-                            Spacer()
-                        }
-                    }
-                    
-                }.rotationEffect(.degrees(180))
+                ForEach($messagesModels) { $messageModel in
+                    MessageCellView(messageModel: messageModel)
+                        .rotationEffect(.degrees(180))
+                }
+                .rotationEffect(.degrees(180))
+                .padding()
+            }.onAppear {
+                getGPTResponse(client: client, input: "test1") { result in
+                    print(result)
+                }
             }
-            .rotationEffect(.degrees(180))
-            .background(Color.gray.opacity(0.1))
             
-            
-            // Contains the Message bar
-//            HStack {
-//                TextField("Type something", text: $messageText)
-//                    .padding()
-//                    .background(Color.gray.opacity(0.1))
-//                    .cornerRadius(10)
-//                    .onSubmit {
-//                        sendMessage(message: messageText)
-//                    }
-//
-//                Button {
-//                    sendMessage(message: messageText)
-//                } label: {
-//                    Image(systemName: "paperplane.fill")
-//                }
-//                .font(.system(size: 26))
-//                .padding(.horizontal, 10)
-//            }
-            .padding()
+            VStack {
+                Button(action: {
+
+                    if (!isRecording) {
+
+                        speechRecognizer.reset()
+                        speechRecognizer.transcribe()
+
+                    } else {
+
+                        speechRecognizer.stopTranscribing()
+                        // MARK: -stop recording: send message to box
+                        let prompt  = "Alice: \(speechRecognizer.transcript)\n\(chatTeacher.name):"
+//                        sendMessage(message: prompt)
+                        sendMessage(message: "test")
+
+                    }
+                    isRecording.toggle()
+                       }) {
+                           Image(systemName: isRecording ? "waveform.circle" : "waveform.circle.fill")
+                               .resizable()
+                               .frame(width: 100, height: 100)
+//                               .foregroundColor(isRecording ? .red : .green)
+                       }
+            }
         }
+        
     }
     
     func sendMessage(message: String) {
         withAnimation {
-            messages.append("[USER]" + message)
-            self.messageText = ""
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            messagesModels.append(MessageModel(id: UUID(), messageType: .Sender, content: message))
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
                 withAnimation {
-                    messages.append(getBotResponse(message: message))
+                    // MARK: -GET GPT Response
+                    getGPTResponse(client: client, input: message) { result in
+                        messagesModels.append(MessageModel(id: UUID(),
+                                                           messageType: .Response,
+                                                           content: result))
+                        playSpeech(with: result)
+                    }
+                    
                 }
             }
         }
     }
+    
+    func playSpeech(with speechMessage: String) {
+        
+        // Configure the utterance.
+        let utterance = AVSpeechUtterance(string: speechMessage)
+        utterance.rate = 0.57
+        utterance.pitchMultiplier = 0.8
+        utterance.postUtteranceDelay = 0.2
+        utterance.volume = 0.8
+        
+        // Retrieve the British English voice.
+        let voice = AVSpeechSynthesisVoice(language: "en-GB")
+        
+        // Assign the voice to the utterance.
+        utterance.voice = voice
+        
+        synthesizer.speak(utterance)
+        
+    }
+    
+   
+    
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatView()
-    }
-}
