@@ -44,6 +44,7 @@
 		B752F7C4BECB65894B1F49421049CE5F /* ConstraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458867733779570F7398C76B46AEAF5E /* ConstraintView.swift */; };
 		BD47CB74CD9B2B4D2D942C9B65748DFB /* SnapKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 143498449916D71708A8AF2F96E7320A /* SnapKit-dummy.m */; };
 		E98DC8FB2578E76A812E0C94BA10E1B1 /* ConstraintDirectionalInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8DFD8FEE78807F86F0544749C80450 /* ConstraintDirectionalInsets.swift */; };
+		EC115BD529B796D1001B08DA /* OpenAIKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC115BD429B796D1001B08DA /* OpenAIKit */; };
 		ECEA37E929B512F300A069C8 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = ECEA37E829B512F300A069C8 /* OpenAISwift */; };
 		ECEA37EF29B5200200A069C8 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = ECEA37EE29B5200200A069C8 /* MessageKit */; };
 		ECEA37F629B5C91100A069C8 /* Async in Frameworks */ = {isa = PBXBuildFile; productRef = ECEA37F529B5C91100A069C8 /* Async */; };
@@ -140,6 +141,7 @@
 			files = (
 				ECEA37EF29B5200200A069C8 /* MessageKit in Frameworks */,
 				ECEA37E929B512F300A069C8 /* OpenAISwift in Frameworks */,
+				EC115BD529B796D1001B08DA /* OpenAIKit in Frameworks */,
 				6B557042A28001C5EED2245112077C5C /* Foundation.framework in Frameworks */,
 				ECEA37F629B5C91100A069C8 /* Async in Frameworks */,
 			);
@@ -336,6 +338,7 @@
 				ECEA37E829B512F300A069C8 /* OpenAISwift */,
 				ECEA37EE29B5200200A069C8 /* MessageKit */,
 				ECEA37F529B5C91100A069C8 /* Async */,
+				EC115BD429B796D1001B08DA /* OpenAIKit */,
 			);
 			productName = Pods_bot_teacher;
 			productReference = BAB3D9CABE83C7F7FD3250636FCE492D /* Pods-bot_teacher */;
@@ -363,6 +366,7 @@
 				ECEA37E729B512F300A069C8 /* XCRemoteSwiftPackageReference "OpenAISwift" */,
 				ECEA37ED29B5200200A069C8 /* XCRemoteSwiftPackageReference "MessageKit" */,
 				ECEA37F429B5C91100A069C8 /* XCRemoteSwiftPackageReference "Async" */,
+				EC115BD329B796D1001B08DA /* XCRemoteSwiftPackageReference "OpenAIKit" */,
 			);
 			productRefGroup = 361ED87E4ED3039396627F3860B8FDC9 /* Products */;
 			projectDirPath = "";
@@ -764,6 +768,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		EC115BD329B796D1001B08DA /* XCRemoteSwiftPackageReference "OpenAIKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MarcoDotIO/OpenAIKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		ECEA37E729B512F300A069C8 /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/adamrushy/OpenAISwift";
@@ -791,6 +803,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EC115BD429B796D1001B08DA /* OpenAIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC115BD329B796D1001B08DA /* XCRemoteSwiftPackageReference "OpenAIKit" */;
+			productName = OpenAIKit;
+		};
 		ECEA37E829B512F300A069C8 /* OpenAISwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ECEA37E729B512F300A069C8 /* XCRemoteSwiftPackageReference "OpenAISwift" */;

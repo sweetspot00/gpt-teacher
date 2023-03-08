@@ -50,7 +50,7 @@ class ChatViewController: UIViewController {
 private extension ChatViewController {
 
     func setupViews() {
-        let chatView = UIHostingController(rootView: ChatView(chatTeacher: chatTeacher, client: opaiCaller.client!))
+        let chatView = UIHostingController(rootView: ChatView(chatTeacher: chatTeacher, client: opaiCaller.getClient()))
         addChild(chatView)
         view.addSubview(chatView.view)
         chatView.view.snp.makeConstraints { make in

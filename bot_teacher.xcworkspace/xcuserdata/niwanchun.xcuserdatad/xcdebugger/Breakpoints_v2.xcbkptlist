@@ -94,8 +94,8 @@
             filePath = "bot_teacher/Views/ChatView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -103,16 +103,240 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EEDA7461-7CA4-4960-90E4-6527CBFBF6E8"
+            uuid = "C32B6BD9-F1AB-47DF-A0E2-A8492283AF10"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bot_teacher/ChatGPTService/APICaller.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "getGPTResponse(client:input:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "858D81B8-EE65-40DC-932F-05217B99DC40"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bot_teacher/ChatGPTService/BotResponse.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "getGPTResponse(client:input:completion:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "180D0507-7E5A-4B8A-8A96-15FF236741A6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bot_teacher/ChatGPTService/BotResponse.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "getGPTResponse(client:input:completion:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "180D0507-7E5A-4B8A-8A96-15FF236741A6 - 2aabdd71a3deab3a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;OpenAISwift.OpenAI, OpenAISwift.OpenAIError&gt;) -&gt; () in bot_teacher.getGPTResponse(client: OpenAISwift.OpenAISwift, input: Swift.String, completion: (Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "bot_teacher"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niwanchun/Documents/ai_teach/bot_teacher/bot_teacher/ChatGPTService/BotResponse.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "144">
+               </Location>
+               <Location
+                  uuid = "180D0507-7E5A-4B8A-8A96-15FF236741A6 - 2aabdd71a3deab3a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;OpenAISwift.OpenAI, OpenAISwift.OpenAIError&gt;) -&gt; () in bot_teacher.getGPTResponse(client: OpenAISwift.OpenAISwift, input: Swift.String, completion: (Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "bot_teacher"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niwanchun/Documents/ai_teach/bot_teacher/bot_teacher/ChatGPTService/BotResponse.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "292">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5CF6EE88-EA35-47F3-B9E1-061BAC00829B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bot_teacher/Views/ChatView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "sendMessage(message:)"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "sendMessage(prompt:message:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5CF6EE88-EA35-47F3-B9E1-061BAC00829B - aad67cc9d5f1aec9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 @Swift.MainActor () -&gt; () in closure #1 () -&gt; () in bot_teacher.ChatView.sendMessage(message: Swift.String) -&gt; ()"
+                  moduleName = "bot_teacher"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niwanchun/Documents/ai_teach/bot_teacher/bot_teacher/Views/ChatView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "5CF6EE88-EA35-47F3-B9E1-061BAC00829B - 99b7a6d4a1d6a172"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; () in closure #1 () -&gt; () in closure #1 @Swift.MainActor () -&gt; () in closure #1 () -&gt; () in bot_teacher.ChatView.sendMessage(message: Swift.String) -&gt; ()"
+                  moduleName = "bot_teacher"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niwanchun/Documents/ai_teach/bot_teacher/bot_teacher/Views/ChatView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "172">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "542B57DC-504E-4A02-B4D3-51A548DCCBF2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bot_teacher/Views/ChatView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1FFC377F-EA0D-42BC-A035-3B93F25023AA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bot_teacher/Views/ChatView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C7C652BB-DE7E-42BB-BA42-3015AB47C121"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/bot_teacher-cvmqykhwppbwxybayqczbvgpwott/SourcePackages/checkouts/OpenAISwift/Sources/OpenAISwift/OpenAISwift.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "sendCompletion(with:model:maxTokens:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C7C652BB-DE7E-42BB-BA42-3015AB47C121 - 3abaa87d63f5280a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OpenAISwift.OpenAISwift.sendCompletion(with: Swift.String, model: OpenAISwift.OpenAIModelType, maxTokens: Swift.Int, completionHandler: (Swift.Result&lt;OpenAISwift.OpenAI, OpenAISwift.OpenAIError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "bot_teacher"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niwanchun/Library/Developer/Xcode/DerivedData/bot_teacher-cvmqykhwppbwxybayqczbvgpwott/SourcePackages/checkouts/OpenAISwift/Sources/OpenAISwift/OpenAISwift.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "480">
+               </Location>
+               <Location
+                  uuid = "C7C652BB-DE7E-42BB-BA42-3015AB47C121 - 68770174187fd80"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in OpenAISwift.OpenAISwift.sendCompletion(with: Swift.String, model: OpenAISwift.OpenAIModelType, maxTokens: Swift.Int, completionHandler: (Swift.Result&lt;OpenAISwift.OpenAI, OpenAISwift.OpenAIError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "bot_teacher"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niwanchun/Library/Developer/Xcode/DerivedData/bot_teacher-cvmqykhwppbwxybayqczbvgpwott/SourcePackages/checkouts/OpenAISwift/Sources/OpenAISwift/OpenAISwift.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "160">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1ADFFF81-E2CA-42DD-B4C1-CDC432DF44E9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/bot_teacher-cvmqykhwppbwxybayqczbvgpwott/SourcePackages/checkouts/OpenAISwift/Sources/OpenAISwift/OpenAISwift.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "sendCompletion(with:model:maxTokens:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "93D88C5A-879B-44FE-9F4B-CB21A52774FA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/bot_teacher-cvmqykhwppbwxybayqczbvgpwott/SourcePackages/checkouts/OpenAISwift/Sources/OpenAISwift/OpenAISwift.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "sendCompletion(with:model:maxTokens:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -8,32 +8,40 @@
 import Foundation
 import OpenAISwift
 import Async
+import OpenAIKit
 
-final class APICaller {
+final class APICaller: ObservableObject {
     
     static let shared = APICaller()
     
     @frozen enum Constants {
-        static let key = "somekey"
+        static let key = "some key"
     }
     
     public var client: OpenAISwift?
+    public var openAIObject: OpenAIKit.OpenAI?
     
     init() {}
     
     public func setup() {
         self.client = OpenAISwift(authToken: Constants.key)
+        let config = Configuration(organizationId: "nil", apiKey: Constants.key)
+        openAIObject = OpenAI(config)
     }
     
     public func getClient() -> OpenAISwift {
         return client!
     }
     
-    public func getGPTResponse(client: OpenAISwift, input: String, completion: @escaping (Result<String, Error>) -> Void) {
-        client.sendCompletion(with: input, completionHandler: { result in
+    public func getOpenAIObject() -> OpenAIKit.OpenAI {
+        return openAIObject!
+    }
+    
+    public func getGPTResponse(client: OpenAISwift, input: String,completion: @escaping (Result<String, Error>) -> Void) {
+        client.sendCompletion(with: input, maxTokens: 500, completionHandler: { result in
             switch result {
-            case .success(let model):
-                let output = model.choices.first?.text ?? ""
+            case .success(let success):
+                let output = success.choices.first?.text ?? ""
                 completion(.success(output))
             case .failure(let error):
                 completion(.failure(error))
@@ -41,5 +49,16 @@ final class APICaller {
         })
     }
     
+//    public func getGPT3Response(input: String, client: OpenAIKit.OpenAI, completion: @escaping (Result<String, Error>) -> Void) {
+//        let completionParameter = CompletionParameters(
+//              model: "text-davinci-001",
+//              prompt: ["Say this is a test ->"],
+//              maxTokens: 4,
+//              temperature: 0.98
+//            )
+//
+//        client.generateCompletion(parameters: completionParameter)
+//    }
+//
    
 }

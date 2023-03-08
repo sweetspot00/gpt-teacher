@@ -9,12 +9,13 @@ import SwiftUI
 import OpenAISwift
 import AVFoundation
 
+
 struct ChatView: View {
+    
     var chatTeacher: Teacher
     @State var client: OpenAISwift
     @State var messagesModels: [MessageModel] = []
     @State var isRecording: Bool = false
-    @State var messages: [String] = ["Have a chat with Steve Jobs!"]
     @StateObject var speechRecognizer = SpeechRecognizer()
     
     // Create a speech synthesizer.
@@ -37,7 +38,6 @@ struct ChatView: View {
                     .aspectRatio(contentMode: .fit)
                 
             }
-            
             ScrollView {
                 ForEach($messagesModels) { $messageModel in
                     MessageCellView(messageModel: messageModel)
@@ -45,10 +45,6 @@ struct ChatView: View {
                 }
                 .rotationEffect(.degrees(180))
                 .padding()
-            }.onAppear {
-                getGPTResponse(client: client, input: "test1") { result in
-                    print(result)
-                }
             }
             
             VStack {
@@ -63,9 +59,9 @@ struct ChatView: View {
 
                         speechRecognizer.stopTranscribing()
                         // MARK: -stop recording: send message to box
-                        let prompt  = "Alice: \(speechRecognizer.transcript)\n\(chatTeacher.name):"
-//                        sendMessage(message: prompt)
-                        sendMessage(message: "test")
+                        let prompt  = "Alice: how are you? \n\(chatTeacher.name):"
+                        sendMessage(prompt: prompt, message: "How are you?")
+//                        sendMessage(message: "hello world")
 
                     }
                     isRecording.toggle()
@@ -76,21 +72,25 @@ struct ChatView: View {
 //                               .foregroundColor(isRecording ? .red : .green)
                        }
             }
+        }.onAppear {
+//            client.setup()
         }
+        
         
     }
     
-    func sendMessage(message: String) {
+    func sendMessage(prompt: String, message: String) {
         withAnimation {
             messagesModels.append(MessageModel(id: UUID(), messageType: .Sender, content: message))
             DispatchQueue.main.asyncAfter(deadline: .now()) {
                 withAnimation {
                     // MARK: -GET GPT Response
-                    getGPTResponse(client: client, input: message) { result in
+                    getGPTResponse(client: client, input: prompt) { result in
+                        let response = result.trimmingCharacters(in: .whitespacesAndNewlines)
                         messagesModels.append(MessageModel(id: UUID(),
                                                            messageType: .Response,
-                                                           content: result))
-                        playSpeech(with: result)
+                                                           content: response))
+                        playSpeech(with: response)
                     }
                     
                 }
@@ -102,15 +102,12 @@ struct ChatView: View {
         
         // Configure the utterance.
         let utterance = AVSpeechUtterance(string: speechMessage)
-        utterance.rate = 0.57
-        utterance.pitchMultiplier = 0.8
-        utterance.postUtteranceDelay = 0.2
-        utterance.volume = 0.8
+        utterance.rate = chatTeacher.rate
+        utterance.pitchMultiplier = chatTeacher.pitchMultiplier
+        utterance.postUtteranceDelay = chatTeacher.postUtteranceDelay
+        utterance.volume = chatTeacher.volume
         
-        // Retrieve the British English voice.
-        let voice = AVSpeechSynthesisVoice(language: "en-GB")
-        
-        // Assign the voice to the utterance.
+        let voice = AVSpeechSynthesisVoice(identifier: chatTeacher.identifier)
         utterance.voice = voice
         
         synthesizer.speak(utterance)

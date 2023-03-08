@@ -28,6 +28,15 @@
       }
     },
     {
+      "identity" : "openaikit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MarcoDotIO/OpenAIKit",
+      "state" : {
+        "revision" : "9e718bc33f10bc0c0524ae140be6a89651c4ea3d",
+        "version" : "1.2.0"
+      }
+    },
+    {
       "identity" : "openaiswift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/adamrushy/OpenAISwift",
