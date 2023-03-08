@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A01DD68029B84E2B00EEC7EE /* RealTimeSpeechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01DD67F29B84E2B00EEC7EE /* RealTimeSpeechViewController.swift */; };
+		A01DD68229B85E8B00EEC7EE /* SpeechRecognizeDelegateClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01DD68129B85E8B00EEC7EE /* SpeechRecognizeDelegateClass.swift */; };
 		AA0982A12AE34091F8CA228E /* Pods_bot_teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD238D09A312435EE95C246 /* Pods_bot_teacher.framework */; };
 		ECA98CBA29B37248008DDFED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CB929B37248008DDFED /* AppDelegate.swift */; };
 		ECA98CBC29B37248008DDFED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CBB29B37248008DDFED /* SceneDelegate.swift */; };
@@ -49,6 +51,8 @@
 /* Begin PBXFileReference section */
 		57776F79A06EB4F3F4DDD6F0 /* Pods-bot_teacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bot_teacher.debug.xcconfig"; path = "Target Support Files/Pods-bot_teacher/Pods-bot_teacher.debug.xcconfig"; sourceTree = "<group>"; };
 		9D82BB9135BFECF85582103D /* Pods-bot_teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bot_teacher.release.xcconfig"; path = "Target Support Files/Pods-bot_teacher/Pods-bot_teacher.release.xcconfig"; sourceTree = "<group>"; };
+		A01DD67F29B84E2B00EEC7EE /* RealTimeSpeechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeSpeechViewController.swift; sourceTree = "<group>"; };
+		A01DD68129B85E8B00EEC7EE /* SpeechRecognizeDelegateClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizeDelegateClass.swift; sourceTree = "<group>"; };
 		ECA98CB629B37248008DDFED /* bot_teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bot_teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA98CB929B37248008DDFED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECA98CBB29B37248008DDFED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 				ECA98CEF29B394D5008DDFED /* ViewControllers */,
 				ECA98CEC29B3927E008DDFED /* Model */,
 				ECA98CB929B37248008DDFED /* AppDelegate.swift */,
+				A01DD68129B85E8B00EEC7EE /* SpeechRecognizeDelegateClass.swift */,
 				ECA98CBB29B37248008DDFED /* SceneDelegate.swift */,
 				ECA98CBF29B37248008DDFED /* Main.storyboard */,
 				ECA98CC229B37249008DDFED /* Assets.xcassets */,
@@ -192,6 +197,7 @@
 				ECA98CF229B3953F008DDFED /* TeacherCardsViewController.swift */,
 				ECEA37E329B4E53800A069C8 /* LogInViewController.swift */,
 				ECEA37E529B4EE9500A069C8 /* ChatViewController.swift */,
+				A01DD67F29B84E2B00EEC7EE /* RealTimeSpeechViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -395,10 +401,12 @@
 				ECEA37E429B4E53800A069C8 /* LogInViewController.swift in Sources */,
 				ECEA381329B7702300A069C8 /* SpeechRecognizer.swift in Sources */,
 				ECEA380029B619E100A069C8 /* ChatView.swift in Sources */,
+				A01DD68029B84E2B00EEC7EE /* RealTimeSpeechViewController.swift in Sources */,
 				ECEA380229B61A8300A069C8 /* BotResponse.swift in Sources */,
 				ECEA37E629B4EE9500A069C8 /* ChatViewController.swift in Sources */,
 				ECA98CEE29B392FF008DDFED /* Teacher.swift in Sources */,
 				ECEA37FE29B60FFA00A069C8 /* MessageModel.swift in Sources */,
+				A01DD68229B85E8B00EEC7EE /* SpeechRecognizeDelegateClass.swift in Sources */,
 				ECEA380429B74F5400A069C8 /* MessageCellView.swift in Sources */,
 				ECA98CBA29B37248008DDFED /* AppDelegate.swift in Sources */,
 				ECA98CBC29B37248008DDFED /* SceneDelegate.swift in Sources */,
@@ -589,6 +597,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -619,6 +628,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
