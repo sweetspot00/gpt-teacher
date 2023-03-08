@@ -73,6 +73,7 @@ struct ChatView: View {
                         // stop audio
                         if audioEngine.isRunning {
                             audioEngine.stop()
+                            audioEngine.inputNode.removeTap(onBus: 0)
                             recognitionRequest?.endAudio()
                         }
                         // MARK: -stop recording: send message to box
