@@ -14,19 +14,20 @@ final class APICaller: ObservableObject {
     
     static let shared = APICaller()
     
-    @frozen enum Constants {
-        static let key = "some key"
-    }
+//    @frozen enum Constants {
+//        static let key = "some key"
+//    }
+    var key = ""
     
     public var client: OpenAISwift?
     public var openAIObject: OpenAIKit.OpenAI?
     
     init() {}
+
     
-    public func setup() {
-        self.client = OpenAISwift(authToken: Constants.key)
-        let config = Configuration(organizationId: "nil", apiKey: Constants.key)
-        openAIObject = OpenAI(config)
+    public func setup(with openAIKey: String) {
+        self.key = openAIKey
+        self.client = OpenAISwift(authToken: openAIKey)
     }
     
     public func getClient() -> OpenAISwift {

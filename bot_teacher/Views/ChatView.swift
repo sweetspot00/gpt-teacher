@@ -15,6 +15,7 @@ struct ChatView: View {
     
     @ObservedObject var speechDelegateClass = SpeechRecognizeDelegateClass()
     var chatTeacher: Teacher
+    var userName: String
     @State var client: OpenAISwift
     @State var messagesModels: [MessageModel] = []
     @State var isRecording: Bool = false
@@ -165,9 +166,9 @@ struct ChatView: View {
                 // Update the text view with the results.
                 
                 
-                    userSpeechMessage = result.bestTranscription.formattedString
+                userSpeechMessage = result.bestTranscription.formattedString
                 print("speechMessage: \(userSpeechMessage)")
-                let prompt  = "Alice: \(userSpeechMessage)\n\(chatTeacher.name):"
+                let prompt  = "\(userName): \(userSpeechMessage)\n\(chatTeacher.name):"
                 sendMessage(prompt: prompt, message: userSpeechMessage)
                 
                 

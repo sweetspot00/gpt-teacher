@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol CardsTableViewCellDelegate: AnyObject {
-    func didTapButton(with teacher: Teacher)
+    func didTapButton(teacher: Teacher)
 }
 
 class CardsTableViewCell: UITableViewCell {
@@ -19,7 +19,7 @@ class CardsTableViewCell: UITableViewCell {
     weak var delegate: CardsTableViewCellDelegate?
     
     private var cellTeacher = initTeacher()
-    
+
     // MARK: - UI
     
     private lazy var containerVw: UIView = {
@@ -65,7 +65,7 @@ class CardsTableViewCell: UITableViewCell {
     }()
     
     @IBAction func didTapButton() {
-        delegate!.didTapButton(with: cellTeacher)
+        delegate!.didTapButton(teacher: cellTeacher)
     }
           
     

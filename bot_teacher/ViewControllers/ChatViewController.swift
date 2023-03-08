@@ -24,6 +24,8 @@ struct Recognizer {
 class ChatViewController: UIViewController {
     
     // get chat info
+    var key = ""
+    var userName = ""
     private var chatTeacher = initTeacher()
     var opaiCaller: APICaller = APICaller()
     
@@ -38,9 +40,11 @@ class ChatViewController: UIViewController {
         
     }
     
-    public func setup(with teacher: Teacher) {
+    public func setup(teacher: Teacher, opaiKey: String, name: String) {
         chatTeacher = teacher
-        opaiCaller.setup()
+        opaiCaller.setup(with: opaiKey)
+        self.key = opaiKey
+        self.userName = name
     }
 
     
@@ -50,7 +54,7 @@ class ChatViewController: UIViewController {
 private extension ChatViewController {
 
     func setupViews() {
-        let chatView = UIHostingController(rootView: ChatView(chatTeacher: chatTeacher, client: opaiCaller.getClient()))
+        let chatView = UIHostingController(rootView: ChatView(chatTeacher: chatTeacher,userName: self.userName, client: opaiCaller.getClient()))
         addChild(chatView)
         view.addSubview(chatView.view)
         chatView.view.snp.makeConstraints { make in

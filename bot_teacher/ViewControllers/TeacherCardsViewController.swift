@@ -8,6 +8,9 @@
 import UIKit
 
 class TeacherCardsViewController: UIViewController{
+    
+    var userName = ""
+    var key = ""
 
     
     // MARK: -UI
@@ -85,9 +88,9 @@ extension TeacherCardsViewController: UITableViewDataSource {
 
 extension TeacherCardsViewController: CardsTableViewCellDelegate {
     
-    func didTapButton(with teacher: Teacher) {
-        let vc = ChatViewController()
-        vc.setup(with: teacher)
+    func didTapButton(teacher: Teacher) {
+        var vc = ChatViewController()
+        vc.setup(teacher: teacher, opaiKey: self.key, name: userName)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
