@@ -16,11 +16,13 @@ struct ChatView: View {
     @ObservedObject var speechDelegateClass = SpeechRecognizeDelegateClass()
     var chatTeacher: Teacher
     var userName: String
+    let constrain = "responds in 2 sentences and sometimes ask a question"
     @State var client: OpenAISwift
     @State var messagesModels: [MessageModel] = []
     @State var isRecording: Bool = false
     @State var allowRecord: Bool = true
-//    @StateObject var speechRecognizer = SpeechRecognizer()
+    @State var isInit: Bool = true
+    @State var finalInput : [ChatMessage] = []
     @State var userSpeechMessage = ""
     let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
 //    @State private var delegate = SpeechRecognizerDelegate()
@@ -35,20 +37,20 @@ struct ChatView: View {
     let synthesizer = AVSpeechSynthesizer()
 
     var body: some View {
-        //        NavigationView {
-        //            VStack {
-        //                Text("My View")
-        //            }
-        //            .navigationBarTitle("Title")
-        //        }
+//                NavigationView {
+                    VStack {
+                        Text("\(chatTeacher.name)").font(.title).bold()
+                    }
+//                    .navigationBarTitle("Title")
+//                }
         VStack {
             HStack {
                 
                 Image(chatTeacher.name)
                     .resizable()
-                    .font(.system(size: 26))
-                    .foregroundColor(Color.blue)
+                    .font(.system(size: 30))
                     .aspectRatio(contentMode: .fit)
+                    .cornerRadius(10)
                 
             }
             ScrollView {
@@ -86,32 +88,64 @@ struct ChatView: View {
                        }) {
                            Image(systemName: isRecording ? "waveform.circle" : "waveform.circle.fill")
                                .resizable()
-                               .frame(width: 100, height: 100)
+                               .frame(width: 80, height: 80)
 //                               .foregroundColor(isRecording ? .red : .green)
                        }
             }
         }.onAppear {
+            finalInput.append(initPrompt())
 //            speechDelegateClass.setValue(with: isRecording)
 //            speechRecognizer.delegate = speechDelegateClass
 //            client.setup()
+            
+//            getGPTChatResponse(client: client, input: [initPrompt()], completion: { _ in
+                
+//                result in
+//                let response = result.trimmingCharacters(in: .whitespacesAndNewlines)
+//                messagesModels.append(MessageModel(id: UUID(),
+//                                                   messageType: .Response,
+//                                                   content: response))
+//                playSpeech(with: response)
+//            })
         }
         
         
     }
     
-    func sendMessage(prompt: String, message: String) {
+    func initPrompt() -> ChatMessage {
+        let initMsg = "Impersonate \(chatTeacher.name)"
+        let initCharMsg = createChatMessage(role: .Response, content: initMsg)
+        return initCharMsg
+    }
+    
+    func createChatMessage(role: MessageType, content: String) -> ChatMessage {
+        switch role {
+        case .Sender:
+            return ChatMessage(role: .user, content: content)
+        case .Response:
+            return ChatMessage(role: .assistant, content: content)
+        }
+    }
+    
+    
+    func sendMessage(message: String) {
         withAnimation {
             messagesModels.append(MessageModel(id: UUID(), messageType: .Sender, content: message))
             DispatchQueue.main.asyncAfter(deadline: .now()) {
                 withAnimation {
                     // MARK: -GET GPT Response
-                    getGPTResponse(client: client, input: prompt) { result in
+                    let messageAddConstrain = message + constrain
+                    let userMsg = createChatMessage(role: .Sender, content: messageAddConstrain)
+                    finalInput.append(userMsg)
+                    print("finalInput: \(finalInput)")
+                    getGPTChatResponse(client: client, input: finalInput, completion: { result in
                         let response = result.trimmingCharacters(in: .whitespacesAndNewlines)
                         messagesModels.append(MessageModel(id: UUID(),
                                                            messageType: .Response,
                                                            content: response))
+                        finalInput.append(createChatMessage(role: .Response, content: response + "impersonate \(chatTeacher.name)"))
                         playSpeech(with: response)
-                    }
+                    })
                     
                 }
             }
@@ -167,9 +201,9 @@ struct ChatView: View {
                 
                 
                 userSpeechMessage = result.bestTranscription.formattedString
-                print("speechMessage: \(userSpeechMessage)")
+//                print("speechMessage: \(userSpeechMessage)")
                 let prompt  = "\(userName): \(userSpeechMessage)\n\(chatTeacher.name):"
-                sendMessage(prompt: prompt, message: userSpeechMessage)
+                sendMessage(message: userSpeechMessage)
                 
                 
                 print("Text \(result.bestTranscription.formattedString)")
@@ -241,4 +275,5 @@ struct ChatView: View {
    
     
 }
+
 

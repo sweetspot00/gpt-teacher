@@ -48,7 +48,7 @@ private extension TeacherCardsViewController {
     
     func setup() {
         
-        self.title = "Teachers List"
+        self.title = "Start A Voice Call"
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
         tableVw.dataSource = self

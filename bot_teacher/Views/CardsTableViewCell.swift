@@ -25,6 +25,10 @@ class CardsTableViewCell: UITableViewCell {
     private lazy var containerVw: UIView = {
         let vw = UIView()
         vw.layer.cornerRadius = 8
+//        vw.layer.shadowColor = UIColor.black.cgColor
+//        vw.layer.shadowOffset = CGSizeMake(5,0.5)
+//        vw.layer.shadowOpacity = 0.3
+//        vw.layer.shadowRadius = 1.0
         return vw
     }()
     
@@ -51,6 +55,8 @@ class CardsTableViewCell: UITableViewCell {
        let imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.contentMode = .scaleAspectFit
+        imgView.layer.shadowOffset = CGSizeMake(5,0.5)
+        imgView.layer.shadowColor = UIColor.black.cgColor
         
         return imgView
     }()
@@ -59,7 +65,7 @@ class CardsTableViewCell: UITableViewCell {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = .white
-        button.setImage(UIImage(systemName: "plus.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 32)), for: .normal)
+        button.setImage(UIImage(systemName: "plus.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 40)), for: .normal)
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         return button
     }()
@@ -83,51 +89,61 @@ class CardsTableViewCell: UITableViewCell {
         
         containerVw.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
-            make.left.equalToSuperview().offset(8)
+            make.left.equalToSuperview().offset(20)
             make.bottom.equalToSuperview().offset(-8)
-            make.right.equalToSuperview().offset(-8)
+            make.right.equalToSuperview().offset(-20)
+            make.width.equalTo(300)
+            make.height.equalTo(300)
         }
         
         
         self.containerVw.addSubview(playButton)
         self.containerVw.addSubview(teacherImgView)
-        self.containerVw.addSubview(nameLabel)
-        self.containerVw.addSubview(infoLabel)
+//        self.containerVw.addSubview(nameLabel)
+//        self.containerVw.addSubview(infoLabel)
         
-        self.containerVw.backgroundColor = item.color
+//        self.containerVw.backgroundColor = item.color
         
         // image
         teacherImgView.snp.makeConstraints { make in
-            make.width.height.equalTo(60)
-            make.left.equalTo(containerVw.snp.left).offset(20)
-            make.top.equalTo(containerVw.snp.top).offset(20)
+//            make.width.height.equalTo(60)
+//            make.left.equalTo(containerVw.snp.left).offset(20)
+//            make.top.equalTo(containerVw.snp.top).offset(20)
+            make.right.equalTo(containerVw.snp.right)
+            make.left.equalTo(containerVw.snp.left)
+            make.top.equalTo(containerVw.snp.top)
+            make.bottom.equalTo(containerVw.snp.bottom)
             
         }
         
         // name
-        nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(teacherImgView.snp.top)
-            make.left.equalTo(teacherImgView.snp.right).offset(5)
-        }
-        
-        // info
-        infoLabel.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(5)
-            make.left.equalTo(teacherImgView.snp.right).offset(5)
-            make.bottom.equalToSuperview().offset(-20)
-            make.right.equalToSuperview().offset(-20)
-        }
-        
+//        nameLabel.snp.makeConstraints { make in
+//            make.top.equalTo(teacherImgView.snp.top)
+//            make.left.equalTo(teacherImgView.snp.right).offset(5)
+//        }
+//
+//        // info
+//        infoLabel.snp.makeConstraints { make in
+//            make.top.equalTo(nameLabel.snp.bottom).offset(5)
+//            make.left.equalTo(teacherImgView.snp.right).offset(5)
+//            make.bottom.equalToSuperview().offset(-20)
+//            make.right.equalToSuperview().offset(-20)
+//        }
+//
         // button
         playButton.snp.makeConstraints { make in
-            make.top.equalTo(teacherImgView.snp.bottom).offset(100)
-            make.left.equalToSuperview().offset(30)
+            make.top.equalTo(teacherImgView.snp.top)
+            make.left.equalTo(teacherImgView.snp.left)
+            make.width.equalTo(teacherImgView.snp.width)
+            make.height.equalTo(teacherImgView.snp.height)
+            make.center.equalTo(teacherImgView.center)
         }
         
         
         nameLabel.text = item.name
         infoLabel.text = item.info
-        teacherImgView.image = UIImage(named: item.name)
+        teacherImgView.image = UIImage(named: item.name)?.withRoundedCorners(radius: 30)
+//        teacherImgView.layer.shadowOffset =
         
     
     }
@@ -135,3 +151,23 @@ class CardsTableViewCell: UITableViewCell {
     
     
 }
+
+extension UIImage {
+       // image with rounded corners
+       public func withRoundedCorners(radius: CGFloat? = nil) -> UIImage? {
+           let maxRadius = min(size.width, size.height) / 2
+           let cornerRadius: CGFloat
+           if let radius = radius, radius > 0 && radius <= maxRadius {
+               cornerRadius = radius
+           } else {
+               cornerRadius = maxRadius
+           }
+           UIGraphicsBeginImageContextWithOptions(size, false, scale)
+           let rect = CGRect(origin: .zero, size: size)
+           UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius).addClip()
+           draw(in: rect)
+           let image = UIGraphicsGetImageFromCurrentImageContext()
+           UIGraphicsEndImageContext()
+           return image
+       }
+   }

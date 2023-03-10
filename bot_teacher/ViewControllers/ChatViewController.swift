@@ -46,6 +46,7 @@ class ChatViewController: UIViewController {
         self.key = opaiKey
         self.userName = name
     }
+    
 
     
 
