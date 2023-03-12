@@ -1,16 +1,20 @@
 PODS:
+  - MicrosoftCognitiveServicesSpeech-iOS (1.26.0)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
+  - MicrosoftCognitiveServicesSpeech-iOS (~> 1.25)
   - SnapKit (~> 5.6.0)
 
 SPEC REPOS:
   trunk:
+    - MicrosoftCognitiveServicesSpeech-iOS
     - SnapKit
 
 SPEC CHECKSUMS:
+  MicrosoftCognitiveServicesSpeech-iOS: a0350d8f36c1ea4dbd2b3dc85191e81f48776a32
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: 7107e366a73c8d3d8fa831c189136c1da89d122e
+PODFILE CHECKSUM: 32fa02333ac91cb7117b1870940760765b971c7d
 
 COCOAPODS: 1.12.0

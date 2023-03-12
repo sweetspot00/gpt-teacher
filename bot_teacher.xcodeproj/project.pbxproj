@@ -10,6 +10,9 @@
 		A01DD68029B84E2B00EEC7EE /* RealTimeSpeechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01DD67F29B84E2B00EEC7EE /* RealTimeSpeechViewController.swift */; };
 		A01DD68229B85E8B00EEC7EE /* SpeechRecognizeDelegateClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01DD68129B85E8B00EEC7EE /* SpeechRecognizeDelegateClass.swift */; };
 		AA0982A12AE34091F8CA228E /* Pods_bot_teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD238D09A312435EE95C246 /* Pods_bot_teacher.framework */; };
+		EC115BDE29BB1866001B08DA /* ConcurrencyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BDD29BB1866001B08DA /* ConcurrencyUtils.swift */; };
+		EC115BEA29BB495B001B08DA /* RecordingControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BE929BB495B001B08DA /* RecordingControlViewModel.swift */; };
+		EC115BEC29BD7CB5001B08DA /* AzureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BEB29BD7CB5001B08DA /* AzureService.swift */; };
 		ECA98CBA29B37248008DDFED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CB929B37248008DDFED /* AppDelegate.swift */; };
 		ECA98CBC29B37248008DDFED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CBB29B37248008DDFED /* SceneDelegate.swift */; };
 		ECA98CC129B37248008DDFED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECA98CBF29B37248008DDFED /* Main.storyboard */; };
@@ -53,6 +56,9 @@
 		9D82BB9135BFECF85582103D /* Pods-bot_teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bot_teacher.release.xcconfig"; path = "Target Support Files/Pods-bot_teacher/Pods-bot_teacher.release.xcconfig"; sourceTree = "<group>"; };
 		A01DD67F29B84E2B00EEC7EE /* RealTimeSpeechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeSpeechViewController.swift; sourceTree = "<group>"; };
 		A01DD68129B85E8B00EEC7EE /* SpeechRecognizeDelegateClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizeDelegateClass.swift; sourceTree = "<group>"; };
+		EC115BDD29BB1866001B08DA /* ConcurrencyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrencyUtils.swift; sourceTree = "<group>"; };
+		EC115BE929BB495B001B08DA /* RecordingControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingControlViewModel.swift; sourceTree = "<group>"; };
+		EC115BEB29BD7CB5001B08DA /* AzureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureService.swift; sourceTree = "<group>"; };
 		ECA98CB629B37248008DDFED /* bot_teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bot_teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA98CB929B37248008DDFED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECA98CBB29B37248008DDFED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +129,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		EC115BDC29BB17EB001B08DA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EC115BDD29BB1866001B08DA /* ConcurrencyUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		ECA98CAD29B37248008DDFED = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +162,7 @@
 		ECA98CB829B37248008DDFED /* bot_teacher */ = {
 			isa = PBXGroup;
 			children = (
+				EC115BDC29BB17EB001B08DA /* Utils */,
 				ECEA37EA29B5136900A069C8 /* ChatGPTService */,
 				ECA98CF429B3A3A9008DDFED /* Views */,
 				ECA98CEF29B394D5008DDFED /* ViewControllers */,
@@ -187,6 +202,7 @@
 				ECEA380B29B7702300A069C8 /* SpeechRecognizer.swift */,
 				ECA98CED29B392FF008DDFED /* Teacher.swift */,
 				ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */,
+				EC115BE929BB495B001B08DA /* RecordingControlViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -217,6 +233,7 @@
 			children = (
 				ECEA37EB29B5138000A069C8 /* APICaller.swift */,
 				ECEA380129B61A8300A069C8 /* BotResponse.swift */,
+				EC115BEB29BD7CB5001B08DA /* AzureService.swift */,
 			);
 			path = ChatGPTService;
 			sourceTree = "<group>";
@@ -239,6 +256,8 @@
 			dependencies = (
 			);
 			name = bot_teacher;
+			packageProductDependencies = (
+			);
 			productName = bot_teacher;
 			productReference = ECA98CB629B37248008DDFED /* bot_teacher.app */;
 			productType = "com.apple.product-type.application";
@@ -311,6 +330,8 @@
 				Base,
 			);
 			mainGroup = ECA98CAD29B37248008DDFED;
+			packageReferences = (
+			);
 			productRefGroup = ECA98CB729B37248008DDFED /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -396,6 +417,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC115BEA29BB495B001B08DA /* RecordingControlViewModel.swift in Sources */,
+				EC115BEC29BD7CB5001B08DA /* AzureService.swift in Sources */,
 				ECA98CF329B3953F008DDFED /* TeacherCardsViewController.swift in Sources */,
 				ECA98CF629B3A3EE008DDFED /* CardsTableViewCell.swift in Sources */,
 				ECEA37E429B4E53800A069C8 /* LogInViewController.swift in Sources */,
@@ -409,6 +432,7 @@
 				A01DD68229B85E8B00EEC7EE /* SpeechRecognizeDelegateClass.swift in Sources */,
 				ECEA380429B74F5400A069C8 /* MessageCellView.swift in Sources */,
 				ECA98CBA29B37248008DDFED /* AppDelegate.swift in Sources */,
+				EC115BDE29BB1866001B08DA /* ConcurrencyUtils.swift in Sources */,
 				ECA98CBC29B37248008DDFED /* SceneDelegate.swift in Sources */,
 				ECEA37EC29B5138000A069C8 /* APICaller.swift in Sources */,
 			);
@@ -516,7 +540,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -570,7 +594,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

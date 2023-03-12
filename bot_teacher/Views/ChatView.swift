@@ -10,20 +10,28 @@ import OpenAISwift
 import AVFoundation
 import Speech
 
-
 struct ChatView: View {
     
     @ObservedObject var speechDelegateClass = SpeechRecognizeDelegateClass()
     var chatTeacher: Teacher
     var userName: String
     let constrain = "responds in 2 sentences and sometimes ask a question"
+    var azureServeice = AzureSerivce()
+    
     @State var client: OpenAISwift
     @State var messagesModels: [MessageModel] = []
-    @State var isRecording: Bool = false
+    @State var isRecording: Bool = true // updated by Timer Thread
+    @State var lastTimeStatus: Bool = false
     @State var allowRecord: Bool = true
     @State var isInit: Bool = true
     @State var finalInput : [ChatMessage] = []
     @State var userSpeechMessage = ""
+    @State var buttonMsg =  ""
+    @State var oldTranscript = ""
+    @State var latestTranscript = ""
+    @State var timer : Timer?
+//    @State
+
     let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
 //    @State private var delegate = SpeechRecognizerDelegate()
     @State var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -35,8 +43,12 @@ struct ChatView: View {
     
     // Create a speech synthesizer.
     let synthesizer = AVSpeechSynthesizer()
-
+    
+    // set empty time interval to 3s
+    let sampleTime : Double = 5.0
+    
     var body: some View {
+        
 //                NavigationView {
                     VStack {
                         Text("\(chatTeacher.name)").font(.title).bold()
@@ -63,52 +75,51 @@ struct ChatView: View {
             }
             
             VStack {
-                Button(action: {
-
-                    if (!isRecording) {
-                        do {
-                            try startRecording()
-                        } catch {
-                            // TODO: - pop up error msg
-                            print("speech not available")
-                        }
-                    } else {
-                        // stop audio
-                        if audioEngine.isRunning {
-                            audioEngine.stop()
-                            audioEngine.inputNode.removeTap(onBus: 0)
-                            recognitionRequest?.endAudio()
-                        }
-                        // MARK: -stop recording: send message to box
-
-
-                    }
-                    isRecording.toggle()
-                    userSpeechMessage = ""
-                       }) {
-                           Image(systemName: isRecording ? "waveform.circle" : "waveform.circle.fill")
-                               .resizable()
-                               .frame(width: 80, height: 80)
-//                               .foregroundColor(isRecording ? .red : .green)
-                       }
+                Text(buttonMsg)
+                    .font(.system(size: 12, weight: .light, design: .serif))
             }
+
         }.onAppear {
-            finalInput.append(initPrompt())
-//            speechDelegateClass.setValue(with: isRecording)
-//            speechRecognizer.delegate = speechDelegateClass
-//            client.setup()
             
-//            getGPTChatResponse(client: client, input: [initPrompt()], completion: { _ in
+//            azureServeice.config(with: chatTeacher.name)
+            
+           controlThread()
+            
+            // MARK: Background Timer Thread
+            timer = Timer.scheduledTimer(withTimeInterval: sampleTime, repeats: true, block: { _ in
+                // check
+                print(oldTranscript, latestTranscript)
                 
-//                result in
-//                let response = result.trimmingCharacters(in: .whitespacesAndNewlines)
-//                messagesModels.append(MessageModel(id: UUID(),
-//                                                   messageType: .Response,
-//                                                   content: response))
-//                playSpeech(with: response)
-//            })
+                if (isRecording) {
+                    if (oldTranscript != latestTranscript) {
+                        
+                        oldTranscript = latestTranscript
+                    }
+                    
+                    else {
+                        // sentence finished, stop recording and send message
+    //                    DispatchQueue.main.sync {
+                            print("timer running")
+                            isRecording = false
+    //                        buttonMsg = ""
+    //                        if audioEngine.isRunning {
+    //                           audioEngine.stop()
+    //                           audioEngine.inputNode.removeTap(onBus: 0)
+    //                           recognitionRequest?.endAudio()
+    //                        }
+    //                    }
+                        
+                        sendMessage(message: latestTranscript)
+                        
+                    }
+                } else {
+                   
+                }
+                
+
+                
+            })
         }
-        
         
     }
     
@@ -129,6 +140,7 @@ struct ChatView: View {
     
     
     func sendMessage(message: String) {
+        isRecording = false
         withAnimation {
             messagesModels.append(MessageModel(id: UUID(), messageType: .Sender, content: message))
             DispatchQueue.main.asyncAfter(deadline: .now()) {
@@ -144,7 +156,14 @@ struct ChatView: View {
                                                            messageType: .Response,
                                                            content: response))
                         finalInput.append(createChatMessage(role: .Response, content: response + "impersonate \(chatTeacher.name)"))
-                        playSpeech(with: response)
+                        
+                        // turn on
+                        oldTranscript = ""
+                        latestTranscript = ""
+                        isRecording = true
+                        
+//                        playSpeech(with: response)
+                        playSpeechViaAzure(with: response)
                     })
                     
                 }
@@ -167,70 +186,88 @@ struct ChatView: View {
         synthesizer.speak(utterance)
         
     }
+    
+    func playSpeechViaAzure(with speechMessage: String) {
+        azureServeice.changeInputTextAndPlay(with: speechMessage)
+    }
+    
     // MARK: - speech recognization usage
     
     func startRecording() throws {
         
-        // Cancel the previous task if it's running.
-        recognitionTask?.cancel()
-        recognitionTask = nil
+        print("start recording")
         
-        // Configure the audio session for the app.
-        let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
-        try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-        let inputNode = audioEngine.inputNode
-        
-        // Create and configure the speech recognition request.
-        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        guard let recognitionRequest = recognitionRequest else { fatalError("Unable to create a SFSpeechAudioBufferRecognitionRequest object") }
-        recognitionRequest.shouldReportPartialResults = true
-        
-        // Keep speech recognition data on device
-        if #available(iOS 13, *) {
-            recognitionRequest.requiresOnDeviceRecognition = false
-        }
-        
-        // Create a recognition task for the speech recognition session.
-        // Keep a reference to the task so that it can be canceled.
-        recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
-
+        try DispatchQueue.main.sync {
             
-            if let result = result, result.isFinal, !isRecording {
-                // Update the text view with the results.
-                
-                
-                userSpeechMessage = result.bestTranscription.formattedString
-//                print("speechMessage: \(userSpeechMessage)")
-                let prompt  = "\(userName): \(userSpeechMessage)\n\(chatTeacher.name):"
-                sendMessage(message: userSpeechMessage)
-                
-                
-                print("Text \(result.bestTranscription.formattedString)")
+            // Cancel the previous task if it's running.
+            recognitionTask?.cancel()
+            recognitionTask = nil
+            
+            // Configure the audio session for the app.
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+            let inputNode = audioEngine.inputNode
+            
+            // Create and configure the speech recognition request.
+            recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+            guard let recognitionRequest = recognitionRequest else { fatalError("Unable to create a SFSpeechAudioBufferRecognitionRequest object") }
+            recognitionRequest.shouldReportPartialResults = true
+            
+            // Keep speech recognition data on device
+            if #available(iOS 13, *) {
+                recognitionRequest.requiresOnDeviceRecognition = false
             }
             
-            if error != nil {
-                // Stop recognizing speech if there is a problem.
-                self.audioEngine.stop()
-                inputNode.removeTap(onBus: 0)
+            // Create a recognition task for the speech recognition session.
+            // Keep a reference to the task so that it can be canceled.
+            recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
+                print("220")
+                if let result = result {
+                    let msg = result.bestTranscription.formattedString
 
-                self.recognitionRequest = nil
-                self.recognitionTask = nil
+                    print("Text \(result.bestTranscription.formattedString)")
+                    latestTranscript = msg
+                    print("update transcript")
 
-                isRecording = true
+                    
+                }
+                
+                else {
+
+                
+                }
+                
+                if error != nil {
+                    
+//                    DispatchQueue.main.sync {
+                        // Stop recognizing speech if there is a problem.
+                        self.audioEngine.stop()
+                        inputNode.removeTap(onBus: 0)
+                        
+                        self.recognitionRequest = nil
+                        self.recognitionTask = nil
+                        
+                        isRecording = false
+                        
+//                    }
+                }
             }
-        }
-        // Configure the microphone input.
-        let recordingFormat = inputNode.outputFormat(forBus: 0)
-        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
-            self.recognitionRequest?.append(buffer)
+            
+            
+            print("253")
+            // Configure the microphone input.
+            let recordingFormat = inputNode.outputFormat(forBus: 0)
+            inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
+                self.recognitionRequest?.append(buffer)
+            }
+            
+            audioEngine.prepare()
+            try audioEngine.start()
         }
         
-        audioEngine.prepare()
-        try audioEngine.start()
-        
-        // Let the user know to start talking.
-//        textView.text = "(Go ahead, I'm listening)"
+
+    
         
     }
     
@@ -261,19 +298,61 @@ struct ChatView: View {
             }
         }
     }
-//     MARK: SFSpeechRecognizerDelegate
-    public func speechRecognizerDelegate(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
-        if available {
-            isRecording = true
-//            recordButton.setTitle("Start Recording", for: [])
-        } else {
-            isRecording = false
-//            recordButton.setTitle("Recognition Not Available", for: .disabled)
-        }
-    }
 
-   
     
+    public func controlThread() {
+        
+        DispatchQueue.global(qos: .background).async {
+            
+            while true {
+                
+                    if (lastTimeStatus != isRecording) {
+                        if (isRecording == true) {
+                            // trigger
+                            do {
+                                
+                                DispatchQueue.main.sync {
+                                    lastTimeStatus = isRecording
+                                    buttonMsg = "Start Speaking, I'm listening..."
+                                }
+                                // 生成timer
+                                try startRecording()
+                                
+                                
+                                
+                                
+                            } catch {
+                                // TODO: - pop up error msg
+                                print("error: speech not available")
+                            }
+                            
+                        } else {
+                            print("recording stop in control thread")
+                            DispatchQueue.main.sync {
+                                buttonMsg = ""
+                                lastTimeStatus = isRecording
+                                if audioEngine.isRunning {
+                                   audioEngine.stop()
+                                   audioEngine.inputNode.removeTap(onBus: 0)
+                                   recognitionRequest?.endAudio()
+                                }
+        
+                            }
+                            
+                        }
+
+                    } else {
+                        
+                        
+                    }
+                    
+//                    userSpeechMessage = ""
+                }
+                
+            }
+    }
+    
+
 }
 
 

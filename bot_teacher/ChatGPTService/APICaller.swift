@@ -7,7 +7,6 @@
 
 import Foundation
 import OpenAISwift
-import Async
 import OpenAIKit
 
 final class APICaller: ObservableObject {

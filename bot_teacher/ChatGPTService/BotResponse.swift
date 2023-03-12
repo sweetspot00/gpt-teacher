@@ -7,7 +7,6 @@
 
 import Foundation
 import OpenAISwift
-import Async
 
 public func getGPTCompletionResponse(client: OpenAISwift, input: String, completion: @escaping (String) -> Void) {
     client.sendCompletion(with: input,model: .gpt3(.davinci), maxTokens: 100, completionHandler: { result in
