@@ -19,6 +19,7 @@ class AzureSerivce {
     let sub = "e7752c67ecf8482894bd9f4314b38fba"
     let region = "southeastasia"
     var speakerName: String!
+    var synthesizer = SPXSpeechSynthesizer()
     
     func config(with name: String) {
         self.speakerName = name
@@ -40,7 +41,7 @@ class AzureSerivce {
         }
         
         speechConfig?.speechSynthesisVoiceName = speakerName;
-        let synthesizer = try! SPXSpeechSynthesizer(speechConfig!)
+        synthesizer = try! SPXSpeechSynthesizer(speechConfig!)
         
         if inputText.isEmpty {
             return
@@ -51,6 +52,9 @@ class AzureSerivce {
             let cancellationDetails = try! SPXSpeechSynthesisCancellationDetails(fromCanceledSynthesisResult: result)
             print("cancelled, detail: \(cancellationDetails.errorDetails!) ")
         }
+
     }
+    
+    
 }
 // </code>

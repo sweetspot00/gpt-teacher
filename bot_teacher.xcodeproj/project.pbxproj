@@ -13,6 +13,7 @@
 		EC115BDE29BB1866001B08DA /* ConcurrencyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BDD29BB1866001B08DA /* ConcurrencyUtils.swift */; };
 		EC115BEA29BB495B001B08DA /* RecordingControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BE929BB495B001B08DA /* RecordingControlViewModel.swift */; };
 		EC115BEC29BD7CB5001B08DA /* AzureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BEB29BD7CB5001B08DA /* AzureService.swift */; };
+		EC115BFF29BD9F51001B08DA /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BFE29BD9F51001B08DA /* Trigger.swift */; };
 		ECA98CBA29B37248008DDFED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CB929B37248008DDFED /* AppDelegate.swift */; };
 		ECA98CBC29B37248008DDFED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CBB29B37248008DDFED /* SceneDelegate.swift */; };
 		ECA98CC129B37248008DDFED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECA98CBF29B37248008DDFED /* Main.storyboard */; };
@@ -59,6 +60,7 @@
 		EC115BDD29BB1866001B08DA /* ConcurrencyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrencyUtils.swift; sourceTree = "<group>"; };
 		EC115BE929BB495B001B08DA /* RecordingControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingControlViewModel.swift; sourceTree = "<group>"; };
 		EC115BEB29BD7CB5001B08DA /* AzureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureService.swift; sourceTree = "<group>"; };
+		EC115BFE29BD9F51001B08DA /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
 		ECA98CB629B37248008DDFED /* bot_teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bot_teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA98CB929B37248008DDFED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECA98CBB29B37248008DDFED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		ECA98CEC29B3927E008DDFED /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EC115BFE29BD9F51001B08DA /* Trigger.swift */,
 				ECEA380B29B7702300A069C8 /* SpeechRecognizer.swift */,
 				ECA98CED29B392FF008DDFED /* Teacher.swift */,
 				ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */,
@@ -435,6 +438,7 @@
 				EC115BDE29BB1866001B08DA /* ConcurrencyUtils.swift in Sources */,
 				ECA98CBC29B37248008DDFED /* SceneDelegate.swift in Sources */,
 				ECEA37EC29B5138000A069C8 /* APICaller.swift in Sources */,
+				EC115BFF29BD9F51001B08DA /* Trigger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,6 +616,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 55YG5RK39U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bot_teacher/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the meeting. Audio recordings are discarded after transcription.";
@@ -643,6 +648,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 55YG5RK39U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bot_teacher/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the meeting. Audio recordings are discarded after transcription.";

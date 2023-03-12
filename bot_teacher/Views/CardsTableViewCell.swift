@@ -141,7 +141,7 @@ class CardsTableViewCell: UITableViewCell {
         
         
         nameLabel.text = item.name
-        infoLabel.text = item.info
+//        infoLabel.text = item.info
         teacherImgView.image = UIImage(named: item.name)?.withRoundedCorners(radius: 30)
 //        teacherImgView.layer.shadowOffset =
         
