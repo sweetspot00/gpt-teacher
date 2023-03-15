@@ -13,13 +13,14 @@ import Combine
 
 struct ChatView: View {
     
-    @ObservedObject var speechDelegateClass = SpeechRecognizeDelegateClass()
-    var chatTeacher: Teacher
+    var chatTeacherName: String
+    @State var chatTeacher: Teacher?
     var userName: String
+    var language_identifier: String?
     let constrain = "responds in 2 sentences and sometimes ask a question"
     var azureServeice = AzureSerivce()
     
-    @State var client: OpenAISwift
+    @State var client: OpenAISwift?
     @State var messagesModels: [MessageModel] = []
     
     // trigger button
@@ -28,9 +29,6 @@ struct ChatView: View {
             controlLogic()
         }
     }
-    
-    
-    
     
     // updated by Timer Thread
     @State var lastTimeStatus: Bool = false
@@ -42,13 +40,11 @@ struct ChatView: View {
     @State var oldTranscript = ""
     @State var latestTranscript = ""
     @State var timer : Timer?
-//    @State
-
     let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
-//    @State private var delegate = SpeechRecognizerDelegate()
     @State var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     
     @State var recognitionTask: SFSpeechRecognitionTask?
+    @State var isPaused = false
     
     private let audioEngine = AVAudioEngine()
     
@@ -58,18 +54,31 @@ struct ChatView: View {
     // set empty time interval to 3s
     let sampleTime : Double = 2
     
+    var closeButtonClick: () -> ()
+    
     var body: some View {
         
-//                NavigationView {
-                    VStack {
-                        Text("\(chatTeacher.name)").font(.title).bold()
-                    }
-//                    .navigationBarTitle("Title")
-//                }
+        ZStack {
+            HStack {
+                Button {
+                    closeButtonClick()
+                } label: {
+                    Image(systemName: "chevron.backward")
+                        .font(.system(size: 20, weight: .bold))
+                }
+                Spacer()
+            }.padding([.horizontal], 15)
+            
+           
+
+            
+            Text("\(chatTeacherName)").font(.title).bold()
+        }
+
         VStack {
             HStack {
                 
-                Image(chatTeacher.name)
+                Image(chatTeacherName)
                     .resizable()
                     .font(.system(size: 30))
                     .aspectRatio(contentMode: .fit)
@@ -89,18 +98,73 @@ struct ChatView: View {
                 Text(buttonMsg)
                     .font(.system(size: 12, weight: .light, design: .serif))
             }
+            
+            VStack {
+                Button(action: {
+                    if isPaused {
+                        isPaused.toggle()
+                        resumeSession()
+                    } else {
+                        isPaused.toggle()
+                        stopSession()
+                        buttonMsg = "Conversation Stopped"
+                    }
+                  }) {
+                      if isPaused {
+                          
+                          Text("Resume Conversation")
+                              .foregroundColor(.white)
+                      } else {
+                          Text("Pause conversation")
+                              .foregroundColor(.white)
+                              .font(.headline)
+                      }
+                  }
+                  .frame(width: CGFloat(300), height: CGFloat(40))
+                  .background(Color.pink)
+                  .cornerRadius(7)
+                
+            }
 
         }.onAppear {
             isRecording = true
-            
-            //            azureServeice.config(with: chatTeacher.name)
-            
+            // get chatTeacher
+            self.chatTeacher = teachers[chatTeacherName]
             // send init prompt
             
             finalInput.append(initPrompt())
-            azureServeice.speakerName = chatTeacher.speakerName
+            azureServeice.speakerName = chatTeacher?.speakerName
+            startTimer()
             
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+        }.onDisappear {
+            
+            print("exit page")
+            stopSession()
+           
+        }
+        
+    }
+    
+    func stopSession() {
+        isRecording = false
+        timer?.invalidate()
+        timer = nil
+        recognitionTask?.cancel()
+        do {
+            try azureServeice.synthesizer.stopSpeaking()
+        } catch {
+            print("error stop speech")
+        }
+
+    }
+    
+    func resumeSession() {
+        startTimer()
+        isRecording = true
+    }
+    
+    func startTimer() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             // MARK: Background Timer Thread
             timer = Timer.scheduledTimer(withTimeInterval: sampleTime, repeats: true, block: { _ in
                 // check
@@ -128,22 +192,11 @@ struct ChatView: View {
             })
             
         }
-        }.onDisappear {
-            print("exit page")
-            isRecording = false
-            timer?.invalidate()
-            do {
-                try azureServeice.synthesizer.stopSpeaking()
-            } catch {
-                print("error stop speech")
-            }
-           
-        }
-        
     }
     
+    
     func initPrompt() -> ChatMessage {
-        let initMsg = "Impersonate \(chatTeacher.name)"
+        let initMsg = "Impersonate \(chatTeacherName)"
         let initCharMsg = createChatMessage(role: .Response, content: initMsg)
         return initCharMsg
     }
@@ -166,16 +219,16 @@ struct ChatView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     withAnimation {
                         // MARK: -GET GPT Response
-                        let messageAddConstrain = message + constrain
+                        let messageAddConstrain = message + " " + constrain
                         let userMsg = createChatMessage(role: .Sender, content: messageAddConstrain)
                         finalInput.append(userMsg)
                         print("finalInput: \(finalInput)")
-                        getGPTChatResponse(client: client, input: finalInput, completion: { result in
+                        getGPTChatResponse(client: client!, input: finalInput, completion: { result in
                             let response = result.trimmingCharacters(in: .whitespacesAndNewlines)
                             messagesModels.append(MessageModel(id: UUID(),
                                                                messageType: .Response,
                                                                content: response))
-                            finalInput.append(createChatMessage(role: .Response, content: response + "impersonate \(chatTeacher.name)"))
+                            finalInput.append(createChatMessage(role: .Response, content: response + "impersonate \(chatTeacherName)"))
                             
                             playSpeechViaAzure(with: response)
                         })
@@ -187,21 +240,6 @@ struct ChatView: View {
 
     }
     
-    func playSpeech(with speechMessage: String) {
-        
-        // Configure the utterance.
-        let utterance = AVSpeechUtterance(string: speechMessage)
-        utterance.rate = chatTeacher.rate
-        utterance.pitchMultiplier = chatTeacher.pitchMultiplier
-        utterance.postUtteranceDelay = chatTeacher.postUtteranceDelay
-        utterance.volume = chatTeacher.volume
-        
-        let voice = AVSpeechSynthesisVoice(identifier: chatTeacher.identifier)
-        utterance.voice = voice
-        
-        synthesizer.speak(utterance)
-        
-    }
     
     func playSpeechViaAzure(with speechMessage: String) {
         azureServeice.changeInputTextAndPlay(with: speechMessage)
@@ -239,15 +277,12 @@ struct ChatView: View {
         // Create a recognition task for the speech recognition session.
         // Keep a reference to the task so that it can be canceled.
         recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
-            print("220")
+//            print("220")
             if let result = result {
                 let msg = result.bestTranscription.formattedString
-
-                print("Text \(result.bestTranscription.formattedString)")
+//                print("Text \(result.bestTranscription.formattedString)")
                 latestTranscript = msg
-                print("update transcript")
-
-                
+//                print("update transcript")
             }
 
             if error != nil {
@@ -324,7 +359,12 @@ struct ChatView: View {
                 }
                 
             } else { // turn off recording
-                buttonMsg = "waiting for response..."
+                if isPaused {
+                    buttonMsg = "Conversation Stopped"
+                } else {
+                    buttonMsg = "waiting for response..."
+                }
+                
                 print("audioEngie status:\(audioEngine.isRunning)")
                 lastTimeStatus = isRecording
                 if audioEngine.isRunning {
@@ -334,7 +374,7 @@ struct ChatView: View {
                 }
             }
         } else {
-//            //
+            // in case
 //            buttonMsg = "waiting for response..."
 //            lastTimeStatus = isRecording
 //

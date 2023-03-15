@@ -6,4 +6,6 @@ target 'bot_teacher' do
   use_frameworks!
   pod 'SnapKit', '~> 5.6.0'
   pod 'MicrosoftCognitiveServicesSpeech-iOS', '~> 1.25'
+  pod 'GoogleSignIn',
+  pod 'GoogleSignInSwiftSupport'
 end

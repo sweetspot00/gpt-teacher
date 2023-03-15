@@ -24,25 +24,24 @@ class ChatViewController: UIViewController {
     // get chat info
     var key = ""
     var userName = ""
-    private var chatTeacher = initTeacher()
+    private var chatTeacherName = ""
     var opaiCaller: APICaller = APICaller()
     
     // MARK: - LifeCycle
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
+//        setupViews()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
     }
     
-    public func setup(teacher: Teacher, opaiKey: String, name: String) {
-        chatTeacher = teacher
-        opaiCaller.setup(with: opaiKey)
-        self.key = opaiKey
-        self.userName = name
+    public func setup(teacherName: String, username: String) {
+        opaiCaller.setup(with: OPENAI_KEY)
+        chatTeacherName = teacherName
+        self.userName = username
     }
     
 
@@ -52,17 +51,17 @@ class ChatViewController: UIViewController {
 
 private extension ChatViewController {
 
-    func setupViews() {
-        let chatView = UIHostingController(rootView: ChatView(chatTeacher: chatTeacher,userName: self.userName, client: opaiCaller.getClient()))
-        addChild(chatView)
-        view.addSubview(chatView.view)
-        chatView.view.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
-        }
-    }
-    
+//    func setupViews() {
+//        let chatView = UIHostingController(rootView: ChatView(chatTeacherName: chatTeacherName, userName: self.userName, client: opaiCaller.getClient()))
+//        addChild(chatView)
+//        view.addSubview(chatView.view)
+//        chatView.view.snp.makeConstraints { make in
+//            make.top.equalToSuperview()
+//            make.left.equalToSuperview()
+//            make.right.equalToSuperview()
+//            make.bottom.equalToSuperview()
+//        }
+//    }
+//
 }
 

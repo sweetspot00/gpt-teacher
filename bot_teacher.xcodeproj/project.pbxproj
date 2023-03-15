@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A01DD68029B84E2B00EEC7EE /* RealTimeSpeechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01DD67F29B84E2B00EEC7EE /* RealTimeSpeechViewController.swift */; };
-		A01DD68229B85E8B00EEC7EE /* SpeechRecognizeDelegateClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01DD68129B85E8B00EEC7EE /* SpeechRecognizeDelegateClass.swift */; };
 		AA0982A12AE34091F8CA228E /* Pods_bot_teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD238D09A312435EE95C246 /* Pods_bot_teacher.framework */; };
-		EC115BDE29BB1866001B08DA /* ConcurrencyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BDD29BB1866001B08DA /* ConcurrencyUtils.swift */; };
 		EC115BEA29BB495B001B08DA /* RecordingControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BE929BB495B001B08DA /* RecordingControlViewModel.swift */; };
 		EC115BEC29BD7CB5001B08DA /* AzureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BEB29BD7CB5001B08DA /* AzureService.swift */; };
-		EC115BFF29BD9F51001B08DA /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BFE29BD9F51001B08DA /* Trigger.swift */; };
+		EC115C0229BEEA8C001B08DA /* AppleIdLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0129BEEA8C001B08DA /* AppleIdLoginViewController.swift */; };
+		EC115C0429BEEAD8001B08DA /* AppleIdResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0329BEEAD8001B08DA /* AppleIdResultViewController.swift */; };
+		EC115C0629BEEB1A001B08DA /* KeyChainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0529BEEB1A001B08DA /* KeyChainItem.swift */; };
+		EC115C0B29C1D93C001B08DA /* TeacherListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0A29C1D93C001B08DA /* TeacherListView.swift */; };
+		EC115C0D29C1DAD2001B08DA /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0C29C1DAD2001B08DA /* EnvironmentValues.swift */; };
 		ECA98CBA29B37248008DDFED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CB929B37248008DDFED /* AppDelegate.swift */; };
 		ECA98CBC29B37248008DDFED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CBB29B37248008DDFED /* SceneDelegate.swift */; };
 		ECA98CC129B37248008DDFED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECA98CBF29B37248008DDFED /* Main.storyboard */; };
@@ -55,12 +56,14 @@
 /* Begin PBXFileReference section */
 		57776F79A06EB4F3F4DDD6F0 /* Pods-bot_teacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bot_teacher.debug.xcconfig"; path = "Target Support Files/Pods-bot_teacher/Pods-bot_teacher.debug.xcconfig"; sourceTree = "<group>"; };
 		9D82BB9135BFECF85582103D /* Pods-bot_teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bot_teacher.release.xcconfig"; path = "Target Support Files/Pods-bot_teacher/Pods-bot_teacher.release.xcconfig"; sourceTree = "<group>"; };
-		A01DD67F29B84E2B00EEC7EE /* RealTimeSpeechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeSpeechViewController.swift; sourceTree = "<group>"; };
-		A01DD68129B85E8B00EEC7EE /* SpeechRecognizeDelegateClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizeDelegateClass.swift; sourceTree = "<group>"; };
-		EC115BDD29BB1866001B08DA /* ConcurrencyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrencyUtils.swift; sourceTree = "<group>"; };
 		EC115BE929BB495B001B08DA /* RecordingControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingControlViewModel.swift; sourceTree = "<group>"; };
 		EC115BEB29BD7CB5001B08DA /* AzureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureService.swift; sourceTree = "<group>"; };
-		EC115BFE29BD9F51001B08DA /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
+		EC115C0129BEEA8C001B08DA /* AppleIdLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIdLoginViewController.swift; sourceTree = "<group>"; };
+		EC115C0329BEEAD8001B08DA /* AppleIdResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIdResultViewController.swift; sourceTree = "<group>"; };
+		EC115C0529BEEB1A001B08DA /* KeyChainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainItem.swift; sourceTree = "<group>"; };
+		EC115C0729C0D64B001B08DA /* bot_teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bot_teacher.entitlements; sourceTree = "<group>"; };
+		EC115C0A29C1D93C001B08DA /* TeacherListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherListView.swift; sourceTree = "<group>"; };
+		EC115C0C29C1DAD2001B08DA /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
 		ECA98CB629B37248008DDFED /* bot_teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bot_teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA98CB929B37248008DDFED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECA98CBB29B37248008DDFED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,10 +134,12 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		EC115BDC29BB17EB001B08DA /* Utils */ = {
+		EC115C0029BEE1FB001B08DA /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				EC115BDD29BB1866001B08DA /* ConcurrencyUtils.swift */,
+				ECEA380B29B7702300A069C8 /* SpeechRecognizer.swift */,
+				EC115C0529BEEB1A001B08DA /* KeyChainItem.swift */,
+				EC115C0C29C1DAD2001B08DA /* EnvironmentValues.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -164,13 +169,13 @@
 		ECA98CB829B37248008DDFED /* bot_teacher */ = {
 			isa = PBXGroup;
 			children = (
-				EC115BDC29BB17EB001B08DA /* Utils */,
+				EC115C0729C0D64B001B08DA /* bot_teacher.entitlements */,
+				EC115C0029BEE1FB001B08DA /* Utils */,
 				ECEA37EA29B5136900A069C8 /* ChatGPTService */,
 				ECA98CF429B3A3A9008DDFED /* Views */,
 				ECA98CEF29B394D5008DDFED /* ViewControllers */,
 				ECA98CEC29B3927E008DDFED /* Model */,
 				ECA98CB929B37248008DDFED /* AppDelegate.swift */,
-				A01DD68129B85E8B00EEC7EE /* SpeechRecognizeDelegateClass.swift */,
 				ECA98CBB29B37248008DDFED /* SceneDelegate.swift */,
 				ECA98CBF29B37248008DDFED /* Main.storyboard */,
 				ECA98CC229B37249008DDFED /* Assets.xcassets */,
@@ -201,8 +206,6 @@
 		ECA98CEC29B3927E008DDFED /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EC115BFE29BD9F51001B08DA /* Trigger.swift */,
-				ECEA380B29B7702300A069C8 /* SpeechRecognizer.swift */,
 				ECA98CED29B392FF008DDFED /* Teacher.swift */,
 				ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */,
 				EC115BE929BB495B001B08DA /* RecordingControlViewModel.swift */,
@@ -216,7 +219,8 @@
 				ECA98CF229B3953F008DDFED /* TeacherCardsViewController.swift */,
 				ECEA37E329B4E53800A069C8 /* LogInViewController.swift */,
 				ECEA37E529B4EE9500A069C8 /* ChatViewController.swift */,
-				A01DD67F29B84E2B00EEC7EE /* RealTimeSpeechViewController.swift */,
+				EC115C0129BEEA8C001B08DA /* AppleIdLoginViewController.swift */,
+				EC115C0329BEEAD8001B08DA /* AppleIdResultViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -227,6 +231,7 @@
 				ECEA380329B74F5400A069C8 /* MessageCellView.swift */,
 				ECA98CF529B3A3EE008DDFED /* CardsTableViewCell.swift */,
 				ECEA37FF29B619E100A069C8 /* ChatView.swift */,
+				EC115C0A29C1D93C001B08DA /* TeacherListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -424,21 +429,22 @@
 				EC115BEC29BD7CB5001B08DA /* AzureService.swift in Sources */,
 				ECA98CF329B3953F008DDFED /* TeacherCardsViewController.swift in Sources */,
 				ECA98CF629B3A3EE008DDFED /* CardsTableViewCell.swift in Sources */,
+				EC115C0229BEEA8C001B08DA /* AppleIdLoginViewController.swift in Sources */,
 				ECEA37E429B4E53800A069C8 /* LogInViewController.swift in Sources */,
+				EC115C0D29C1DAD2001B08DA /* EnvironmentValues.swift in Sources */,
+				EC115C0B29C1D93C001B08DA /* TeacherListView.swift in Sources */,
+				EC115C0629BEEB1A001B08DA /* KeyChainItem.swift in Sources */,
 				ECEA381329B7702300A069C8 /* SpeechRecognizer.swift in Sources */,
 				ECEA380029B619E100A069C8 /* ChatView.swift in Sources */,
-				A01DD68029B84E2B00EEC7EE /* RealTimeSpeechViewController.swift in Sources */,
 				ECEA380229B61A8300A069C8 /* BotResponse.swift in Sources */,
+				EC115C0429BEEAD8001B08DA /* AppleIdResultViewController.swift in Sources */,
 				ECEA37E629B4EE9500A069C8 /* ChatViewController.swift in Sources */,
 				ECA98CEE29B392FF008DDFED /* Teacher.swift in Sources */,
 				ECEA37FE29B60FFA00A069C8 /* MessageModel.swift in Sources */,
-				A01DD68229B85E8B00EEC7EE /* SpeechRecognizeDelegateClass.swift in Sources */,
 				ECEA380429B74F5400A069C8 /* MessageCellView.swift in Sources */,
 				ECA98CBA29B37248008DDFED /* AppDelegate.swift in Sources */,
-				EC115BDE29BB1866001B08DA /* ConcurrencyUtils.swift in Sources */,
 				ECA98CBC29B37248008DDFED /* SceneDelegate.swift in Sources */,
 				ECEA37EC29B5138000A069C8 /* APICaller.swift in Sources */,
-				EC115BFF29BD9F51001B08DA /* Trigger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,9 +620,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = bot_teacher/bot_teacher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 55YG5RK39U;
+				DEVELOPMENT_TEAM = 866D4KR59Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bot_teacher/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the meeting. Audio recordings are discarded after transcription.";
@@ -632,7 +639,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "toy.bot-teacher";
+				PRODUCT_BUNDLE_IDENTIFIER = ailin.ai.tech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -646,9 +653,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = bot_teacher/bot_teacher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 55YG5RK39U;
+				DEVELOPMENT_TEAM = 866D4KR59Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bot_teacher/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the meeting. Audio recordings are discarded after transcription.";
@@ -664,7 +672,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "toy.bot-teacher";
+				PRODUCT_BUNDLE_IDENTIFIER = ailin.ai.tech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

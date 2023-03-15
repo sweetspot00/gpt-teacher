@@ -18,7 +18,7 @@ import SwiftUI
             Text(newMessage)
                 .padding()
                 .foregroundColor(Color.white)
-                .background(Color.blue.opacity(0.8))
+                .background(Color.black)
                 .cornerRadius(10)
                 .padding(.horizontal, 16)
                 .padding(.bottom, 10)

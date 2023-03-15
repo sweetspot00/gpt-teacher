@@ -99,16 +99,9 @@ class CardsTableViewCell: UITableViewCell {
         
         self.containerVw.addSubview(playButton)
         self.containerVw.addSubview(teacherImgView)
-//        self.containerVw.addSubview(nameLabel)
-//        self.containerVw.addSubview(infoLabel)
-        
-//        self.containerVw.backgroundColor = item.color
         
         // image
         teacherImgView.snp.makeConstraints { make in
-//            make.width.height.equalTo(60)
-//            make.left.equalTo(containerVw.snp.left).offset(20)
-//            make.top.equalTo(containerVw.snp.top).offset(20)
             make.right.equalTo(containerVw.snp.right)
             make.left.equalTo(containerVw.snp.left)
             make.top.equalTo(containerVw.snp.top)
@@ -116,20 +109,6 @@ class CardsTableViewCell: UITableViewCell {
             
         }
         
-        // name
-//        nameLabel.snp.makeConstraints { make in
-//            make.top.equalTo(teacherImgView.snp.top)
-//            make.left.equalTo(teacherImgView.snp.right).offset(5)
-//        }
-//
-//        // info
-//        infoLabel.snp.makeConstraints { make in
-//            make.top.equalTo(nameLabel.snp.bottom).offset(5)
-//            make.left.equalTo(teacherImgView.snp.right).offset(5)
-//            make.bottom.equalToSuperview().offset(-20)
-//            make.right.equalToSuperview().offset(-20)
-//        }
-//
         // button
         playButton.snp.makeConstraints { make in
             make.top.equalTo(teacherImgView.snp.top)
@@ -141,9 +120,7 @@ class CardsTableViewCell: UITableViewCell {
         
         
         nameLabel.text = item.name
-//        infoLabel.text = item.info
         teacherImgView.image = UIImage(named: item.name)?.withRoundedCorners(radius: 30)
-//        teacherImgView.layer.shadowOffset =
         
     
     }

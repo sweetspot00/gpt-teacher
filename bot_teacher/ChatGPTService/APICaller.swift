@@ -16,7 +16,7 @@ final class APICaller: ObservableObject {
 //    @frozen enum Constants {
 //        static let key = "some key"
 //    }
-    var key = ""
+    var key = OPENAI_KEY
     
     public var client: OpenAISwift?
     public var openAIObject: OpenAIKit.OpenAI?
@@ -30,6 +30,7 @@ final class APICaller: ObservableObject {
     }
     
     public func getClient() -> OpenAISwift {
+        self.client = OpenAISwift(authToken: self.key)
         return client!
     }
     
@@ -48,17 +49,5 @@ final class APICaller: ObservableObject {
             }
         })
     }
-    
-//    public func getGPT3Response(input: String, client: OpenAIKit.OpenAI, completion: @escaping (Result<String, Error>) -> Void) {
-//        let completionParameter = CompletionParameters(
-//              model: "text-davinci-001",
-//              prompt: ["Say this is a test ->"],
-//              maxTokens: 4,
-//              temperature: 0.98
-//            )
-//
-//        client.generateCompletion(parameters: completionParameter)
-//    }
-//
    
 }
