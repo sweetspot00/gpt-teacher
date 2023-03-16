@@ -9,9 +9,9 @@ import Foundation
 
 let numbers_of_languages = 5
 
-let OPENAI_KEY = "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"
+let OPENAI_KEY = ""
 
-let AZURE_KEY = "e988f66034084693946966821031c9db"
+let AZURE_KEY = ""
 
 let AZURE_REGION = "southeastasia"
 
