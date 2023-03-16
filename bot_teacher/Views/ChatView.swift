@@ -40,6 +40,12 @@ struct ChatView: View {
     @State var oldTranscript = ""
     @State var latestTranscript = ""
     @State var timer : Timer?
+    
+    // MARK: conversation timer
+    @State var timeRemaining = conversationTime
+    @State var conversationTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State var showingAlert = false
+    
     let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
     @State var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     
@@ -70,11 +76,39 @@ struct ChatView: View {
             }.padding([.horizontal], 15)
             
            
-
+            VStack {
+                Text("\(chatTeacherName)").font(.title).bold()
+                Text("\(timeString(time: timeRemaining))")
+                    .font(.subheadline)
+                    .onReceive(conversationTimer) { _ in
+                        if self.timeRemaining > 0 {
+                            self.timeRemaining -= 1
+                        }
+                    }
+            } // MARK: time to stop and quit page
+            .alert(isPresented: $showingAlert) {
+                Alert(
+                    title: Text("Time's up!"),
+                    message: Text("Your progress will not be saved."),
+                    dismissButton: .destructive(Text("Quit"), action: {
+                        // handle quitting here
+                        closeButtonClick()
+                    })
+                )
+            }
+            .onReceive(conversationTimer) { _ in
+                if self.timeRemaining > 0 {
+                    self.timeRemaining -= 1
+                } else {
+                    self.conversationTimer.upstream.connect().cancel()
+                    showingAlert = true
+                }
+            }
             
-            Text("\(chatTeacherName)").font(.title).bold()
+            
         }
 
+        
         VStack {
             HStack {
                 
@@ -103,15 +137,16 @@ struct ChatView: View {
                 Button(action: {
                     if isPaused {
                         isPaused.toggle()
+                        conversationTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
                         resumeSession()
                     } else {
+                        self.conversationTimer.upstream.connect().cancel()
                         isPaused.toggle()
                         stopSession()
                         buttonMsg = "Conversation Stopped"
                     }
                   }) {
                       if isPaused {
-                          
                           Text("Resume Conversation")
                               .foregroundColor(.white)
                       } else {
@@ -192,6 +227,12 @@ struct ChatView: View {
             })
             
         }
+    }
+    // MARK: conversation time longest = 10 mins
+    func timeString(time: Int) -> String {
+        let minutes = time / 60
+        let seconds = time % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
     
     

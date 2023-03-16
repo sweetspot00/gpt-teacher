@@ -37,3 +37,10 @@ struct LanguageTeacherModel: Hashable {
 let ltmodels : [LanguageTeacherModel] = [.init(language: "English", icon: "English", peoples: [.init(name: "Steve Jobs", image: "Steve Jobs"),
                                                                                                .init(name: "Kim Kardashian", image: "Kim Kardashian")]),
                                          .init(language: "Franch", icon: "Franch", peoples: [.init(name: "Donald Trump", image: "Donald Trump")])]
+
+let conversationTime = 10 // 10 mins
+// language: constrain
+let constrains : [String: String] = ["English":"responds in 2 sentences and sometimes ask a question"]
+
+// init prompt in different language
+let initPrompt : [String: String] = ["English": "Impersonate"]

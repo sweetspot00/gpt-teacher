@@ -8,19 +8,11 @@
 import SwiftUI
 import OpenAISwift
 
-class ViewModel: ObservableObject {
-    @Published var name = "nil"
-
-//    func increment() {
-//        count += 1
-//    }
-}
 
 struct TeacherListView: View {
 
     @State private var selectedButtonIndex = 0
-    @State var selectedChatTeacher: String = "nil"
-    @ObservedObject var selectedName = ViewModel()
+    @State var selectedChatTeacher: String = ""
     var userName = "Sample"
     @State var isSelected = false
     
@@ -90,10 +82,13 @@ struct TeacherListView: View {
                         ForEach(ltmodels[selectedButtonIndex].peoples,id: \.self) { people in
                                 VStack {
                                     Button {
-                                        // open ChatView
+
+                                            // open ChatView
                                         selectedChatTeacher = people.name
                                         isSelected.toggle()
                                         print("select")
+
+                                        
                                     } label: {
                                         Image(people.image)
                                             .resizable()
@@ -105,13 +100,15 @@ struct TeacherListView: View {
                                     Text(people.name)
                                         .font(.subheadline)
                                 }
-//                            print(selectedChatTeacher)
+                                .onChange(of:selectedChatTeacher){_ in }
+                            
+//                            print(selectedChatTeacher)zh
 
                         }
                     }
                 }
                 .fullScreenCover(isPresented: $isSelected) {
-                    ChatView(chatTeacherName: selectedName.name, userName: userName, client: APICaller().getClient()) {
+                    ChatView(chatTeacherName: selectedChatTeacher, userName: userName, client: APICaller().getClient()) {
                         self.isSelected.toggle()
                     }
                 }
