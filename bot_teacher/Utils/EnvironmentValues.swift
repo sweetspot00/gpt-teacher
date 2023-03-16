@@ -7,14 +7,6 @@
 
 import Foundation
 
-let numbers_of_languages = 5
-
-let OPENAI_KEY = ""
-
-let AZURE_KEY = ""
-
-let AZURE_REGION = "southeastasia"
-
 let language_identifier : [String: String] = ["English": "en-US", "France":"fr-fr", "Portuguese": "po-se"]
 let languaues = ["English", "France", "Portuguese", "Chinese", "German"]
 
