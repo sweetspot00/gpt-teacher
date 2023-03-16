@@ -17,8 +17,10 @@ struct ChatView: View {
     @State var chatTeacher: Teacher?
     var userName: String
     var language_identifier: String?
-    let constrain = "responds in 2 sentences and sometimes ask a question"
+    let constrain = constrains["English"]
     var azureServeice = AzureSerivce()
+    var language = "English"
+    @State var initResponse = ""
     
     @State var client: OpenAISwift?
     @State var messagesModels: [MessageModel] = []
@@ -162,14 +164,14 @@ struct ChatView: View {
             }
 
         }.onAppear {
-            isRecording = true
+
             // get chatTeacher
             self.chatTeacher = teachers[chatTeacherName]
-            // send init prompt
+            sendInitMsgAndfilter()
             
-            finalInput.append(initPrompt())
+//            finalInput.append(initPrompt())
             azureServeice.speakerName = chatTeacher?.speakerName
-            startTimer()
+            
             
         }.onDisappear {
             
@@ -235,10 +237,35 @@ struct ChatView: View {
         return String(format: "%02d:%02d", minutes, seconds)
     }
     
+   
+    func sendInitMsgAndfilter() {
+        let words = filterWords[language]
+        
+        func getInitResponse() {
+            getGPTChatResponse(client: client!, input: [initPrompt(), createChatMessage(role: .Sender, content: "hello")], completion: { result in
+                initResponse = result.trimmingCharacters(in: .whitespacesAndNewlines)
+                if initResponse != "" && !initResponse.lowercased().contains(words!.lowercased()) {
+                    finalInput.append(initPrompt())
+                    finalInput.append(createChatMessage(role: .Sender, content: "hello"))
+                    finalInput.append(createChatMessage(role: .Response, content: initResponse))
+                    isRecording = true
+                    startTimer()
+                } else {
+                    client = APICaller().getClient()
+                    getInitResponse()
+                }
+            })
+        }
+        
+        getInitResponse()
+    }
+
+
+    
     
     func initPrompt() -> ChatMessage {
         let initMsg = "Impersonate \(chatTeacherName)"
-        let initCharMsg = createChatMessage(role: .Response, content: initMsg)
+        let initCharMsg = ChatMessage(role: .system, content: initMsg)
         return initCharMsg
     }
     
@@ -247,10 +274,16 @@ struct ChatView: View {
         case .Sender:
             return ChatMessage(role: .user, content: content)
         case .Response:
-            return ChatMessage(role: .system, content: content)
+            return ChatMessage(role: .assistant, content: content)
         }
     }
     
+    
+    func sendInitMsg() {
+        getGPTChatResponse(client: client!, input: [initPrompt()], completion: { result in
+            initResponse = result.trimmingCharacters(in: .whitespacesAndNewlines)
+        })
+    }
     
     func sendMessage(message: String) {
         print("lastTimeStatus: \(lastTimeStatus), isRecording: \(isRecording)")
@@ -260,7 +293,7 @@ struct ChatView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     withAnimation {
                         // MARK: -GET GPT Response
-                        let messageAddConstrain = message + " " + constrain
+                        let messageAddConstrain = message + " " + constrain!
                         let userMsg = createChatMessage(role: .Sender, content: messageAddConstrain)
                         finalInput.append(userMsg)
                         print("finalInput: \(finalInput)")
@@ -269,7 +302,7 @@ struct ChatView: View {
                             messagesModels.append(MessageModel(id: UUID(),
                                                                messageType: .Response,
                                                                content: response))
-                            finalInput.append(createChatMessage(role: .Response, content: response + "impersonate \(chatTeacherName)"))
+                            finalInput.append(createChatMessage(role: .Response, content: response))
                             
                             playSpeechViaAzure(with: response)
                         })
@@ -340,8 +373,6 @@ struct ChatView: View {
             }
         }
         
-        
-        print("253")
         // Configure the microphone input.
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in

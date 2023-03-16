@@ -39,7 +39,7 @@ final class APICaller: ObservableObject {
     }
     
     public func getGPTResponse(client: OpenAISwift, input: String,completion: @escaping (Result<String, Error>) -> Void) {
-        client.sendCompletion(with: input,model:.chat(.chatgpt0301), maxTokens: 500, completionHandler: { result in
+        client.sendCompletion(with: input,model:.chat(.chatgpt), maxTokens: 500, completionHandler: { result in
             switch result {
             case .success(let success):
                 let output = success.choices.first?.text ?? ""

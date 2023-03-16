@@ -9,9 +9,9 @@ import Foundation
 
 let numbers_of_languages = 5
 
-let OPENAI_KEY = ""
+let OPENAI_KEY = "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"
 
-let AZURE_KEY = ""
+let AZURE_KEY = "e988f66034084693946966821031c9db"
 
 let AZURE_REGION = "southeastasia"
 
@@ -38,9 +38,14 @@ let ltmodels : [LanguageTeacherModel] = [.init(language: "English", icon: "Engli
                                                                                                .init(name: "Kim Kardashian", image: "Kim Kardashian")]),
                                          .init(language: "Franch", icon: "Franch", peoples: [.init(name: "Donald Trump", image: "Donald Trump")])]
 
-let conversationTime = 10 // 10 mins
+let conversationTime = 600 // 10 mins
 // language: constrain
-let constrains : [String: String] = ["English":"responds in 2 sentences and sometimes ask a question"]
+let constrains : [String: String] = ["English":"(responds in 2 sentences and sometimes ask a question)"]
 
 // init prompt in different language
 let initPrompt : [String: String] = ["English": "Impersonate"]
+
+let filterWords: [String: String] = ["English": "as an AI language model"]
+
+
+
