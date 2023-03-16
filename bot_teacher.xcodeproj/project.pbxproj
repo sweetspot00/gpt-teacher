@@ -16,7 +16,7 @@
 		EC115C0B29C1D93C001B08DA /* TeacherListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0A29C1D93C001B08DA /* TeacherListView.swift */; };
 		EC115C0D29C1DAD2001B08DA /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0C29C1DAD2001B08DA /* EnvironmentValues.swift */; };
 		EC61445E29C35C6300CDF540 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EC61445D29C35C6300CDF540 /* .gitignore */; };
-		EC61446029C35CBE00CDF540 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC61445F29C35CBE00CDF540 /* Keys.swift */; };
+		EC61446429C362BB00CDF540 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC61446329C362BB00CDF540 /* Keys.swift */; };
 		ECA98CBA29B37248008DDFED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CB929B37248008DDFED /* AppDelegate.swift */; };
 		ECA98CBC29B37248008DDFED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CBB29B37248008DDFED /* SceneDelegate.swift */; };
 		ECA98CC129B37248008DDFED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECA98CBF29B37248008DDFED /* Main.storyboard */; };
@@ -67,7 +67,7 @@
 		EC115C0A29C1D93C001B08DA /* TeacherListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherListView.swift; sourceTree = "<group>"; };
 		EC115C0C29C1DAD2001B08DA /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
 		EC61445D29C35C6300CDF540 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		EC61445F29C35CBE00CDF540 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		EC61446329C362BB00CDF540 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		ECA98CB629B37248008DDFED /* bot_teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bot_teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA98CB929B37248008DDFED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECA98CBB29B37248008DDFED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 				ECEA380B29B7702300A069C8 /* SpeechRecognizer.swift */,
 				EC115C0529BEEB1A001B08DA /* KeyChainItem.swift */,
 				EC115C0C29C1DAD2001B08DA /* EnvironmentValues.swift */,
-				EC61445F29C35CBE00CDF540 /* Keys.swift */,
+				EC61446329C362BB00CDF540 /* Keys.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -436,7 +436,7 @@
 				EC115BEC29BD7CB5001B08DA /* AzureService.swift in Sources */,
 				ECA98CF329B3953F008DDFED /* TeacherCardsViewController.swift in Sources */,
 				ECA98CF629B3A3EE008DDFED /* CardsTableViewCell.swift in Sources */,
-				EC61446029C35CBE00CDF540 /* Keys.swift in Sources */,
+				EC61446429C362BB00CDF540 /* Keys.swift in Sources */,
 				EC115C0229BEEA8C001B08DA /* AppleIdLoginViewController.swift in Sources */,
 				ECEA37E429B4E53800A069C8 /* LogInViewController.swift in Sources */,
 				EC115C0D29C1DAD2001B08DA /* EnvironmentValues.swift in Sources */,
