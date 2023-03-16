@@ -286,7 +286,7 @@ struct ChatView: View {
     }
     
     func sendMessage(message: String) {
-        print("lastTimeStatus: \(lastTimeStatus), isRecording: \(isRecording)")
+//        print("lastTimeStatus: \(lastTimeStatus), isRecording: \(isRecording)")
 //        if (!message.isEmpty) {
             withAnimation {
                 messagesModels.append(MessageModel(id: UUID(), messageType: .Sender, content: message))
@@ -296,7 +296,7 @@ struct ChatView: View {
                         let messageAddConstrain = message + " " + constrain!
                         let userMsg = createChatMessage(role: .Sender, content: messageAddConstrain)
                         finalInput.append(userMsg)
-                        print("finalInput: \(finalInput)")
+//                        print("finalInput: \(finalInput)")
                         getGPTChatResponse(client: client!, input: finalInput, completion: { result in
                             let response = result.trimmingCharacters(in: .whitespacesAndNewlines)
                             messagesModels.append(MessageModel(id: UUID(),

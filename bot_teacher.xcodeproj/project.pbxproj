@@ -8,13 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		AA0982A12AE34091F8CA228E /* Pods_bot_teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD238D09A312435EE95C246 /* Pods_bot_teacher.framework */; };
-		EC115BEA29BB495B001B08DA /* RecordingControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BE929BB495B001B08DA /* RecordingControlViewModel.swift */; };
 		EC115BEC29BD7CB5001B08DA /* AzureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BEB29BD7CB5001B08DA /* AzureService.swift */; };
 		EC115C0229BEEA8C001B08DA /* AppleIdLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0129BEEA8C001B08DA /* AppleIdLoginViewController.swift */; };
-		EC115C0429BEEAD8001B08DA /* AppleIdResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0329BEEAD8001B08DA /* AppleIdResultViewController.swift */; };
 		EC115C0629BEEB1A001B08DA /* KeyChainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0529BEEB1A001B08DA /* KeyChainItem.swift */; };
 		EC115C0B29C1D93C001B08DA /* TeacherListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0A29C1D93C001B08DA /* TeacherListView.swift */; };
-		EC115C0D29C1DAD2001B08DA /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0C29C1DAD2001B08DA /* EnvironmentValues.swift */; };
+		EC115C0D29C1DAD2001B08DA /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0C29C1DAD2001B08DA /* Database.swift */; };
 		EC61445E29C35C6300CDF540 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EC61445D29C35C6300CDF540 /* .gitignore */; };
 		EC61446429C362BB00CDF540 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC61446329C362BB00CDF540 /* Keys.swift */; };
 		ECA98CBA29B37248008DDFED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CB929B37248008DDFED /* AppDelegate.swift */; };
@@ -26,9 +24,6 @@
 		ECA98CDB29B37249008DDFED /* bot_teacherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CDA29B37249008DDFED /* bot_teacherUITests.swift */; };
 		ECA98CDD29B37249008DDFED /* bot_teacherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CDC29B37249008DDFED /* bot_teacherUITestsLaunchTests.swift */; };
 		ECA98CEE29B392FF008DDFED /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CED29B392FF008DDFED /* Teacher.swift */; };
-		ECA98CF329B3953F008DDFED /* TeacherCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CF229B3953F008DDFED /* TeacherCardsViewController.swift */; };
-		ECA98CF629B3A3EE008DDFED /* CardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CF529B3A3EE008DDFED /* CardsTableViewCell.swift */; };
-		ECEA37E429B4E53800A069C8 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37E329B4E53800A069C8 /* LogInViewController.swift */; };
 		ECEA37E629B4EE9500A069C8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37E529B4EE9500A069C8 /* ChatViewController.swift */; };
 		ECEA37EC29B5138000A069C8 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37EB29B5138000A069C8 /* APICaller.swift */; };
 		ECEA37FE29B60FFA00A069C8 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */; };
@@ -58,14 +53,12 @@
 /* Begin PBXFileReference section */
 		57776F79A06EB4F3F4DDD6F0 /* Pods-bot_teacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bot_teacher.debug.xcconfig"; path = "Target Support Files/Pods-bot_teacher/Pods-bot_teacher.debug.xcconfig"; sourceTree = "<group>"; };
 		9D82BB9135BFECF85582103D /* Pods-bot_teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bot_teacher.release.xcconfig"; path = "Target Support Files/Pods-bot_teacher/Pods-bot_teacher.release.xcconfig"; sourceTree = "<group>"; };
-		EC115BE929BB495B001B08DA /* RecordingControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingControlViewModel.swift; sourceTree = "<group>"; };
 		EC115BEB29BD7CB5001B08DA /* AzureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureService.swift; sourceTree = "<group>"; };
 		EC115C0129BEEA8C001B08DA /* AppleIdLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIdLoginViewController.swift; sourceTree = "<group>"; };
-		EC115C0329BEEAD8001B08DA /* AppleIdResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIdResultViewController.swift; sourceTree = "<group>"; };
 		EC115C0529BEEB1A001B08DA /* KeyChainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainItem.swift; sourceTree = "<group>"; };
 		EC115C0729C0D64B001B08DA /* bot_teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bot_teacher.entitlements; sourceTree = "<group>"; };
 		EC115C0A29C1D93C001B08DA /* TeacherListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherListView.swift; sourceTree = "<group>"; };
-		EC115C0C29C1DAD2001B08DA /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
+		EC115C0C29C1DAD2001B08DA /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		EC61445D29C35C6300CDF540 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		EC61446329C362BB00CDF540 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		ECA98CB629B37248008DDFED /* bot_teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bot_teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,9 +74,6 @@
 		ECA98CDA29B37249008DDFED /* bot_teacherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bot_teacherUITests.swift; sourceTree = "<group>"; };
 		ECA98CDC29B37249008DDFED /* bot_teacherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bot_teacherUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		ECA98CED29B392FF008DDFED /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
-		ECA98CF229B3953F008DDFED /* TeacherCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherCardsViewController.swift; sourceTree = "<group>"; };
-		ECA98CF529B3A3EE008DDFED /* CardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsTableViewCell.swift; sourceTree = "<group>"; };
-		ECEA37E329B4E53800A069C8 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		ECEA37E529B4EE9500A069C8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		ECEA37EB29B5138000A069C8 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
@@ -143,7 +133,7 @@
 			children = (
 				ECEA380B29B7702300A069C8 /* SpeechRecognizer.swift */,
 				EC115C0529BEEB1A001B08DA /* KeyChainItem.swift */,
-				EC115C0C29C1DAD2001B08DA /* EnvironmentValues.swift */,
+				EC115C0C29C1DAD2001B08DA /* Database.swift */,
 				EC61446329C362BB00CDF540 /* Keys.swift */,
 			);
 			path = Utils;
@@ -214,7 +204,6 @@
 			children = (
 				ECA98CED29B392FF008DDFED /* Teacher.swift */,
 				ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */,
-				EC115BE929BB495B001B08DA /* RecordingControlViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -222,11 +211,8 @@
 		ECA98CEF29B394D5008DDFED /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				ECA98CF229B3953F008DDFED /* TeacherCardsViewController.swift */,
-				ECEA37E329B4E53800A069C8 /* LogInViewController.swift */,
 				ECEA37E529B4EE9500A069C8 /* ChatViewController.swift */,
 				EC115C0129BEEA8C001B08DA /* AppleIdLoginViewController.swift */,
-				EC115C0329BEEAD8001B08DA /* AppleIdResultViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -235,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				ECEA380329B74F5400A069C8 /* MessageCellView.swift */,
-				ECA98CF529B3A3EE008DDFED /* CardsTableViewCell.swift */,
 				ECEA37FF29B619E100A069C8 /* ChatView.swift */,
 				EC115C0A29C1D93C001B08DA /* TeacherListView.swift */,
 			);
@@ -432,20 +417,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC115BEA29BB495B001B08DA /* RecordingControlViewModel.swift in Sources */,
 				EC115BEC29BD7CB5001B08DA /* AzureService.swift in Sources */,
-				ECA98CF329B3953F008DDFED /* TeacherCardsViewController.swift in Sources */,
-				ECA98CF629B3A3EE008DDFED /* CardsTableViewCell.swift in Sources */,
 				EC61446429C362BB00CDF540 /* Keys.swift in Sources */,
 				EC115C0229BEEA8C001B08DA /* AppleIdLoginViewController.swift in Sources */,
-				ECEA37E429B4E53800A069C8 /* LogInViewController.swift in Sources */,
-				EC115C0D29C1DAD2001B08DA /* EnvironmentValues.swift in Sources */,
+				EC115C0D29C1DAD2001B08DA /* Database.swift in Sources */,
 				EC115C0B29C1D93C001B08DA /* TeacherListView.swift in Sources */,
 				EC115C0629BEEB1A001B08DA /* KeyChainItem.swift in Sources */,
 				ECEA381329B7702300A069C8 /* SpeechRecognizer.swift in Sources */,
 				ECEA380029B619E100A069C8 /* ChatView.swift in Sources */,
 				ECEA380229B61A8300A069C8 /* BotResponse.swift in Sources */,
-				EC115C0429BEEAD8001B08DA /* AppleIdResultViewController.swift in Sources */,
 				ECEA37E629B4EE9500A069C8 /* ChatViewController.swift in Sources */,
 				ECA98CEE29B392FF008DDFED /* Teacher.swift in Sources */,
 				ECEA37FE29B60FFA00A069C8 /* MessageModel.swift in Sources */,

@@ -16,8 +16,6 @@ class AzureSerivce {
     
     var inputText = ""
     
-    let sub = "e7752c67ecf8482894bd9f4314b38fba"
-    let region = "southeastasia"
     var speakerName: String!
     var synthesizer = SPXSpeechSynthesizer()
     
@@ -34,7 +32,7 @@ class AzureSerivce {
     func synthesisToSpeaker() {
         var speechConfig: SPXSpeechConfiguration?
         do {
-            try speechConfig = SPXSpeechConfiguration(subscription: sub, region: region)
+            try speechConfig = SPXSpeechConfiguration(subscription: AZURE_KEY, region: AZURE_REGION)
         } catch {
             print("error \(error) happened")
             speechConfig = nil

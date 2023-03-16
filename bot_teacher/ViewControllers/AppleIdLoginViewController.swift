@@ -122,25 +122,6 @@ extension AppleIdLoginViewController: ASAuthorizationControllerDelegate {
         }
     }
     
-    private func showResultViewController(userIdentifier: String, fullName: PersonNameComponents?, email: String?) {
-        guard let viewController = self.presentingViewController as? ResultViewController
-            else { return }
-        
-        DispatchQueue.main.async {
-            viewController.userIdentifierLabel.text = userIdentifier
-            if let givenName = fullName?.givenName {
-                viewController.givenNameLabel.text = givenName
-            }
-            if let familyName = fullName?.familyName {
-                viewController.familyNameLabel.text = familyName
-            }
-            if let email = email {
-                viewController.emailLabel.text = email
-            }
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
-    
     private func showPasswordCredentialAlert(username: String, password: String) {
         let message = "The app has received your selected credential from the keychain. \n\n Username: \(username)\n Password: \(password)"
         let alertController = UIAlertController(title: "Keychain Credential Received",

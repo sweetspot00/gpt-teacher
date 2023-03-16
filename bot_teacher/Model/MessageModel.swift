@@ -33,13 +33,3 @@ struct MessageModel: Codable, Hashable, Identifiable {
     }
 }
 
-//var messages: [MessageModel] = [
-//    .init(messageType: .Sender, content: "i send first"),
-//    .init(messageType: .Response, content: "first response"),
-//    .init(messageType: .Sender, content: "i send 2"),
-//    .init(messageType: .Response, content: "2 response"),
-//    .init(messageType: .Sender, content: "i send 3"),
-//    .init(messageType: .Response, content: "3 response")
-//
-//]
-

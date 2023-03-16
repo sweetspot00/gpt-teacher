@@ -284,8 +284,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "284"
             endingLineNumber = "284"
-            landmarkName = "getInitResponse()"
-            landmarkType = "9">
+            landmarkName = "sendInitMsg()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -300,8 +300,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "245"
             endingLineNumber = "245"
-            landmarkName = "ChatView"
-            landmarkType = "14">
+            landmarkName = "getInitResponse()"
+            landmarkType = "9">
             <Locations>
                <Location
                   uuid = "E4C00F42-2506-4ABC-A583-29059E21C787 - 9ec1769552d82c54"
