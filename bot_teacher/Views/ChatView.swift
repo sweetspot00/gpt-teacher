@@ -168,7 +168,7 @@ struct ChatView: View {
             // get chatTeacher
             self.chatTeacher = teachers[chatTeacherName]
             sendInitMsgAndfilter()
-            
+            buttonMsg = "Please wait for the session to start..."
 //            finalInput.append(initPrompt())
             azureServeice.speakerName = chatTeacher?.speakerName
             

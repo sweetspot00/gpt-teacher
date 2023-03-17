@@ -123,19 +123,25 @@ struct LoginView: View {
             }
             .signInWithAppleButtonStyle(colorScheme == .light ? .black : .white)
             .frame(maxWidth: .infinity)
+            .frame(height: 44)
             .cornerRadius(8)
             
           Button(action: signInWithGoogle) {
-            Text("Sign in with Google")
-              .padding(.vertical, 8)
-              .frame(maxWidth: .infinity)
-              .background(alignment: .leading) {
-                Image("Google")
-                  .frame(width: 10, height: 10, alignment: .center)
+              HStack(spacing: 5) {
+                  Image("Google")
+                        .resizable().scaledToFit()
+                    .frame(width: 20, height: 20)
+                  
+                  Text("Sign in with Google")
+                      .foregroundColor(.white)
+                      .bold()
               }
+              .frame(width: UIScreen.main.bounds.size.width - 30 , height: 44)
+              .background(colorScheme == .light ? .black : .white)
+              .cornerRadius(8)
+              .foregroundColor(colorScheme == .dark ? .white : .black)
           }
-          .foregroundColor(colorScheme == .dark ? .white : .black)
-          .buttonStyle(.bordered)
+
 
         }
 

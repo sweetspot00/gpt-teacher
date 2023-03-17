@@ -10,7 +10,6 @@
 		AA0982A12AE34091F8CA228E /* Pods_bot_teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD238D09A312435EE95C246 /* Pods_bot_teacher.framework */; };
 		EC115BEC29BD7CB5001B08DA /* AzureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BEB29BD7CB5001B08DA /* AzureService.swift */; };
 		EC115C0229BEEA8C001B08DA /* AppleIdLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0129BEEA8C001B08DA /* AppleIdLoginViewController.swift */; };
-		EC115C0629BEEB1A001B08DA /* KeyChainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0529BEEB1A001B08DA /* KeyChainItem.swift */; };
 		EC115C0B29C1D93C001B08DA /* TeacherListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0A29C1D93C001B08DA /* TeacherListView.swift */; };
 		EC115C0D29C1DAD2001B08DA /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0C29C1DAD2001B08DA /* Database.swift */; };
 		EC61445E29C35C6300CDF540 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EC61445D29C35C6300CDF540 /* .gitignore */; };
@@ -34,6 +33,7 @@
 		EC61448E29C4726000CDF540 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC61448D29C4726000CDF540 /* Main.storyboard */; };
 		EC61449029C4732D00CDF540 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC61448F29C4732D00CDF540 /* UserProfileView.swift */; };
 		EC61449429C4775100CDF540 /* ColorSet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC61449329C4775100CDF540 /* ColorSet.xcassets */; };
+		EC61449629C47DF200CDF540 /* GetDataFromCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC61449529C47DF200CDF540 /* GetDataFromCloud.swift */; };
 		ECA98CC329B37249008DDFED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA98CC229B37249008DDFED /* Assets.xcassets */; };
 		ECA98CD129B37249008DDFED /* bot_teacherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CD029B37249008DDFED /* bot_teacherTests.swift */; };
 		ECA98CDB29B37249008DDFED /* bot_teacherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CDA29B37249008DDFED /* bot_teacherUITests.swift */; };
@@ -70,7 +70,6 @@
 		9D82BB9135BFECF85582103D /* Pods-bot_teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bot_teacher.release.xcconfig"; path = "Target Support Files/Pods-bot_teacher/Pods-bot_teacher.release.xcconfig"; sourceTree = "<group>"; };
 		EC115BEB29BD7CB5001B08DA /* AzureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureService.swift; sourceTree = "<group>"; };
 		EC115C0129BEEA8C001B08DA /* AppleIdLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIdLoginViewController.swift; sourceTree = "<group>"; };
-		EC115C0529BEEB1A001B08DA /* KeyChainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainItem.swift; sourceTree = "<group>"; };
 		EC115C0729C0D64B001B08DA /* bot_teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bot_teacher.entitlements; sourceTree = "<group>"; };
 		EC115C0A29C1D93C001B08DA /* TeacherListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherListView.swift; sourceTree = "<group>"; };
 		EC115C0C29C1DAD2001B08DA /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
@@ -86,6 +85,7 @@
 		EC61448D29C4726000CDF540 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		EC61448F29C4732D00CDF540 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		EC61449329C4775100CDF540 /* ColorSet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorSet.xcassets; sourceTree = "<group>"; };
+		EC61449529C47DF200CDF540 /* GetDataFromCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataFromCloud.swift; sourceTree = "<group>"; };
 		ECA98CB629B37248008DDFED /* bot_teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bot_teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA98CC229B37249008DDFED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECA98CC729B37249008DDFED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -162,9 +162,9 @@
 			isa = PBXGroup;
 			children = (
 				ECEA380B29B7702300A069C8 /* SpeechRecognizer.swift */,
-				EC115C0529BEEB1A001B08DA /* KeyChainItem.swift */,
 				EC115C0C29C1DAD2001B08DA /* Database.swift */,
 				EC61446329C362BB00CDF540 /* Keys.swift */,
+				EC61449529C47DF200CDF540 /* GetDataFromCloud.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -478,10 +478,10 @@
 				EC115BEC29BD7CB5001B08DA /* AzureService.swift in Sources */,
 				EC61446429C362BB00CDF540 /* Keys.swift in Sources */,
 				EC115C0229BEEA8C001B08DA /* AppleIdLoginViewController.swift in Sources */,
+				EC61449629C47DF200CDF540 /* GetDataFromCloud.swift in Sources */,
 				EC115C0D29C1DAD2001B08DA /* Database.swift in Sources */,
 				EC115C0B29C1D93C001B08DA /* TeacherListView.swift in Sources */,
 				EC61449029C4732D00CDF540 /* UserProfileView.swift in Sources */,
-				EC115C0629BEEB1A001B08DA /* KeyChainItem.swift in Sources */,
 				EC61447929C431BD00CDF540 /* AuthenticationViewModel.swift in Sources */,
 				ECEA381329B7702300A069C8 /* SpeechRecognizer.swift in Sources */,
 				ECEA380029B619E100A069C8 /* ChatView.swift in Sources */,

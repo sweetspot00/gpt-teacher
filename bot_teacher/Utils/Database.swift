@@ -10,12 +10,6 @@ import Foundation
 let language_identifier : [String: String] = ["English": "en-US", "France":"fr-fr", "Portuguese": "po-se"]
 let languaues = ["English", "France", "Portuguese", "Chinese", "German"]
 
-let imagesArray1 = ["Steve Jobs", "Kim Kardashian", "Donald Trump","Elon Musk"]
-
-let imagesArray2 = [ "Kim Kardashian", "Donald Trump"]
-
-let imagesArray3 = ["Steve Jobs","Donald Trump"]
-
 struct LanguageTeacherModel: Hashable {
     var language: String
     var icon: String
