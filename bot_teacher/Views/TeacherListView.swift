@@ -13,14 +13,14 @@ struct TeacherListView: View {
 
     @State private var selectedButtonIndex = 0
     @State var selectedChatTeacher: String = ""
-    var userName = "Sample"
+    var userName = "MOMO"
     @State var isSelected = false
     
     var body: some View {
         VStack {
             // user info
             HStack {
-                Image("Steve Jobs")
+                Image("portriat")
                     .resizable()
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
@@ -56,7 +56,7 @@ struct TeacherListView: View {
                             }) {
                                 Text(ltmodels[index].language)
                                     .padding([.all], 10)
-                                    .background(selectedButtonIndex == index ? Color.pink : Color.gray.opacity(0.3)) // Change the color based on the selection state
+                                    .background(selectedButtonIndex == index ? Color("ailinPink") : Color.gray.opacity(0.3)) // Change the color based on the selection state
                                     .foregroundColor(selectedButtonIndex == index ? Color.white : Color.black)
                                     .cornerRadius(10)
                                     .font(.subheadline)

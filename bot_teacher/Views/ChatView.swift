@@ -158,7 +158,7 @@ struct ChatView: View {
                       }
                   }
                   .frame(width: CGFloat(300), height: CGFloat(40))
-                  .background(Color.pink)
+                  .background(Color("ailinPink"))
                   .cornerRadius(7)
                 
             }

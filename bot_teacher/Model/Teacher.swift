@@ -30,3 +30,4 @@ let teachers: [String: Teacher] = [
     "Steve Jobs": Teacher(name: "Steve Jobs", color: .systemMint, speakerName: "en-US-TonyNeural"),
     "Donald Trump": Teacher(name: "Donald Trump", color: .systemPink, speakerName: "en-US-DavisNeural")
 ]
+
