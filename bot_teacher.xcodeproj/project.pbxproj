@@ -34,11 +34,12 @@
 		EC61449029C4732D00CDF540 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC61448F29C4732D00CDF540 /* UserProfileView.swift */; };
 		EC61449429C4775100CDF540 /* ColorSet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC61449329C4775100CDF540 /* ColorSet.xcassets */; };
 		EC61449629C47DF200CDF540 /* GetDataFromCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC61449529C47DF200CDF540 /* GetDataFromCloud.swift */; };
+		EC61449D29C4A70100CDF540 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EC61449C29C4A70100CDF540 /* FirebaseFirestore */; };
+		EC61449F29C4A70800CDF540 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC61449E29C4A70800CDF540 /* FirebaseFirestoreSwift */; };
 		ECA98CC329B37249008DDFED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA98CC229B37249008DDFED /* Assets.xcassets */; };
 		ECA98CD129B37249008DDFED /* bot_teacherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CD029B37249008DDFED /* bot_teacherTests.swift */; };
 		ECA98CDB29B37249008DDFED /* bot_teacherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CDA29B37249008DDFED /* bot_teacherUITests.swift */; };
 		ECA98CDD29B37249008DDFED /* bot_teacherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CDC29B37249008DDFED /* bot_teacherUITestsLaunchTests.swift */; };
-		ECA98CEE29B392FF008DDFED /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CED29B392FF008DDFED /* Teacher.swift */; };
 		ECEA37E629B4EE9500A069C8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37E529B4EE9500A069C8 /* ChatViewController.swift */; };
 		ECEA37EC29B5138000A069C8 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37EB29B5138000A069C8 /* APICaller.swift */; };
 		ECEA37FE29B60FFA00A069C8 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */; };
@@ -94,7 +95,6 @@
 		ECA98CD629B37249008DDFED /* bot_teacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bot_teacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA98CDA29B37249008DDFED /* bot_teacherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bot_teacherUITests.swift; sourceTree = "<group>"; };
 		ECA98CDC29B37249008DDFED /* bot_teacherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bot_teacherUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		ECA98CED29B392FF008DDFED /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
 		ECEA37E529B4EE9500A069C8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		ECEA37EB29B5138000A069C8 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
@@ -120,7 +120,9 @@
 				EC61447329C3695100CDF540 /* FirebaseStorage in Frameworks */,
 				AA0982A12AE34091F8CA228E /* Pods_bot_teacher.framework in Frameworks */,
 				EC61446D29C3695100CDF540 /* FirebaseAuth in Frameworks */,
+				EC61449D29C4A70100CDF540 /* FirebaseFirestore in Frameworks */,
 				EC61447F29C45D0D00CDF540 /* GoogleSignIn in Frameworks */,
+				EC61449F29C4A70800CDF540 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +246,6 @@
 		ECA98CEC29B3927E008DDFED /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				ECA98CED29B392FF008DDFED /* Teacher.swift */,
 				ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */,
 				EC61447829C431BD00CDF540 /* AuthenticationViewModel.swift */,
 			);
@@ -309,6 +310,8 @@
 				EC61447429C3695100CDF540 /* FirebaseStorageCombine-Community */,
 				EC61447E29C45D0D00CDF540 /* GoogleSignIn */,
 				EC61448029C45D0D00CDF540 /* GoogleSignInSwift */,
+				EC61449C29C4A70100CDF540 /* FirebaseFirestore */,
+				EC61449E29C4A70800CDF540 /* FirebaseFirestoreSwift */,
 			);
 			productName = bot_teacher;
 			productReference = ECA98CB629B37248008DDFED /* bot_teacher.app */;
@@ -488,7 +491,6 @@
 				ECEA380229B61A8300A069C8 /* BotResponse.swift in Sources */,
 				ECEA37E629B4EE9500A069C8 /* ChatViewController.swift in Sources */,
 				EC61447729C42F9A00CDF540 /* LoginView.swift in Sources */,
-				ECA98CEE29B392FF008DDFED /* Teacher.swift in Sources */,
 				EC61448C29C4703100CDF540 /* AilinApp.swift in Sources */,
 				ECEA37FE29B60FFA00A069C8 /* MessageModel.swift in Sources */,
 				ECEA380429B74F5400A069C8 /* MessageCellView.swift in Sources */,
@@ -893,6 +895,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC61447D29C45D0D00CDF540 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		EC61449C29C4A70100CDF540 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC61446729C3695100CDF540 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		EC61449E29C4A70800CDF540 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC61446729C3695100CDF540 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

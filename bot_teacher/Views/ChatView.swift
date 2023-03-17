@@ -13,16 +13,16 @@ import Combine
 
 struct ChatView: View {
     
-    var chatTeacherName: String
-    @State var chatTeacher: Teacher?
-    var userName: String
-    var language_identifier: String?
-    let constrain = constrains["English"]
+    var chatTeacherName: String // pass in
+    @State var chatTeacher: Teacher? // get by teachers[chatTeacherName]
+    var userName: String // pass in
+    @State var language_identifier: String? // get from chatTeacher
+    @State var constrain : String? // get from constrains[language]
     var azureServeice = AzureSerivce()
-    var language = "English"
+    
     @State var initResponse = ""
     
-    @State var client: OpenAISwift?
+    @State var client = APICaller().getClient()
     @State var messagesModels: [MessageModel] = []
     
     // trigger button
@@ -48,7 +48,7 @@ struct ChatView: View {
     @State var conversationTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State var showingAlert = false
     
-    let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
+    @State var speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
     @State var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     
     @State var recognitionTask: SFSpeechRecognitionTask?
@@ -165,8 +165,12 @@ struct ChatView: View {
 
         }.onAppear {
 
+
             // get chatTeacher
             self.chatTeacher = teachers[chatTeacherName]
+            self.constrain = constrains[chatTeacher!.language]
+            self.language_identifier = chatTeacher?.languageIdentifier
+            speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: chatTeacher!.languageIdentifier))!
             sendInitMsgAndfilter()
             buttonMsg = "Please wait for the session to start..."
 //            finalInput.append(initPrompt())
@@ -239,10 +243,10 @@ struct ChatView: View {
     
    
     func sendInitMsgAndfilter() {
-        let words = filterWords[language]
+        let words = filterWords[chatTeacher!.language]
         
         func getInitResponse() {
-            getGPTChatResponse(client: client!, input: [initPrompt(), createChatMessage(role: .Sender, content: "hello")], completion: { result in
+            getGPTChatResponse(client: client, input: [initPrompt(), createChatMessage(role: .Sender, content: "hello")], completion: { result in
                 initResponse = result.trimmingCharacters(in: .whitespacesAndNewlines)
                 if initResponse != "" && !initResponse.lowercased().contains(words!.lowercased()) {
                     finalInput.append(initPrompt())
@@ -280,7 +284,7 @@ struct ChatView: View {
     
     
     func sendInitMsg() {
-        getGPTChatResponse(client: client!, input: [initPrompt()], completion: { result in
+        getGPTChatResponse(client: client, input: [initPrompt()], completion: { result in
             initResponse = result.trimmingCharacters(in: .whitespacesAndNewlines)
         })
     }
@@ -297,7 +301,7 @@ struct ChatView: View {
                         let userMsg = createChatMessage(role: .Sender, content: messageAddConstrain)
                         finalInput.append(userMsg)
 //                        print("finalInput: \(finalInput)")
-                        getGPTChatResponse(client: client!, input: finalInput, completion: { result in
+                        getGPTChatResponse(client: client, input: finalInput, completion: { result in
                             let response = result.trimmingCharacters(in: .whitespacesAndNewlines)
                             messagesModels.append(MessageModel(id: UUID(),
                                                                messageType: .Response,

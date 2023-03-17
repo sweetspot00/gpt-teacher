@@ -19,6 +19,10 @@
 			packageProductDependencies = (
 				EC61447B29C45CCF00CDF540 /* GoogleSignIn */,
 				EC61447C29C45CCF00CDF540 /* GoogleSignInSwift */,
+				EC61449829C4A6BF00CDF540 /* FirebaseAnalytics */,
+				EC61449929C4A6BF00CDF540 /* FirebaseAnalyticsSwift */,
+				EC61449A29C4A6BF00CDF540 /* FirebaseDatabase */,
+				EC61449B29C4A6BF00CDF540 /* FirebaseDatabaseSwift */,
 			);
 			productName = "MicrosoftCognitiveServicesSpeech-iOS";
 		};
@@ -419,6 +423,7 @@
 				EC115BF829BD96B2001B08DA /* XCRemoteSwiftPackageReference "OpenAISwift" */,
 				EC115BFB29BD96C2001B08DA /* XCRemoteSwiftPackageReference "OpenAIKit" */,
 				EC61447A29C45CCF00CDF540 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				EC61449729C4A6BF00CDF540 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 361ED87E4ED3039396627F3860B8FDC9 /* Products */;
 			projectDirPath = "";
@@ -915,6 +920,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		EC61449729C4A6BF00CDF540 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -937,6 +950,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC61447A29C45CCF00CDF540 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		EC61449829C4A6BF00CDF540 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC61449729C4A6BF00CDF540 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		EC61449929C4A6BF00CDF540 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC61449729C4A6BF00CDF540 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		EC61449A29C4A6BF00CDF540 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC61449729C4A6BF00CDF540 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		EC61449B29C4A6BF00CDF540 /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC61449729C4A6BF00CDF540 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

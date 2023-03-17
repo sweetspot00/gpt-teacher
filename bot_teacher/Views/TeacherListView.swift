@@ -7,6 +7,7 @@
 
 import SwiftUI
 import OpenAISwift
+import Speech
 
 
 struct TeacherListView: View {
@@ -15,6 +16,7 @@ struct TeacherListView: View {
     @State var selectedChatTeacher: String = ""
     var userName = "MOMO"
     @State var isSelected = false
+    @State var language = ""
     
     var body: some View {
         VStack {
@@ -53,6 +55,7 @@ struct TeacherListView: View {
                     ForEach(ltmodels.indices) { index in
                         Button(action: {
                                 selectedButtonIndex = index // Set the selected button index
+                                language = ltmodels[index].language
                             }) {
                                 Text(ltmodels[index].language)
                                     .padding([.all], 10)
@@ -108,9 +111,13 @@ struct TeacherListView: View {
                     }
                 }
                 .fullScreenCover(isPresented: $isSelected) {
-                    ChatView(chatTeacherName: selectedChatTeacher, userName: userName, client: APICaller().getClient()) {
+                    ChatView(chatTeacherName: selectedChatTeacher, userName: userName) {
                         self.isSelected.toggle()
                     }
+//                    ChatView(chatTeacherName: selectedChatTeacher, userName: userName, client: APICaller().getClient()) {
+//                        self.isSelected.toggle()
+//                    }
+
                 }
                 
                 .padding(.horizontal, 15)
