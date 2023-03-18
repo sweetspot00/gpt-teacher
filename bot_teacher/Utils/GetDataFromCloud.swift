@@ -8,49 +8,64 @@
 import Foundation
 import FirebaseFirestore
 
-class MainPageDataUtils {
-
-    var docRefLanguageTeachers: DocumentReference = Firestore.firestore().collection("language_teachers").document("language_teachers_v1")
-    var docRefConfig: DocumentReference = Firestore.firestore().collection("config").document("config_v1")
-    var docRefTeachers: DocumentReference = Firestore.firestore().collection("characters").document("characters_v1")
+class MainPageDataUtils: ObservableObject {
     
+    @Published var showTeacherListView = false
+    var numOfCompletion = 0
+    let db = Firestore.firestore()
     var docRef: DocumentReference!
+    var collectionRef: CollectionReference!
+    let numToComplete = 7
+    
+    func addInMainThread() {
+        DispatchQueue.main.async {
+            self.numOfCompletion += 1
+            self.showTeacherListView = self.numOfCompletion == self.numToComplete
+            print("24: \(self.numOfCompletion)")
+        }
+    }
+    
 
     // MARK: get all teacher, separated by languages: [LanguageTeacherModel]
-    func convertDictionaryToLanguageTeacherModelArray(_ dictionary: [String: Any]) -> [LanguageTeacherModel] {
-        var models: [LanguageTeacherModel] = []
-        if let languages = dictionary["languages"] as? [[String: Any]] {
-            for language in languages {
-                if let languageName = language["language"] as? String,
-                   let icon = language["icon"] as? String,
-                   let peoples = language["peoples"] as? [[String: Any]] {
-                    var peopleModels: [LanguageTeacherModel.PeopleModel] = []
-                    for person in peoples {
-                        if let name = person["name"] as? String,
-                           let image = person["image"] as? String {
-                            let personModel = LanguageTeacherModel.PeopleModel(name: name, image: image)
-                            peopleModels.append(personModel)
-                        }
-                    }
-                    let model = LanguageTeacherModel(language: languageName, icon: icon, peoples: peopleModels)
-                    models.append(model)
-                }
-            }
+    func convertDictionaryToLanguageTeacherModel(_ document: [String: Any]) -> LanguageTeacherModel {
+        let language = document["language"] as? String ?? ""
+        let icon = document["icon"] as? String ?? ""
+        let peopleDicts = document["peoples"] as? [[String: Any]] ?? []
+        var peoples: [LanguageTeacherModel.PeopleModel] = []
+
+        for peopleDict in peopleDicts {
+            let name = peopleDict["name"] as? String ?? ""
+            let image = peopleDict["image"] as? String ?? ""
+            let people = LanguageTeacherModel.PeopleModel(name: name, image: image)
+            peoples.append(people)
         }
-        return models
+
+        let model = LanguageTeacherModel(language: language, icon: icon, peoples: peoples)
+        return model
     }
 
-    func fetchAllTeachers() {
-        docRefLanguageTeachers.getDocument { docSnapshot, error in
-            guard let docSnapshot = docSnapshot, docSnapshot.exists else { return }
-            let teachersByLanguage = docSnapshot.data()
-            ltmodels = self.convertDictionaryToLanguageTeacherModelArray(teachersByLanguage ?? ["": ""])
+    func fetchLanguageTeacherModels() {
+        collectionRef = db.collection("languageTeacherModels")
+        collectionRef.getDocuments { querySnapshot, error in
+            if let error = error {
+                print("Error getti: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    var dict = document.data()
+                    print("dict")
+                    ltmodels.append(self.convertDictionaryToLanguageTeacherModel(dict))
+                }
+                self.addInMainThread()
+                print("ltmodels \(ltmodels)")
+            }
         }
+       
     }
 
     // MARK: get configs from cloud
-    func fetchConfig() {
-        docRefConfig.getDocument { configSnapshot, error in
+    func fetchConfig(with configVersion: String) {
+        docRef = Firestore.firestore().collection("config").document(configVersion)
+        docRef.getDocument { configSnapshot, error in
             if error != nil {
                 print("error fetching config")
             } else {
@@ -60,46 +75,128 @@ class MainPageDataUtils {
                 AZURE_REGION = data["AZURE_REGION"] as? String ?? ""
                 OPENAI_KEY = data["OPENAI_KEY"] as? String ?? ""
                 conversationTime = data["CONVERSATION_TIME"] as? Int ?? 600
+                self.addInMainThread()
+                print("config: \(AZURE_KEY), \(AZURE_REGION)")
             }
         }
     }
 
     // MARK: get all teachers
-    func fetchTeacher() {
-        docRefTeachers.getDocument { configSnapshot, error in
-            if error != nil {
-                print("error fetching characters")
+    func convertDocumentToTeacher(_ languageDict: [String: Any]) -> Teacher {
+        let name = languageDict["name"] as? String ?? ""
+        let speakerName = languageDict["speaker_name"] as? String ?? ""
+        let languageIdentifier = languageDict["language_identifier"] as? String ?? ""
+        let language = languageDict["language"] as? String ?? ""
+
+        let teacher = Teacher(name: name, speakerName: speakerName, languageIdentifier: languageIdentifier, language: language)
+       
+
+        return teacher
+    }
+    
+    func fetchTeachers() {
+        collectionRef = Firestore.firestore().collection("teachers")
+        collectionRef.getDocuments { querySnapshot, error in
+            if let error = error {
+                print("Error getting documents: \(error)")
             } else {
-                guard let configSnapshot = configSnapshot, configSnapshot.exists else { return }
-                // TODO: convert json to teachers
+                for document in querySnapshot!.documents {
+                    let dict = document.data()
+                    teachers[document.documentID] = self.convertDocumentToTeacher(dict)
+                }
+                self.addInMainThread()
+                print("teacher: \(teachers)")
             }
         }
     }
 
     // MARK: get all constrains
     func fetchConstrains() {
-       docRef = Firestore.firestore().collection("constrains").document("constrains_v1")
+        collectionRef = Firestore.firestore().collection("constrains")
+        collectionRef.getDocuments { configSnapshot, error in
+            if error != nil {
+                print("error fetching constrain")
+            } else {
+                for document in configSnapshot!.documents {
+                    let dict = document.data()
+                    constrains[document.documentID] = dict["constrain"] as? String ?? ""
+                }
+                self.addInMainThread()
+                print("constrains: \(constrains)")
+                
+            }
+        }
 
     }
 
     // MARK: get all initPrompt
     func fetchInitPrompt() {
-        docRef = Firestore.firestore().collection("init_prompts").document("init_prompts_v1")
+        collectionRef = Firestore.firestore().collection("init_prompt")
+        collectionRef.getDocuments { configSnapshot, error in
+            if error != nil {
+                print("error fetching init prompts")
+            } else {
+                for document in configSnapshot!.documents {
+                    let dict = document.data()
+                    initPrompts[document.documentID] = dict["prompt"] as? String ?? ""
+                }
+                self.addInMainThread()
+                print("initptompt: \(initPrompts)")
+                
+            }
+        }
     }
 
     // MARK: get all filterWords
     func fetchFilterWords() {
-        docRef = Firestore.firestore().collection("filter_words").document("filter_words_v1")
+        collectionRef = Firestore.firestore().collection("filter_words")
+        collectionRef.getDocuments { configSnapshot, error in
+            if error != nil {
+                print("error fetching filter_words")
+            } else {
+                for document in configSnapshot!.documents {
+                    let dict = document.data()
+                    filterWords[document.documentID] = dict["words"] as? String ?? ""
+                }
+                self.addInMainThread()
+                print("filterWords: \(filterWords)")
+                
+            }
+        }
+        
     }
 
     // MARK: get all languages
-    func fetchLanguages() {
-        docRef = Firestore.firestore().collection("languages").document("languages_v1")
+    func fetchLanguages(with languageVersion: String) {
+        docRef = Firestore.firestore().collection("languages").document(languageVersion)
+        docRef.getDocument { configSnapshot, error in
+            if error != nil {
+                print("error fetching languages")
+            } else {
+                guard let configSnapshot = configSnapshot, configSnapshot.exists else { return }
+                let data = configSnapshot.data()!
+                languages = data["languages"] as? [String] ?? []
+                print("languages: \(languages)")
+                self.addInMainThread()
+            }
+        }
     }
+    
+    init() {
+        loadMainPageData()
+    }
+    
+    func loadMainPageData() {
 
-    // MARK: get all language_identifier
-    func fetchLanguageIdentifier() {
-        docRef = Firestore.firestore().collection("language_identifier").document("language_identifier_v1")
+        fetchConfig(with: "config_v1")
+        fetchTeachers()
+        fetchLanguages(with: "languages_v1")
+        fetchLanguageTeacherModels()
+        fetchConstrains()
+        fetchInitPrompt()
+        fetchFilterWords()
+        
+        
     }
 
 }

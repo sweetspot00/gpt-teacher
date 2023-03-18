@@ -7,7 +7,8 @@
 
 import Foundation
 
-var languaues = ["English", "French", "Portuguese", "Chinese", "German"]
+//var languaues = ["French", "English", "Portuguese", "Chinese", "German"]
+var languages : [String] = []
 
 struct LanguageTeacherModel: Hashable {
     var language: String
@@ -32,19 +33,24 @@ struct LanguageTeacherModel: Hashable {
         
 }
 
-var ltmodels : [LanguageTeacherModel] = [.init(language: "English", icon: "English", peoples: [.init(name: "Steve Jobs", image: "Steve Jobs"),
-                                                                                               .init(name: "Kim Kardashian", image: "Kim Kardashian")]),
-                                         .init(language: "French", icon: "French", peoples: [.init(name: "Zinadine Zidane", image: "Zinadine Zidane")])]
+//var ltmodels : [LanguageTeacherModel] = [.init(language: "French", icon: "French", peoples: [.init(name: "Zinadine Zidane", image: "Zinadine Zidane")]),.init(language: "English", icon: "English", peoples: [.init(name: "Steve Jobs", image: "Steve Jobs"),
+//                                                                                               .init(name: "Kim Kardashian", image: "Kim Kardashian")])
+//                                         ]
+
+var ltmodels : [LanguageTeacherModel] = []
 
 var conversationTime = 600 // 10 mins
 // language: constrain
 var constrains : [String: String] = ["English":"(responds in 2 sentences and sometimes ask a question)",
                                      "French": "(répondre en 2 phrases et parfois poser une question)"]
+var constrain = ""
 
 // init prompt in different language
-var initPrompt : [String: String] = ["English": "Impersonate", "French": "emprunter l'identité"]
+var initPrompts : [String: String] = ["English": "Impersonate", "French": "emprunter l'identité"]
+var prompt = ""
 
 var filterWords: [String: String] = ["English": "as an AI language model", "French": "modèle de langue AI"]
+var filterWord = ""
 
 struct Teacher {
     let name: String
@@ -58,12 +64,13 @@ func initTeacher() -> Teacher {
 }
 
 
-var teachers: [String: Teacher] = [
-    "Kim Kardashian": Teacher(name: "Kim Kardashian", speakerName: "en-US-JennyNeural", languageIdentifier: "en-US", language: "English"),
-    "Steve Jobs": Teacher(name: "Steve Jobs", speakerName: "en-US-TonyNeural", languageIdentifier: "en-US", language: "English"),
-    "Donald Trump": Teacher(name: "Donald Trump", speakerName: "en-US-DavisNeural", languageIdentifier: "en-US", language: "English"),
-    "Zinadine Zidane": Teacher(name: "Zinadine Zidane", speakerName: "fr-FR-AlainNeural", languageIdentifier: "fr-FR", language: "French")
-]
+//var teachers: [String: Teacher] = [
+//    "Kim Kardashian": Teacher(name: "Kim Kardashian", speakerName: "en-US-JennyNeural", languageIdentifier: "en-US", language: "English"),
+//    "Steve Jobs": Teacher(name: "Steve Jobs", speakerName: "en-US-TonyNeural", languageIdentifier: "en-US", language: "English"),
+//    "Donald Trump": Teacher(name: "Donald Trump", speakerName: "en-US-DavisNeural", languageIdentifier: "en-US", language: "English"),
+//    "Zinadine Zidane": Teacher(name: "Zinadine Zidane", speakerName: "fr-FR-AlainNeural", languageIdentifier: "fr-FR", language: "French")
+//]
 
+var teachers = [String: Teacher]()
 
 

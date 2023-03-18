@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		AA0982A12AE34091F8CA228E /* Pods_bot_teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD238D09A312435EE95C246 /* Pods_bot_teacher.framework */; };
 		EC115BEC29BD7CB5001B08DA /* AzureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BEB29BD7CB5001B08DA /* AzureService.swift */; };
-		EC115C0229BEEA8C001B08DA /* AppleIdLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0129BEEA8C001B08DA /* AppleIdLoginViewController.swift */; };
 		EC115C0B29C1D93C001B08DA /* TeacherListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0A29C1D93C001B08DA /* TeacherListView.swift */; };
 		EC115C0D29C1DAD2001B08DA /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0C29C1DAD2001B08DA /* Database.swift */; };
 		EC61445E29C35C6300CDF540 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EC61445D29C35C6300CDF540 /* .gitignore */; };
@@ -40,7 +39,6 @@
 		ECA98CD129B37249008DDFED /* bot_teacherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CD029B37249008DDFED /* bot_teacherTests.swift */; };
 		ECA98CDB29B37249008DDFED /* bot_teacherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CDA29B37249008DDFED /* bot_teacherUITests.swift */; };
 		ECA98CDD29B37249008DDFED /* bot_teacherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CDC29B37249008DDFED /* bot_teacherUITestsLaunchTests.swift */; };
-		ECEA37E629B4EE9500A069C8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37E529B4EE9500A069C8 /* ChatViewController.swift */; };
 		ECEA37EC29B5138000A069C8 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37EB29B5138000A069C8 /* APICaller.swift */; };
 		ECEA37FE29B60FFA00A069C8 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */; };
 		ECEA380029B619E100A069C8 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37FF29B619E100A069C8 /* ChatView.swift */; };
@@ -70,7 +68,6 @@
 		57776F79A06EB4F3F4DDD6F0 /* Pods-bot_teacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bot_teacher.debug.xcconfig"; path = "Target Support Files/Pods-bot_teacher/Pods-bot_teacher.debug.xcconfig"; sourceTree = "<group>"; };
 		9D82BB9135BFECF85582103D /* Pods-bot_teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bot_teacher.release.xcconfig"; path = "Target Support Files/Pods-bot_teacher/Pods-bot_teacher.release.xcconfig"; sourceTree = "<group>"; };
 		EC115BEB29BD7CB5001B08DA /* AzureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureService.swift; sourceTree = "<group>"; };
-		EC115C0129BEEA8C001B08DA /* AppleIdLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIdLoginViewController.swift; sourceTree = "<group>"; };
 		EC115C0729C0D64B001B08DA /* bot_teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bot_teacher.entitlements; sourceTree = "<group>"; };
 		EC115C0A29C1D93C001B08DA /* TeacherListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherListView.swift; sourceTree = "<group>"; };
 		EC115C0C29C1DAD2001B08DA /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
@@ -95,7 +92,6 @@
 		ECA98CD629B37249008DDFED /* bot_teacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bot_teacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA98CDA29B37249008DDFED /* bot_teacherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bot_teacherUITests.swift; sourceTree = "<group>"; };
 		ECA98CDC29B37249008DDFED /* bot_teacherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bot_teacherUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		ECEA37E529B4EE9500A069C8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		ECEA37EB29B5138000A069C8 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		ECEA37FF29B619E100A069C8 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -213,7 +209,6 @@
 				EC115C0029BEE1FB001B08DA /* Utils */,
 				ECEA37EA29B5136900A069C8 /* ChatGPTService */,
 				ECA98CF429B3A3A9008DDFED /* Views */,
-				ECA98CEF29B394D5008DDFED /* ViewControllers */,
 				ECA98CEC29B3927E008DDFED /* Model */,
 				EC61448B29C4703100CDF540 /* AilinApp.swift */,
 				ECA98CC229B37249008DDFED /* Assets.xcassets */,
@@ -250,15 +245,6 @@
 				EC61447829C431BD00CDF540 /* AuthenticationViewModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		ECA98CEF29B394D5008DDFED /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				ECEA37E529B4EE9500A069C8 /* ChatViewController.swift */,
-				EC115C0129BEEA8C001B08DA /* AppleIdLoginViewController.swift */,
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		ECA98CF429B3A3A9008DDFED /* Views */ = {
@@ -480,7 +466,6 @@
 				EC61448329C45DD500CDF540 /* SignupView.swift in Sources */,
 				EC115BEC29BD7CB5001B08DA /* AzureService.swift in Sources */,
 				EC61446429C362BB00CDF540 /* Keys.swift in Sources */,
-				EC115C0229BEEA8C001B08DA /* AppleIdLoginViewController.swift in Sources */,
 				EC61449629C47DF200CDF540 /* GetDataFromCloud.swift in Sources */,
 				EC115C0D29C1DAD2001B08DA /* Database.swift in Sources */,
 				EC115C0B29C1D93C001B08DA /* TeacherListView.swift in Sources */,
@@ -489,7 +474,6 @@
 				ECEA381329B7702300A069C8 /* SpeechRecognizer.swift in Sources */,
 				ECEA380029B619E100A069C8 /* ChatView.swift in Sources */,
 				ECEA380229B61A8300A069C8 /* BotResponse.swift in Sources */,
-				ECEA37E629B4EE9500A069C8 /* ChatViewController.swift in Sources */,
 				EC61447729C42F9A00CDF540 /* LoginView.swift in Sources */,
 				EC61448C29C4703100CDF540 /* AilinApp.swift in Sources */,
 				ECEA37FE29B60FFA00A069C8 /* MessageModel.swift in Sources */,

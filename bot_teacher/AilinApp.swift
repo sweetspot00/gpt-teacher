@@ -8,8 +8,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     FirebaseApp.configure()
-    Auth.auth().useEmulator(withHost:"localhost", port:9099)
-    let db = Firestore.firestore()
+//    Auth.auth().useEmulator(withHost:"localhost", port:9099)
+//    let db = Firestore.firestore()
     return true
   }
 }
@@ -34,7 +34,6 @@ struct AilinApp: App {
             .font(.title)
           Text("You need to be logged in to use this app.")
         } content: {
-          TeacherListView()
           Spacer()
         }
       }

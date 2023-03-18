@@ -19,6 +19,8 @@ enum AuthenticationFlow {
 
 @MainActor
 class AuthenticationViewModel: ObservableObject {
+    
+    var completedAuthentication: ((Bool) -> ()?)? = nil
   @Published var email: String = ""
   @Published var password: String = ""
   @Published var confirmPassword: String = ""

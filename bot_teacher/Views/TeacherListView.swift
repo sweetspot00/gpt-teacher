@@ -18,6 +18,7 @@ struct TeacherListView: View {
     @State var isSelected = false
     @State var language = ""
     
+    
     var body: some View {
         VStack {
             // user info
@@ -111,12 +112,9 @@ struct TeacherListView: View {
                     }
                 }
                 .fullScreenCover(isPresented: $isSelected) {
-                    ChatView(chatTeacherName: selectedChatTeacher, userName: userName) {
+                    ChatView(chatTeacherName: selectedChatTeacher, userName: userName, client: APICaller().getClient()) {
                         self.isSelected.toggle()
                     }
-//                    ChatView(chatTeacherName: selectedChatTeacher, userName: userName, client: APICaller().getClient()) {
-//                        self.isSelected.toggle()
-//                    }
 
                 }
                 
@@ -126,6 +124,7 @@ struct TeacherListView: View {
         }
 
     }
+    
 
 }
 

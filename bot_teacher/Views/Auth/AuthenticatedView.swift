@@ -30,6 +30,7 @@ struct AuthenticatedView<Content, Unauthenticated>: View where Content: View, Un
   @StateObject private var viewModel = AuthenticationViewModel()
   @State private var presentingLoginScreen = false
   @State private var presentingProfileScreen = false
+  @StateObject private var dataViewModel = MainPageDataUtils()
 
   var unauthenticated: Unauthenticated?
   @ViewBuilder var content: () -> Content
@@ -65,19 +66,26 @@ struct AuthenticatedView<Content, Unauthenticated>: View where Content: View, Un
           .environmentObject(viewModel)
       }
     case .authenticated:
-      VStack {
-        content()
-//        Text("You're logged in as \(viewModel.displayName).")
-        Button("Tap here to view your profile") {
-          presentingProfileScreen.toggle()
+        if (dataViewModel.showTeacherListView) {
+            VStack {
+              content()
+      //          PendingView()
+                // TODO:
+      //        Text("You're logged in as \(viewModel.displayName).")
+                TeacherListView()
+              Button("Tap here to view your profile") {
+                presentingProfileScreen.toggle()
+              }
+            }
+            .sheet(isPresented: $presentingProfileScreen) {
+              NavigationStack {
+                UserProfileView()
+                  .environmentObject(viewModel)
+              }
+            }
         }
-      }
-      .sheet(isPresented: $presentingProfileScreen) {
-        NavigationStack {
-          UserProfileView()
-            .environmentObject(viewModel)
-        }
-      }
+
+        
     }
   }
 }
