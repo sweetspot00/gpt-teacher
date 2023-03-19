@@ -135,6 +135,8 @@ struct LoginView: View {
                   Text("Sign in with Google")
                       .foregroundColor(.white)
                       .bold()
+                      .font(.system(size: 16))
+                      .font(.subheadline)
               }
               .frame(width: UIScreen.main.bounds.size.width - 30 , height: 44)
               .background(colorScheme == .light ? .black : .white)

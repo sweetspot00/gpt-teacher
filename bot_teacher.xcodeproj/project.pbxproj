@@ -12,7 +12,6 @@
 		EC115C0B29C1D93C001B08DA /* TeacherListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0A29C1D93C001B08DA /* TeacherListView.swift */; };
 		EC115C0D29C1DAD2001B08DA /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0C29C1DAD2001B08DA /* Database.swift */; };
 		EC61445E29C35C6300CDF540 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EC61445D29C35C6300CDF540 /* .gitignore */; };
-		EC61446429C362BB00CDF540 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC61446329C362BB00CDF540 /* Keys.swift */; };
 		EC61446629C368B500CDF540 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC61446529C368B500CDF540 /* GoogleService-Info.plist */; };
 		EC61446929C3695100CDF540 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = EC61446829C3695100CDF540 /* FirebaseAnalytics */; };
 		EC61446B29C3695100CDF540 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC61446A29C3695100CDF540 /* FirebaseAnalyticsSwift */; };
@@ -35,6 +34,7 @@
 		EC61449629C47DF200CDF540 /* GetDataFromCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC61449529C47DF200CDF540 /* GetDataFromCloud.swift */; };
 		EC61449D29C4A70100CDF540 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EC61449C29C4A70100CDF540 /* FirebaseFirestore */; };
 		EC61449F29C4A70800CDF540 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC61449E29C4A70800CDF540 /* FirebaseFirestoreSwift */; };
+		EC6144A329C7493900CDF540 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144A229C7493900CDF540 /* Keys.swift */; };
 		ECA98CC329B37249008DDFED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA98CC229B37249008DDFED /* Assets.xcassets */; };
 		ECA98CD129B37249008DDFED /* bot_teacherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CD029B37249008DDFED /* bot_teacherTests.swift */; };
 		ECA98CDB29B37249008DDFED /* bot_teacherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CDA29B37249008DDFED /* bot_teacherUITests.swift */; };
@@ -72,7 +72,6 @@
 		EC115C0A29C1D93C001B08DA /* TeacherListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherListView.swift; sourceTree = "<group>"; };
 		EC115C0C29C1DAD2001B08DA /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		EC61445D29C35C6300CDF540 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		EC61446329C362BB00CDF540 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		EC61446529C368B500CDF540 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EC61447629C42F9A00CDF540 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EC61447829C431BD00CDF540 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -84,6 +83,7 @@
 		EC61448F29C4732D00CDF540 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		EC61449329C4775100CDF540 /* ColorSet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorSet.xcassets; sourceTree = "<group>"; };
 		EC61449529C47DF200CDF540 /* GetDataFromCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataFromCloud.swift; sourceTree = "<group>"; };
+		EC6144A229C7493900CDF540 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		ECA98CB629B37248008DDFED /* bot_teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bot_teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA98CC229B37249008DDFED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECA98CC729B37249008DDFED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -161,8 +161,8 @@
 			children = (
 				ECEA380B29B7702300A069C8 /* SpeechRecognizer.swift */,
 				EC115C0C29C1DAD2001B08DA /* Database.swift */,
-				EC61446329C362BB00CDF540 /* Keys.swift */,
 				EC61449529C47DF200CDF540 /* GetDataFromCloud.swift */,
+				EC6144A229C7493900CDF540 /* Keys.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -465,11 +465,11 @@
 				EC61448729C45EB300CDF540 /* AuthenticatedView.swift in Sources */,
 				EC61448329C45DD500CDF540 /* SignupView.swift in Sources */,
 				EC115BEC29BD7CB5001B08DA /* AzureService.swift in Sources */,
-				EC61446429C362BB00CDF540 /* Keys.swift in Sources */,
 				EC61449629C47DF200CDF540 /* GetDataFromCloud.swift in Sources */,
 				EC115C0D29C1DAD2001B08DA /* Database.swift in Sources */,
 				EC115C0B29C1D93C001B08DA /* TeacherListView.swift in Sources */,
 				EC61449029C4732D00CDF540 /* UserProfileView.swift in Sources */,
+				EC6144A329C7493900CDF540 /* Keys.swift in Sources */,
 				EC61447929C431BD00CDF540 /* AuthenticationViewModel.swift in Sources */,
 				ECEA381329B7702300A069C8 /* SpeechRecognizer.swift in Sources */,
 				ECEA380029B619E100A069C8 /* ChatView.swift in Sources */,

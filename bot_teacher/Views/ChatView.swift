@@ -114,14 +114,17 @@ struct ChatView: View {
 
         
         VStack {
-            HStack {
+            VStack {
                 
                 Image(chatTeacherName)
                     .resizable()
                     .font(.system(size: 30))
                     .aspectRatio(contentMode: .fit)
                     .cornerRadius(10)
+                    .frame(width: 300, height: 300)
                 
+                Text("Conversation all created by AI")
+                    .font(.headline)
             }
             ScrollView {
                 ForEach($messagesModels) { $messageModel in
@@ -134,7 +137,8 @@ struct ChatView: View {
             
             VStack {
                 Text(buttonMsg)
-                    .font(.system(size: 12, weight: .light, design: .serif))
+                    .font(.system(size: 16, weight: .light, design: .serif))
+                    .bold()
             }
             
             VStack {

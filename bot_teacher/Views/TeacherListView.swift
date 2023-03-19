@@ -12,7 +12,7 @@ import Speech
 
 struct TeacherListView: View {
 
-    @State private var selectedButtonIndex = 0
+    @State private var selectedButtonIndex = 1
     @State var selectedChatTeacher: String = ""
     var userName = "MOMO"
     @State var isSelected = false
@@ -75,7 +75,7 @@ struct TeacherListView: View {
             // character list
             VStack {
                 HStack {
-                    Text("List of characters")
+                    Text("List of AI characters")
                         .font(.headline)
                         .frame(alignment: .leading)
                     Spacer()
@@ -103,6 +103,8 @@ struct TeacherListView: View {
                                     }
                                     Text(people.name)
                                         .font(.subheadline)
+                                        .lineLimit(1)
+                                        .minimumScaleFactor(0.5)
                                 }
                                 .onChange(of:selectedChatTeacher){_ in }
                             
