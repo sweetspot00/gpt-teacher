@@ -147,8 +147,10 @@ struct ChatView: View {
                     } else {
                         self.conversationTimer.upstream.connect().cancel()
                         stopSession()
+                        DispatchQueue.main.async {
+                            buttonMsg = "Conversation Stopped"
+                        }
                         
-                        buttonMsg = "Conversation Stopped"
                         isPaused.toggle()
                     }
                   }) {
