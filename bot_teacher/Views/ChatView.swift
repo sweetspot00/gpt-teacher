@@ -291,8 +291,8 @@ struct ChatView: View {
                 initResponse = result.trimmingCharacters(in: .whitespacesAndNewlines)
 //                if initResponse != "" && !initResponse.lowercased().contains(words!.lowercased()) {
                     finalInput.append(initPrompt())
-                    finalInput.append(createChatMessage(role: .Sender, content: "hello"))
-                    finalInput.append(createChatMessage(role: .Response, content: initResponse))
+//                    finalInput.append(createChatMessage(role: .Sender, content: "hello"))
+//                    finalInput.append(createChatMessage(role: .Response, content: initResponse))
 //                    print("init final input: \(finalInput)")
                     isRecording = true
                     startTimer()
@@ -343,7 +343,7 @@ struct ChatView: View {
                         let messageAddConstrain = message + " " + sessionConstrain!
                         let userMsg = createChatMessage(role: .Sender, content: messageAddConstrain)
                         finalInput.append(userMsg)
-                        finalInput.append(initPrompt())
+//                        finalInput.append(initPrompt())
                         print("finalInput: \(finalInput)")
                         getGPTChatResponse(client: client!, input: finalInput, completion: { result in
                             guard !isQuit && !isPaused else { return }
