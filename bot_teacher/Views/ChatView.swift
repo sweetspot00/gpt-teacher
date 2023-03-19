@@ -146,12 +146,8 @@ struct ChatView: View {
                         buttonMsg = "Start Speaking, I'm listening..."
                     } else {
                         self.conversationTimer.upstream.connect().cancel()
-                        
-                        print("150 isRecording: \(isRecording)")
-
-                        print("152 isRecording: \(isRecording)")
                         stopSession()
-                        print("154 isRecording: \(isRecording)")
+                        
                         buttonMsg = "Conversation Stopped"
                         isPaused.toggle()
                     }
@@ -212,15 +208,13 @@ struct ChatView: View {
     }
     
 
-    
+    // TODO: This function blocked
     func stopSession() {
         
         isRecording = false
         timer?.invalidate()
         timer = nil
         recognitionTask?.cancel()
-//        print("214 recognization task cancel \(recognitionTask?.cancel())")
-        
         if audioEngine.isRunning {
            audioEngine.stop()
            audioEngine.inputNode.removeTap(onBus: 0)
@@ -241,7 +235,7 @@ struct ChatView: View {
     }
     
     func startTimer() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             // MARK: Background Timer Thread
             timer = Timer.scheduledTimer(withTimeInterval: sampleTime, repeats: true, block: { _ in
                 // check
@@ -264,6 +258,11 @@ struct ChatView: View {
                         
                     }
                 } else {
+                    /* Not recording
+                     1. pause
+                     2. waiting for response and azure's speech
+                     */
+                    latestTranscript = ""
                     
                 }
             })
@@ -338,6 +337,7 @@ struct ChatView: View {
                         let messageAddConstrain = message + " " + sessionConstrain!
                         let userMsg = createChatMessage(role: .Sender, content: messageAddConstrain)
                         finalInput.append(userMsg)
+                        finalInput.append(initPrompt())
                         print("finalInput: \(finalInput)")
                         getGPTChatResponse(client: client!, input: finalInput, completion: { result in
                             guard !isQuit && !isPaused else { return }

@@ -72,8 +72,9 @@ class AzureSerivce {
         {
             let cancellationDetails = try! SPXSpeechSynthesisCancellationDetails(fromCanceledSynthesisResult: result)
             print("cancelled, detail: \(cancellationDetails.errorDetails!) ")
+            try! audioSession.setActive(false)
         }
-        // stop audioEngine
+        // stop audioSession
        
     }
     
