@@ -176,7 +176,7 @@ class MainPageDataUtils: ObservableObject {
                 guard let configSnapshot = configSnapshot, configSnapshot.exists else { return }
                 let data = configSnapshot.data()!
                 languages = data["languages"] as? [String] ?? []
-                print("languages: \(languages)")
+//                print("languages: \(languages)")
                 self.addInMainThread()
             }
         }

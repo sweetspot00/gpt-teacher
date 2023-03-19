@@ -9,8 +9,8 @@
 //
 
 // <code>
-import UIKit
 import MicrosoftCognitiveServicesSpeech
+import AVFoundation
 
 class AzureSerivce {
     
@@ -30,6 +30,24 @@ class AzureSerivce {
     
 
     func synthesisToSpeaker() {
+        
+        let audioSession = AVAudioSession.sharedInstance()
+
+        do {
+            try audioSession.setCategory(AVAudioSession.Category.playback)
+            try audioSession.setActive(true)
+        } catch {
+            print("Error setting audio session category: \(error.localizedDescription)")
+        }
+        let audioEngine = AVAudioEngine()
+        let playerNode = AVAudioPlayerNode()
+
+        audioEngine.attach(playerNode)
+        let audioFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 16000, channels: 1, interleaved: false)
+
+        audioEngine.connect(playerNode, to: audioEngine.mainMixerNode, format: audioFormat)
+
+        // MARK: Azure synthesizer config
         var speechConfig: SPXSpeechConfiguration?
         do {
             try speechConfig = SPXSpeechConfiguration(subscription: AZURE_KEY, region: AZURE_REGION)
@@ -40,17 +58,23 @@ class AzureSerivce {
         
         speechConfig?.speechSynthesisVoiceName = speakerName;
         synthesizer = try! SPXSpeechSynthesizer(speechConfig!)
+
         
         if inputText.isEmpty {
             return
         }
+        
+        
         let result = try! synthesizer.speakText(inputText)
+        
+        
         if result.reason == SPXResultReason.canceled
         {
             let cancellationDetails = try! SPXSpeechSynthesisCancellationDetails(fromCanceledSynthesisResult: result)
             print("cancelled, detail: \(cancellationDetails.errorDetails!) ")
         }
-
+        // stop audioEngine
+       
     }
     
     

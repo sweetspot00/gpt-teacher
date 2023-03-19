@@ -19,8 +19,8 @@ struct ChatView: View {
     @State var language_identifier: String? // get from chatTeacher
     @State var sessionConstrain : String? // get from constrains[language]
     @State var sessionInitPrompt : String? // get from initPromt
-    var azureServeice = AzureSerivce()
-    
+    @State var azureServeice = AzureSerivce()
+    @State var isQuit = false
     
     @State var initResponse = ""
     
@@ -146,14 +146,20 @@ struct ChatView: View {
                         buttonMsg = "Start Speaking, I'm listening..."
                     } else {
                         self.conversationTimer.upstream.connect().cancel()
-                        isPaused.toggle()
+                        
+                        print("150 isRecording: \(isRecording)")
+
+                        print("152 isRecording: \(isRecording)")
                         stopSession()
+                        print("154 isRecording: \(isRecording)")
                         buttonMsg = "Conversation Stopped"
+                        isPaused.toggle()
                     }
                   }) {
                       if isPaused {
                           Text("Resume Conversation")
                               .foregroundColor(.white)
+                              .font(.headline)
                       } else {
                           Text("Pause conversation")
                               .foregroundColor(.white)
@@ -181,9 +187,9 @@ struct ChatView: View {
                 self.language_identifier = chatTeacher?.languageIdentifier
                 speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: chatTeacher!.languageIdentifier))!
                 self.sessionInitPrompt = initPrompts[chatTeacher!.language]
-                print("sessionConstrain \(sessionConstrain), \(sessionInitPrompt), \(chatTeacher!.languageIdentifier)")
+//                print("sessionConstrain \(sessionConstrain), \(sessionInitPrompt), \(chatTeacher!.languageIdentifier)")
                 sendInitMsgAndfilter()
-//                sendInitMsg()
+
                 buttonMsg = "Please wait for the session to start..."
     //            finalInput.append(initPrompt())
                 azureServeice.speakerName = chatTeacher?.speakerName
@@ -199,6 +205,7 @@ struct ChatView: View {
             
             print("exit page")
             stopSession()
+            isQuit = true
            
         }
         
@@ -207,10 +214,19 @@ struct ChatView: View {
 
     
     func stopSession() {
+        
         isRecording = false
         timer?.invalidate()
         timer = nil
         recognitionTask?.cancel()
+//        print("214 recognization task cancel \(recognitionTask?.cancel())")
+        
+        if audioEngine.isRunning {
+           audioEngine.stop()
+           audioEngine.inputNode.removeTap(onBus: 0)
+           recognitionRequest?.endAudio()
+        }
+        
         do {
             try azureServeice.synthesizer.stopSpeaking()
         } catch {
@@ -225,7 +241,7 @@ struct ChatView: View {
     }
     
     func startTimer() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             // MARK: Background Timer Thread
             timer = Timer.scheduledTimer(withTimeInterval: sampleTime, repeats: true, block: { _ in
                 // check
@@ -324,13 +340,15 @@ struct ChatView: View {
                         finalInput.append(userMsg)
                         print("finalInput: \(finalInput)")
                         getGPTChatResponse(client: client!, input: finalInput, completion: { result in
+                            guard !isQuit && !isPaused else { return }
                             let response = result.trimmingCharacters(in: .whitespacesAndNewlines)
                             messagesModels.append(MessageModel(id: UUID(),
                                                                messageType: .Response,
                                                                content: response))
                             finalInput.append(createChatMessage(role: .Response, content: response))
                             
-                            playSpeechViaAzure(with: response)
+                                playSpeechViaAzure(with: response)
+                            
                         })
                         
                     }
@@ -342,9 +360,15 @@ struct ChatView: View {
     
     
     func playSpeechViaAzure(with speechMessage: String) {
-        azureServeice.changeInputTextAndPlay(with: speechMessage)
-        isRecording = true
+        // When I was waiting for response, but decide to quit/pause, should not speak
+//        if (!isPaused || !isQuit) {
+            azureServeice.changeInputTextAndPlay(with: speechMessage)
+//            print("speaker name:\(azureServeice.speakerName)")
+            isRecording = true
+//        }
+
         latestTranscript = ""
+
     }
     
     // MARK: - speech recognization usage
@@ -460,6 +484,7 @@ struct ChatView: View {
                 if isPaused {
                     buttonMsg = "Conversation Stopped"
                 } else {
+                    print("488\(audioEngine.isRunning)")
                     buttonMsg = "waiting for response..."
                 }
                 
