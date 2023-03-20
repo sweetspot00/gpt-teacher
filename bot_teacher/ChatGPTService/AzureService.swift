@@ -31,21 +31,14 @@ class AzureSerivce {
 
     func synthesisToSpeaker() {
         
-        let audioSession = AVAudioSession.sharedInstance()
-
-        do {
-            try audioSession.setCategory(AVAudioSession.Category.playback)
-            try audioSession.setActive(true)
-        } catch {
-            print("Error setting audio session category: \(error.localizedDescription)")
-        }
-        let audioEngine = AVAudioEngine()
-        let playerNode = AVAudioPlayerNode()
-
-        audioEngine.attach(playerNode)
-        let audioFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 16000, channels: 1, interleaved: false)
-
-        audioEngine.connect(playerNode, to: audioEngine.mainMixerNode, format: audioFormat)
+//        let audioSession = AVAudioSession.sharedInstance()
+//
+//        do {
+//            try audioSession.setCategory(AVAudioSession.Category.playback)
+//            try audioSession.setActive(true)
+//        } catch {
+//            print("Error setting audio session category: \(error.localizedDescription)")
+//        }
 
         // MARK: Azure synthesizer config
         var speechConfig: SPXSpeechConfiguration?
@@ -72,7 +65,7 @@ class AzureSerivce {
         {
             let cancellationDetails = try! SPXSpeechSynthesisCancellationDetails(fromCanceledSynthesisResult: result)
             print("cancelled, detail: \(cancellationDetails.errorDetails!) ")
-            try! audioSession.setActive(false)
+//            try! audioSession.setActive(false)
         }
         // stop audioSession
        

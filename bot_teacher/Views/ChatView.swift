@@ -129,9 +129,9 @@ struct ChatView: View {
             ScrollView {
                 ForEach($messagesModels) { $messageModel in
                     MessageCellView(messageModel: messageModel)
-                        .rotationEffect(.degrees(180))
+//                        .rotationEffect(.degrees(180))
                 }
-                .rotationEffect(.degrees(180))
+//                .rotationEffect(.degrees(180))
                 .padding()
             }
             
@@ -345,17 +345,28 @@ struct ChatView: View {
                         finalInput.append(userMsg)
 //                        finalInput.append(initPrompt())
                         print("finalInput: \(finalInput)")
-                        getGPTChatResponse(client: client!, input: finalInput, completion: { result in
+//                        getGPTChatResponse(client: client!, input: finalInput, completion: { result in
+//                            guard !isQuit && !isPaused else { return }
+//                            let response = result.trimmingCharacters(in: .whitespacesAndNewlines)
+//                            messagesModels.append(MessageModel(id: UUID(),
+//                                                               messageType: .Response,
+//                                                               content: response))
+//                            finalInput.append(createChatMessage(role: .Response, content: response))
+//
+//                                playSpeechViaAzure(with: response)
+//
+//                        })
+                        getGPTChatResponseAddTimeout(client: client!, input: finalInput, timeout: 1) { result in
                             guard !isQuit && !isPaused else { return }
                             let response = result.trimmingCharacters(in: .whitespacesAndNewlines)
                             messagesModels.append(MessageModel(id: UUID(),
                                                                messageType: .Response,
                                                                content: response))
                             finalInput.append(createChatMessage(role: .Response, content: response))
-                            
-                                playSpeechViaAzure(with: response)
-                            
-                        })
+
+                            playSpeechViaAzure(with: response)
+
+                        }
                         
                     }
                 }
@@ -368,6 +379,7 @@ struct ChatView: View {
     func playSpeechViaAzure(with speechMessage: String) {
         // When I was waiting for response, but decide to quit/pause, should not speak
 //        if (!isPaused || !isQuit) {
+        
             azureServeice.changeInputTextAndPlay(with: speechMessage)
 //            print("speaker name:\(azureServeice.speakerName)")
             isRecording = true
@@ -390,7 +402,7 @@ struct ChatView: View {
         
         // Configure the audio session for the app.
         let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+        try audioSession.setCategory(.playAndRecord, mode: .measurement, options: .duckOthers)
         try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         let inputNode = audioEngine.inputNode
         
