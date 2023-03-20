@@ -27,10 +27,10 @@ class AzureService {
     
     func changeInputTextAndPlay(with input: String) {
         inputText = input
-        self.sendRequest()
+        self.synthesisToSpeaker()
     }
     
-    func sendRequest() {
+    func synthesisToSpeaker() {
         let url = URL(string: "https://speech-functions-cfgfd3fyb8gmhwbj.z01.azurefd.net/api/synthesize")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -87,5 +87,5 @@ class AzureService {
             print("Error starting audio engine: \(error.localizedDescription)")
         }
         playerNode.play()
-}
+    }
 }
