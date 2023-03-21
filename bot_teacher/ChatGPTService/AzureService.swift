@@ -45,6 +45,12 @@ class AzureService {
         let jsonData = try! JSONSerialization.data(withJSONObject: parameters, options: [])
         request.httpBody = jsonData
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
+
+            guard (200 ... 299) ~= response.statusCode else {
+                print("statusCode should be 2xx, but is \(response.statusCode)")
+                print("response = \(response)")
+                return
+            }
             guard let data = data, error == nil else {
                 print(error?.localizedDescription ?? "No data")
                 return
