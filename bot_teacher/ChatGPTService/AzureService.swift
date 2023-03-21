@@ -8,20 +8,18 @@
 // Licensed under the MIT license. See LICENSE.md file in the project root for full license information.
 //
 // <code>
+import MicrosoftCognitiveServicesSpeech
 import AVFoundation
 
 class AzureService {
     
     var inputText = ""
     
-    var speakerName: String = ""
-    var rate: Float?
-    var pitch: Float?
-
-    func config(with name: String, rate: Float? = nil, pitch: Float? = nil) {
+    var speakerName: String!
+    var synthesizer = SPXSpeechSynthesizer()
+    
+    func config(with name: String) {
         self.speakerName = name
-        self.rate = rate
-        self.pitch = pitch
     }
     
     func changeInputTextAndPlay(with input: String) {
@@ -29,6 +27,7 @@ class AzureService {
         self.synthesisToSpeaker()
     }
     
+
     func synthesisToSpeaker() {
         
         // MARK: Azure synthesizer config
@@ -58,11 +57,9 @@ class AzureService {
             print("cancelled, detail: \(cancellationDetails.errorDetails!) ")
 //            try! audioSession.setActive(false)
         }
-        do {
-            try audioEngine.start()
-        } catch {
-            print("Error starting audio engine: \(error.localizedDescription)")
-        }
-        playerNode.play()
+        // stop audioSession
+       
     }
+    
+    
 }
