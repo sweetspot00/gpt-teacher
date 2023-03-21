@@ -12,16 +12,15 @@ import AVFoundation
 
 class AzureServicePostRequest {
     
-    var inputText = ""
-    
+    var inputText:String = ""
     var speakerName: String = "en-US-CoraNeural"
-    var rate: String = "20%"
-    var pitch: String = "30%"
+    var rate: String? = "20%"
+    var pitch: String? = "30%"
 
-    func config(with name: String) {
+    func config(with name: String, with rate:String, with pitch:String) {
         self.speakerName = name
-//        self.rate = rate ??
-//        self.pitch = pitch
+        self.rate = rate
+        self.pitch = pitch
     }
     
     func changeInputTextAndPlay(with input: String) {
@@ -30,20 +29,21 @@ class AzureServicePostRequest {
     }
     
     func synthesisToSpeaker() {
-        
+
         if inputText.isEmpty {
             return
         }
-        
+
         let url = URL(string: "https://speech-functions-cfgfd3fyb8gmhwbj.z01.azurefd.net/api/synthesize")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         var parameters: [String: Any] = ["text": inputText, "voice": speakerName]
-        if rate != nil {
+        if let rate = rate, !rate.isEmpty {
             parameters["rate"] = rate
         }
-        if pitch != nil {
+
+        if let pitch = pitch, !pitch.isEmpty {
             parameters["pitch"] = pitch
         }
         let jsonData = try! JSONSerialization.data(withJSONObject: parameters, options: [])
@@ -78,20 +78,18 @@ class AzureServicePostRequest {
             try audioSession.setActive(true)
             
             audioPlayer.prepareToPlay()
+            print("Audio player duration: \(audioPlayer.duration)")
             print("84")
             audioPlayer.play()
             print("87 \(audioPlayer.isPlaying)")
         } catch {
             print("Error setting audio session category: \(error.localizedDescription)")
         }
-        
         do {
            
         } catch {
             print("Error: \(error.localizedDescription)")
         }
-        
-        
 //        audioEngine.connect(playerNode, to: audioEngine.mainMixerNode, format: audioFormat)
 //        playerNode.scheduleFile(audioFile, at: nil) {
 //            audioEngine.stop()
