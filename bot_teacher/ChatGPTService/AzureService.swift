@@ -7,12 +7,11 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE.md file in the project root for full license information.
 //
-
 // <code>
 import MicrosoftCognitiveServicesSpeech
 import AVFoundation
 
-class AzureSerivce {
+class AzureService {
     
     var inputText = ""
     
@@ -31,15 +30,6 @@ class AzureSerivce {
 
     func synthesisToSpeaker() {
         
-//        let audioSession = AVAudioSession.sharedInstance()
-//
-//        do {
-//            try audioSession.setCategory(AVAudioSession.Category.playback)
-//            try audioSession.setActive(true)
-//        } catch {
-//            print("Error setting audio session category: \(error.localizedDescription)")
-//        }
-
         // MARK: Azure synthesizer config
         var speechConfig: SPXSpeechConfiguration?
         do {

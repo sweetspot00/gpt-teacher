@@ -19,7 +19,7 @@ struct ChatView: View {
     @State var language_identifier: String? // get from chatTeacher
     @State var sessionConstrain : String? // get from constrains[language]
     @State var sessionInitPrompt : String? // get from initPromt
-    @State var azureServeice = AzureSerivce()
+    @State var azureServeice = AzureService()
     @State var isQuit = false
     
     @State var initResponse = ""
