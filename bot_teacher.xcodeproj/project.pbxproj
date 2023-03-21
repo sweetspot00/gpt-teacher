@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA0982A12AE34091F8CA228E /* Pods_bot_teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD238D09A312435EE95C246 /* Pods_bot_teacher.framework */; };
-		EC115BEC29BD7CB5001B08DA /* AzureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BEB29BD7CB5001B08DA /* AzureService.swift */; };
+		EC115BEC29BD7CB5001B08DA /* AzureServicePostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115BEB29BD7CB5001B08DA /* AzureServicePostRequest.swift */; };
 		EC115C0B29C1D93C001B08DA /* TeacherListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0A29C1D93C001B08DA /* TeacherListView.swift */; };
 		EC115C0D29C1DAD2001B08DA /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC115C0C29C1DAD2001B08DA /* Database.swift */; };
 		EC61445E29C35C6300CDF540 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EC61445D29C35C6300CDF540 /* .gitignore */; };
@@ -35,6 +35,7 @@
 		EC61449D29C4A70100CDF540 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EC61449C29C4A70100CDF540 /* FirebaseFirestore */; };
 		EC61449F29C4A70800CDF540 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC61449E29C4A70800CDF540 /* FirebaseFirestoreSwift */; };
 		EC6144A329C7493900CDF540 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144A229C7493900CDF540 /* Keys.swift */; };
+		EC6144A529C9F8A000CDF540 /* AzureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144A429C9F8A000CDF540 /* AzureService.swift */; };
 		ECA98CC329B37249008DDFED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA98CC229B37249008DDFED /* Assets.xcassets */; };
 		ECA98CD129B37249008DDFED /* bot_teacherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CD029B37249008DDFED /* bot_teacherTests.swift */; };
 		ECA98CDB29B37249008DDFED /* bot_teacherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CDA29B37249008DDFED /* bot_teacherUITests.swift */; };
@@ -67,7 +68,7 @@
 /* Begin PBXFileReference section */
 		57776F79A06EB4F3F4DDD6F0 /* Pods-bot_teacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bot_teacher.debug.xcconfig"; path = "Target Support Files/Pods-bot_teacher/Pods-bot_teacher.debug.xcconfig"; sourceTree = "<group>"; };
 		9D82BB9135BFECF85582103D /* Pods-bot_teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bot_teacher.release.xcconfig"; path = "Target Support Files/Pods-bot_teacher/Pods-bot_teacher.release.xcconfig"; sourceTree = "<group>"; };
-		EC115BEB29BD7CB5001B08DA /* AzureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureService.swift; sourceTree = "<group>"; };
+		EC115BEB29BD7CB5001B08DA /* AzureServicePostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureServicePostRequest.swift; sourceTree = "<group>"; };
 		EC115C0729C0D64B001B08DA /* bot_teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bot_teacher.entitlements; sourceTree = "<group>"; };
 		EC115C0A29C1D93C001B08DA /* TeacherListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherListView.swift; sourceTree = "<group>"; };
 		EC115C0C29C1DAD2001B08DA /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
@@ -84,6 +85,7 @@
 		EC61449329C4775100CDF540 /* ColorSet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorSet.xcassets; sourceTree = "<group>"; };
 		EC61449529C47DF200CDF540 /* GetDataFromCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataFromCloud.swift; sourceTree = "<group>"; };
 		EC6144A229C7493900CDF540 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		EC6144A429C9F8A000CDF540 /* AzureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureService.swift; sourceTree = "<group>"; };
 		ECA98CB629B37248008DDFED /* bot_teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bot_teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA98CC229B37249008DDFED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECA98CC729B37249008DDFED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -263,7 +265,8 @@
 			children = (
 				ECEA37EB29B5138000A069C8 /* APICaller.swift */,
 				ECEA380129B61A8300A069C8 /* BotResponse.swift */,
-				EC115BEB29BD7CB5001B08DA /* AzureService.swift */,
+				EC115BEB29BD7CB5001B08DA /* AzureServicePostRequest.swift */,
+				EC6144A429C9F8A000CDF540 /* AzureService.swift */,
 			);
 			path = ChatGPTService;
 			sourceTree = "<group>";
@@ -464,7 +467,7 @@
 			files = (
 				EC61448729C45EB300CDF540 /* AuthenticatedView.swift in Sources */,
 				EC61448329C45DD500CDF540 /* SignupView.swift in Sources */,
-				EC115BEC29BD7CB5001B08DA /* AzureService.swift in Sources */,
+				EC115BEC29BD7CB5001B08DA /* AzureServicePostRequest.swift in Sources */,
 				EC61449629C47DF200CDF540 /* GetDataFromCloud.swift in Sources */,
 				EC115C0D29C1DAD2001B08DA /* Database.swift in Sources */,
 				EC115C0B29C1D93C001B08DA /* TeacherListView.swift in Sources */,
@@ -478,6 +481,7 @@
 				EC61448C29C4703100CDF540 /* AilinApp.swift in Sources */,
 				ECEA37FE29B60FFA00A069C8 /* MessageModel.swift in Sources */,
 				ECEA380429B74F5400A069C8 /* MessageCellView.swift in Sources */,
+				EC6144A529C9F8A000CDF540 /* AzureService.swift in Sources */,
 				EC61448929C45ED500CDF540 /* AuthenticationView.swift in Sources */,
 				ECEA37EC29B5138000A069C8 /* APICaller.swift in Sources */,
 			);
@@ -642,6 +646,7 @@
 				DEVELOPMENT_TEAM = 866D4KR59Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bot_teacher/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Ailin;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the meeting. Audio recordings are discarded after transcription.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "You can view a text transcription of your meeting in the app.";
@@ -679,6 +684,7 @@
 				DEVELOPMENT_TEAM = 866D4KR59Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bot_teacher/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Ailin;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the meeting. Audio recordings are discarded after transcription.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "You can view a text transcription of your meeting in the app.";

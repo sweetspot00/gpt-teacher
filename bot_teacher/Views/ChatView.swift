@@ -19,7 +19,7 @@ struct ChatView: View {
     @State var language_identifier: String? // get from chatTeacher
     @State var sessionConstrain : String? // get from constrains[language]
     @State var sessionInitPrompt : String? // get from initPromt
-    @State var azureServeice = AzureSerivce()
+    @State var azureServeice = AzureService()
     @State var isQuit = false
     
     @State var initResponse = ""
@@ -55,6 +55,8 @@ struct ChatView: View {
     
     @State var recognitionTask: SFSpeechRecognitionTask?
     @State var isPaused = false
+    @State var maxARQTimes = 5
+    @State var tmpResponse = ""
     
     private let audioEngine = AVAudioEngine()
     
@@ -96,6 +98,7 @@ struct ChatView: View {
                     message: Text("Your progress will not be saved."),
                     dismissButton: .destructive(Text("Quit"), action: {
                         // handle quitting here
+                        stopSession()
                         closeButtonClick()
                     })
                 )
@@ -107,6 +110,7 @@ struct ChatView: View {
                     self.conversationTimer.upstream.connect().cancel()
                     showingAlert = true
                 }
+
             }
             
             
@@ -126,14 +130,23 @@ struct ChatView: View {
                 Text("Conversation all created by AI")
                     .font(.headline)
             }
-            ScrollView {
-                ForEach($messagesModels) { $messageModel in
-                    MessageCellView(messageModel: messageModel)
-                        .rotationEffect(.degrees(180))
+            
+            ScrollViewReader { scrollViewProxy in
+                ScrollView {
+                    ForEach($messagesModels) { $messageModel in
+                        MessageCellView(messageModel: messageModel)
+                            .id(messageModel.id)
+                    }
                 }
-                .rotationEffect(.degrees(180))
                 .padding()
+                .onChange(of: messagesModels.count) { _ in
+                    withAnimation {
+                        scrollViewProxy.scrollTo(messagesModels.last?.id, anchor: .bottom)
+                    }
+                }
             }
+            
+            
             
             VStack {
                 Text(buttonMsg)
@@ -178,31 +191,17 @@ struct ChatView: View {
 
 
             // get chatTeacher
-            // TODO: chatTeacher = nil
-//            DispatchQueue.main.async {
-//                chatTeacher = initTeacher()
-                self.chatTeacher = teachers[chatTeacherName]
-//                print("176: \(teachers[chatTeacherName])")
-//                print("174: \(teachers)")
-                self.sessionConstrain = constrains[chatTeacher!.language]
 
-                self.language_identifier = chatTeacher?.languageIdentifier
-                speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: chatTeacher!.languageIdentifier))!
-                self.sessionInitPrompt = initPrompts[chatTeacher!.language]
-//                print("sessionConstrain \(sessionConstrain), \(sessionInitPrompt), \(chatTeacher!.languageIdentifier)")
-                sendInitMsgAndfilter()
-
-                buttonMsg = "Please wait for the session to start..."
-    //            finalInput.append(initPrompt())
-                azureServeice.speakerName = chatTeacher?.speakerName
-//            }
-
-
-            
-            
-            
-            
-            
+            self.chatTeacher = teachers[chatTeacherName]
+            self.sessionConstrain = constrains[chatTeacher!.language]
+            self.language_identifier = chatTeacher?.languageIdentifier
+            speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: chatTeacher!.languageIdentifier))!
+            self.sessionInitPrompt = initPrompts[chatTeacher!.language]
+//                buttonMsg = "Please wait for the session to start..."
+            finalInput.append(initPrompt())
+            isRecording = true
+            startTimer()
+            azureServeice.speakerName = chatTeacher?.speakerName
         }.onDisappear {
             
             print("exit page")
@@ -282,7 +281,7 @@ struct ChatView: View {
         return String(format: "%02d:%02d", minutes, seconds)
     }
     
-   
+   /*
     func sendInitMsgAndfilter() {
         let words = filterWords[chatTeacher!.language]
         
@@ -294,19 +293,72 @@ struct ChatView: View {
 //                    finalInput.append(createChatMessage(role: .Sender, content: "hello"))
 //                    finalInput.append(createChatMessage(role: .Response, content: initResponse))
 //                    print("init final input: \(finalInput)")
-                    isRecording = true
-                    startTimer()
+//                    isRecording = true
+//                    startTimer()
 //                } else {
 //                    client = APICaller().getClient()
 //                    getInitResponse()
 //                }
             })
         }
+        isRecording = true
+        startTimer()
+//        getInitResponse()
+    }
+    */
+    
+    func timeoutARQ(msg: [ChatMessage], completion: @escaping (Result<String, Error>) -> Void) {
         
-        getInitResponse()
+        maxARQTimes = 5
+        tmpResponse = ""
+        
+        func getResponse() {
+            // terminate condition
+            if tmpResponse != "" {
+                completion(.success(tmpResponse))
+                return
+            }
+            
+            if maxARQTimes <= 0 {
+                completion(.failure(NSError(domain: "timeout", code: 1, userInfo: nil)))
+                return
+            }
+            
+            let fetchTask = Task {
+                getGPTChatResponse(client: client!, input: msg, completion: { result in
+                    tmpResponse = result.trimmingCharacters(in: .whitespacesAndNewlines)
+                })
+            }
+            
+            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 2.0) {
+                if tmpResponse != "" {
+                    // received
+                    fetchTask.cancel()
+                    completion(.success(tmpResponse))
+                    return
+    
+                } else {
+                    // timeout
+                    fetchTask.cancel()
+                    if maxARQTimes <= 0 {
+                        // throw error
+                        completion(.failure(NSError(domain: "timeout", code: 1, userInfo: nil)))
+                    } else {
+                        maxARQTimes -= 1
+                        print("maxARQTime: \(maxARQTimes)")
+                        client = APICaller().getClient()
+                        getResponse()
+                    }
+                    
+                }
+            }
+        }
+        
+        getResponse()
     }
 
 
+    
     
     
     func initPrompt() -> ChatMessage {
@@ -335,6 +387,7 @@ struct ChatView: View {
     func sendMessage(message: String) {
 //        print("lastTimeStatus: \(lastTimeStatus), isRecording: \(isRecording)")
 //        if (!message.isEmpty) {
+        // TODO: UI msg box appears too sudden
             withAnimation {
                 messagesModels.append(MessageModel(id: UUID(), messageType: .Sender, content: message))
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
@@ -345,18 +398,20 @@ struct ChatView: View {
                         finalInput.append(userMsg)
 //                        finalInput.append(initPrompt())
                         print("finalInput: \(finalInput)")
-                        getGPTChatResponse(client: client!, input: finalInput, completion: { result in
-                            guard !isQuit && !isPaused else { return }
-                            let response = result.trimmingCharacters(in: .whitespacesAndNewlines)
-                            messagesModels.append(MessageModel(id: UUID(),
-                                                               messageType: .Response,
-                                                               content: response))
-                            finalInput.append(createChatMessage(role: .Response, content: response))
+                        timeoutARQ(msg: finalInput) { result in
+                            switch result {
+                            case.success(let msg):
+                                messagesModels.append(MessageModel(id: UUID(),
+                                                      messageType: .Response,
+                                                      content: msg))
+                                finalInput.append(createChatMessage(role: .Response, content: msg))
+
+                                playSpeechViaAzure(with: msg)
+                            case.failure(let error):
+                                print("412\(error)")
+                            }
                             
-                                playSpeechViaAzure(with: response)
-                            
-                        })
-                        
+                        }
                     }
                 }
             }
@@ -368,6 +423,7 @@ struct ChatView: View {
     func playSpeechViaAzure(with speechMessage: String) {
         // When I was waiting for response, but decide to quit/pause, should not speak
 //        if (!isPaused || !isQuit) {
+        
             azureServeice.changeInputTextAndPlay(with: speechMessage)
 //            print("speaker name:\(azureServeice.speakerName)")
             isRecording = true
@@ -390,7 +446,7 @@ struct ChatView: View {
         
         // Configure the audio session for the app.
         let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+        try audioSession.setCategory(AVAudioSession.Category.playAndRecord,options: .defaultToSpeaker)
         try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         let inputNode = audioEngine.inputNode
         
