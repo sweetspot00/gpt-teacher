@@ -98,6 +98,7 @@ struct ChatView: View {
                     message: Text("Your progress will not be saved."),
                     dismissButton: .destructive(Text("Quit"), action: {
                         // handle quitting here
+                        stopSession()
                         closeButtonClick()
                     })
                 )
@@ -129,14 +130,23 @@ struct ChatView: View {
                 Text("Conversation all created by AI")
                     .font(.headline)
             }
-            ScrollView {
-                ForEach($messagesModels) { $messageModel in
-                    MessageCellView(messageModel: messageModel)
-//                        .rotationEffect(.degrees(180))
+            
+            ScrollViewReader { scrollViewProxy in
+                ScrollView {
+                    ForEach($messagesModels) { $messageModel in
+                        MessageCellView(messageModel: messageModel)
+                            .id(messageModel.id)
+                    }
                 }
-//                .rotationEffect(.degrees(180))
                 .padding()
+                .onChange(of: messagesModels.count) { _ in
+                    withAnimation {
+                        scrollViewProxy.scrollTo(messagesModels.last?.id, anchor: .bottom)
+                    }
+                }
             }
+            
+            
             
             VStack {
                 Text(buttonMsg)
@@ -402,8 +412,6 @@ struct ChatView: View {
                             }
                             
                         }
-
-                        
                     }
                 }
             }
