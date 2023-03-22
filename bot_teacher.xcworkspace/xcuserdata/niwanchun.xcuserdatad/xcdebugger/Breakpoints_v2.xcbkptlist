@@ -28,8 +28,8 @@
             filePath = "bot_teacher/Views/ChatView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "432"
-            endingLineNumber = "432"
+            startingLineNumber = "446"
+            endingLineNumber = "446"
             landmarkName = "playSpeechViaAzure(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -48,6 +48,22 @@
             endingLineNumber = "17"
             landmarkName = "AzureService"
             landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F4025783-F033-4525-8170-3E3F8855038A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bot_teacher/Views/ChatView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
+            landmarkName = "getResponse()"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

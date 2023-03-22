@@ -57,6 +57,7 @@ struct ChatView: View {
     @State var isPaused = false
     @State var maxARQTimes = 5
     @State var tmpResponse = ""
+    @State var alertMsg = "Time's up!"
     
     private let audioEngine = AVAudioEngine()
     
@@ -64,7 +65,7 @@ struct ChatView: View {
     let synthesizer = AVSpeechSynthesizer()
     
     // set empty time interval to 3s
-    let sampleTime : Double = 2
+    let sampleTime : Double = 2.0
     
     var closeButtonClick: () -> ()
     
@@ -94,7 +95,7 @@ struct ChatView: View {
             } // MARK: time to stop and quit page
             .alert(isPresented: $showingAlert) {
                 Alert(
-                    title: Text("Time's up!"),
+                    title: Text(alertMsg),
                     message: Text("Your progress will not be saved."),
                     dismissButton: .destructive(Text("Quit"), action: {
                         // handle quitting here
@@ -127,8 +128,9 @@ struct ChatView: View {
                     .cornerRadius(10)
                     .frame(width: 300, height: 300)
                 
-                Text("Conversation all created by AI")
+                Text("Chat all made up by AI. It's private.")
                     .font(.headline)
+                    .lineLimit(1)
             }
             
             ScrollViewReader { scrollViewProxy in
@@ -196,7 +198,10 @@ struct ChatView: View {
             self.sessionConstrain = constrains[chatTeacher!.language]
             self.language_identifier = chatTeacher?.languageIdentifier
             speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: chatTeacher!.languageIdentifier))!
-            self.sessionInitPrompt = initPrompts[chatTeacher!.language]
+            let strList = initPrompts[chatTeacher!.language]?.components(separatedBy: ";")
+            
+            self.sessionInitPrompt = (strList?[0] ?? "") + " " + chatTeacherName + ";" + (strList?[1] ?? "")
+            print("202:\(sessionInitPrompt)")
 //                buttonMsg = "Please wait for the session to start..."
             finalInput.append(initPrompt())
             isRecording = true
@@ -332,6 +337,12 @@ struct ChatView: View {
             
             DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 2.0) {
                 if tmpResponse != "" {
+                    
+                    if tmpResponse.contains("OpenAISwift.OpenAIError") {
+                        completion(.failure(NSError(domain: "timeout", code: 1, userInfo: nil)))
+                        return
+                    }
+                    
                     // received
                     fetchTask.cancel()
                     completion(.success(tmpResponse))
@@ -362,7 +373,7 @@ struct ChatView: View {
     
     
     func initPrompt() -> ChatMessage {
-        let initMsg = sessionInitPrompt! + " " + chatTeacherName
+        let initMsg = sessionInitPrompt!
 //        print("initMsg:\(initMsg)")
         let initCharMsg = ChatMessage(role: .system, content: initMsg)
         return initCharMsg
@@ -383,6 +394,7 @@ struct ChatView: View {
             initResponse = result.trimmingCharacters(in: .whitespacesAndNewlines)
         })
     }
+    
     
     func sendMessage(message: String) {
 //        print("lastTimeStatus: \(lastTimeStatus), isRecording: \(isRecording)")
@@ -408,6 +420,8 @@ struct ChatView: View {
 
                                 playSpeechViaAzure(with: msg)
                             case.failure(let error):
+                                alertMsg = "AI Connection Fails"
+                                showingAlert = true
                                 print("412\(error)")
                             }
                             
