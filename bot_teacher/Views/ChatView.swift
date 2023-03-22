@@ -48,7 +48,11 @@ struct ChatView: View {
     // MARK: conversation timer
     @State var timeRemaining = conversationTime
     @State var conversationTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State var showingAlert = false
+    @State var showingAlert = false {
+        didSet {
+            stopSession()
+        }
+    }
     
     @State var speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
     @State var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -407,6 +411,7 @@ struct ChatView: View {
                         // MARK: -GET GPT Response
                         let messageAddConstrain = message + " " + sessionConstrain!
                         let userMsg = createChatMessage(role: .Sender, content: messageAddConstrain)
+                        // MARK: maintain 10 conversations
                         finalInput.append(userMsg)
 //                        finalInput.append(initPrompt())
                         print("finalInput: \(finalInput)")
@@ -460,7 +465,7 @@ struct ChatView: View {
         
         // Configure the audio session for the app.
         let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(AVAudioSession.Category.playAndRecord,options: .defaultToSpeaker)
+        try audioSession.setCategory(AVAudioSession.Category.playAndRecord,options: [.defaultToSpeaker, .allowBluetooth, .allowAirPlay, .allowBluetoothA2DP, .mixWithOthers])
         try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         let inputNode = audioEngine.inputNode
         
