@@ -36,6 +36,7 @@
 		EC61449F29C4A70800CDF540 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC61449E29C4A70800CDF540 /* FirebaseFirestoreSwift */; };
 		EC6144A329C7493900CDF540 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144A229C7493900CDF540 /* Keys.swift */; };
 		EC6144A529C9F8A000CDF540 /* AzureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144A429C9F8A000CDF540 /* AzureService.swift */; };
+		EC6144A729CB510200CDF540 /* AzureSpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144A629CB510200CDF540 /* AzureSpeechRecognizer.swift */; };
 		ECA98CC329B37249008DDFED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA98CC229B37249008DDFED /* Assets.xcassets */; };
 		ECA98CD129B37249008DDFED /* bot_teacherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CD029B37249008DDFED /* bot_teacherTests.swift */; };
 		ECA98CDB29B37249008DDFED /* bot_teacherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CDA29B37249008DDFED /* bot_teacherUITests.swift */; };
@@ -86,6 +87,7 @@
 		EC61449529C47DF200CDF540 /* GetDataFromCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataFromCloud.swift; sourceTree = "<group>"; };
 		EC6144A229C7493900CDF540 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		EC6144A429C9F8A000CDF540 /* AzureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureService.swift; sourceTree = "<group>"; };
+		EC6144A629CB510200CDF540 /* AzureSpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureSpeechRecognizer.swift; sourceTree = "<group>"; };
 		ECA98CB629B37248008DDFED /* bot_teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bot_teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA98CC229B37249008DDFED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECA98CC729B37249008DDFED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				EC115C0C29C1DAD2001B08DA /* Database.swift */,
 				EC61449529C47DF200CDF540 /* GetDataFromCloud.swift */,
 				EC6144A229C7493900CDF540 /* Keys.swift */,
+				EC6144A629CB510200CDF540 /* AzureSpeechRecognizer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				EC115BEC29BD7CB5001B08DA /* AzureServicePostRequest.swift in Sources */,
 				EC61449629C47DF200CDF540 /* GetDataFromCloud.swift in Sources */,
 				EC115C0D29C1DAD2001B08DA /* Database.swift in Sources */,
+				EC6144A729CB510200CDF540 /* AzureSpeechRecognizer.swift in Sources */,
 				EC115C0B29C1D93C001B08DA /* TeacherListView.swift in Sources */,
 				EC61449029C4732D00CDF540 /* UserProfileView.swift in Sources */,
 				EC6144A329C7493900CDF540 /* Keys.swift in Sources */,

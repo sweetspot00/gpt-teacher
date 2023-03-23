@@ -22,10 +22,10 @@ import SwiftUI
                 .cornerRadius(10)
                 .padding(.horizontal, 16)
                 .padding(.bottom, 10)
+
         }
     } else {
-        
-        //  Bot message styles
+        // Bot message styles
         HStack {
             Text(messageModel.content)
                 .padding()

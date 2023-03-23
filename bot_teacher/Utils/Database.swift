@@ -46,7 +46,7 @@ var constrains : [String: String] = ["English":"(responds in 2 sentences and som
 var constrain = ""
 
 // init prompt in different language
-var initPrompts : [String: String] = ["English": "Impersonate", "French": "emprunter l'identité"]
+var initPrompts : [String: String] = ["friend": "Impersonate", "teacher": "emprunter l'identité"]
 var prompt = ""
 
 var filterWords: [String: String] = ["English": "as an AI language model", "French": "modèle de langue AI"]
@@ -57,10 +57,11 @@ struct Teacher {
     let speakerName: String
     let languageIdentifier: String
     let language: String
+    let type: String
 }
 
 func initTeacher() -> Teacher {
-    return Teacher(name: "", speakerName: "en-US-JennyNeural", languageIdentifier: "en-US", language: "English")
+    return Teacher(name: "", speakerName: "en-US-JennyNeural", languageIdentifier: "en-US", language: "English", type: "teacher")
 }
 
 

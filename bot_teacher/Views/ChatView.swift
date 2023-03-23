@@ -69,7 +69,7 @@ struct ChatView: View {
     let synthesizer = AVSpeechSynthesizer()
     
     // set empty time interval to 3s
-    let sampleTime : Double = 2.0
+    let sampleTime : Double = 1.5
     
     var closeButtonClick: () -> ()
     
@@ -133,8 +133,10 @@ struct ChatView: View {
                     .frame(width: 300, height: 300)
                 
                 Text("Chat all made up by AI. It's private.")
-                    .font(.headline)
+                    .font(.system(size: 18))
                     .lineLimit(1)
+                    .frame(width: 300)
+                    .foregroundColor(Color("ailinGray"))
             }
             
             ScrollViewReader { scrollViewProxy in
@@ -202,8 +204,9 @@ struct ChatView: View {
             self.sessionConstrain = constrains[chatTeacher!.language]
             self.language_identifier = chatTeacher?.languageIdentifier
             speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: chatTeacher!.languageIdentifier))!
-            let strList = initPrompts[chatTeacher!.language]?.components(separatedBy: ";")
             
+            
+            let strList = initPrompts[chatTeacher!.type]?.components(separatedBy: ";")
             self.sessionInitPrompt = (strList?[0] ?? "") + " " + chatTeacherName + ";" + (strList?[1] ?? "")
             print("202:\(sessionInitPrompt)")
 //                buttonMsg = "Please wait for the session to start..."
@@ -340,10 +343,12 @@ struct ChatView: View {
             }
             
             DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 2.0) {
+                print("346;\(tmpResponse)")
                 if tmpResponse != "" {
                     
                     if tmpResponse.contains("OpenAISwift.OpenAIError") {
                         completion(.failure(NSError(domain: "timeout", code: 1, userInfo: nil)))
+                        fetchTask.cancel()
                         return
                     }
                     
@@ -412,6 +417,13 @@ struct ChatView: View {
                         let messageAddConstrain = message + " " + sessionConstrain!
                         let userMsg = createChatMessage(role: .Sender, content: messageAddConstrain)
                         // MARK: maintain 10 conversations
+                        print("415: \(finalInput.count)")
+                        if finalInput.count >= 11 {
+                            finalInput.remove(at: 1)
+                            finalInput.remove(at: 1)
+                        }
+                        print("420: \(finalInput.count)")
+                        
                         finalInput.append(userMsg)
 //                        finalInput.append(initPrompt())
                         print("finalInput: \(finalInput)")

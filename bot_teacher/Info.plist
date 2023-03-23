@@ -44,5 +44,9 @@
 	<array>
 		<string>audio</string>
 	</array>
+	<key>CFBundleIdentifier</key>
+	<string></string>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 </dict>
 </plist>

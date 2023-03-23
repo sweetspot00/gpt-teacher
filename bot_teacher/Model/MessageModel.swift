@@ -19,6 +19,7 @@ struct MessageModel: Codable, Hashable, Identifiable {
     let id: UUID
     var messageType: MessageType
     var content: String
+    var displayedContent : String = ""
     
     init(id: UUID, messageType: MessageType, content: String) {
         self.id = id

@@ -40,15 +40,15 @@ struct TeacherListView: View {
             }
             .padding(.all, 15)
             
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("Voice chat with")
-                        .font(.headline)
-                        .frame(alignment: .leading).padding([.leading], 15)
-                    Spacer()
-                }
-
-            }
+//            VStack(alignment: .leading) {
+//                HStack {
+//                    Text("Voice chat with")
+//                        .font(.headline)
+//                        .frame(alignment: .leading).padding([.leading], 15)
+//                    Spacer()
+//                }
+//
+//            }
             
             // language buttons
             ScrollView(.horizontal, showsIndicators: false) {
@@ -70,16 +70,17 @@ struct TeacherListView: View {
 
                     }
                 }.padding(.horizontal, 15)
-            }
-            
+            }.padding(.vertical, 3)
             // character list
             VStack {
                 HStack {
-                    Text("List of AI characters")
-                        .font(.headline)
+                    Text("Voice chat with AI characters below")
+                        .font(.system(size: 18))
                         .frame(alignment: .leading)
+                        .bold()
+                        .foregroundColor(Color("ailinBlack"))
                     Spacer()
-                }
+                }.padding(.vertical, 10)
                 
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150)), GridItem(.adaptive(minimum: 150))], spacing: 10) {

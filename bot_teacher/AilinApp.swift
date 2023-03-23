@@ -10,6 +10,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     FirebaseApp.configure()
 //    Auth.auth().useEmulator(withHost:"localhost", port:9099)
 //    let db = Firestore.firestore()
+      
     return true
   }
 }

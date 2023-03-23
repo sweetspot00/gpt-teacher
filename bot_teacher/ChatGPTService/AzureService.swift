@@ -42,6 +42,7 @@ class AzureService {
         speechConfig?.speechSynthesisVoiceName = speakerName;
         synthesizer = try! SPXSpeechSynthesizer(speechConfig!)
 
+//        synthesizer = try!
         
         if inputText.isEmpty {
             return
@@ -49,8 +50,11 @@ class AzureService {
         
         
         let result = try! synthesizer.speakText(inputText)
-        
-        
+    
+//        let ssmlInput = "<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'><voice name='en-US-AriaNeural'>Hello, world!</voice></speak>"
+
+        // Synthesize speech from the SSML input
+//        let result = try! synthesizer.speakSsml(ssmlInput)
         if result.reason == SPXResultReason.canceled
         {
             let cancellationDetails = try! SPXSpeechSynthesisCancellationDetails(fromCanceledSynthesisResult: result)
