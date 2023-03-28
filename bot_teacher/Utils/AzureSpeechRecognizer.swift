@@ -26,23 +26,15 @@ class AzureS2T: ObservableObject {
         }
     }
     private var audioEngine = AVAudioEngine()
+    var transcript: String = ""
+    var speechConfig: SPXSpeechConfiguration?
+    let audioConfig = SPXAudioConfiguration()
+    let recognizer: SPXSpeechRecognizer?
+    var languageIdentifier: String = "en-US"
     
-    func startRecognize(languageIdentifier: String) {
+    
+    init(languageIndentifier: String) {
         
-        Task(priority: .background) {
-            guard await AVAudioSession.sharedInstance().hasPermissionToRecord() else {
-                throw RecognizerError.notPermittedToRecord
-            }
-            
-            DispatchQueue.global(qos: .background).async {
-                self.recognizeFromMic(languageIndentifier: languageIdentifier)
-            }
-        }
-    }
-        
-    func recognizeFromMic(languageIndentifier: String) {
-        
-        var speechConfig: SPXSpeechConfiguration?
         do {
             try speechConfig = SPXSpeechConfiguration(subscription: AZURE_KEY, region: AZURE_REGION)
         } catch {
@@ -50,18 +42,63 @@ class AzureS2T: ObservableObject {
             speechConfig = nil
         }
         speechConfig?.speechRecognitionLanguage = languageIndentifier
+        recognizer = try! SPXSpeechRecognizer(speechConfiguration: speechConfig!, audioConfiguration: audioConfig)
+        self.languageIdentifier = languageIndentifier
         
-        let audioConfig = SPXAudioConfiguration()
+        Task(priority: .background) {
+            do {
+                guard recognizer != nil else {
+                    throw RecognizerError.nilRecognizer
+                }
+                guard await AVAudioSession.sharedInstance().hasPermissionToRecord() else {
+                    throw RecognizerError.notPermittedToRecord
+                }
+            } catch {
+                speakError(error)
+            }
+        }
         
-        let reco = try! SPXSpeechRecognizer(speechConfiguration: speechConfig!, audioConfiguration: audioConfig)
+    }
+    
+    private func speakError(_ error: Error) {
+        var errorMessage = ""
+        if let error = error as? RecognizerError {
+            errorMessage += error.message
+        } else {
+            errorMessage += error.localizedDescription
+        }
+        transcript = "<< \(errorMessage) >>"
+    }
+    
+    func startRecognize() {
         
-        reco.addRecognizingEventHandler() {reco, evt in
+        Task(priority: .background) {
+            guard await AVAudioSession.sharedInstance().hasPermissionToRecord() else {
+                throw RecognizerError.notPermittedToRecord
+            }
+            
+            DispatchQueue.global(qos: .background).async {
+                self.recognizeFromMic()
+                
+            }
+        }
+    }
+    
+    private func speak(_ message: String) {
+        transcript = message
+    }
+        
+    func recognizeFromMic() {
+    
+        recognizer!.addRecognizingEventHandler() { [self]reco, evt in
+            transcript = evt.result.text ?? ""
             print("intermediate recognition result: \(evt.result.text ?? "(no result)")")
         }
         
         print("Listening...")
         
-        let result = try! reco.recognizeOnce()
+        let result = try! recognizer!.recognizeOnce()
+        transcript = result.text ?? ""
         print("recognition result: \(result.text ?? "(no result)"), reason: \(result.reason.rawValue)")
         
         if result.reason != SPXResultReason.recognizedSpeech {

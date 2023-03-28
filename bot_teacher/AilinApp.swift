@@ -1,4 +1,5 @@
 import SwiftUI
+import AVFAudio
 import Firebase
 import FirebaseCore
 import FirebaseAuth
@@ -13,6 +14,30 @@ class AppDelegate: NSObject, UIApplicationDelegate {
       
     return true
   }
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        do {
+            try AVAudioSession.sharedInstance().setActive(false)
+        } catch let error {
+            print("Error pausing audio session: \(error.localizedDescription)")
+        }
+    }
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        do {
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch let error {
+            print("Error resuming audio session: \(error.localizedDescription)")
+        }
+    }
+    func applicationWillTerminate(_ application: UIApplication) {
+        do {
+            try AVAudioSession.sharedInstance().setActive(false)
+        } catch let error {
+            print("Error stopping audio session: \(error.localizedDescription)")
+        }
+    }
+
+
+
 }
 
 @main

@@ -10,7 +10,7 @@ import OpenAISwift
 import AVFoundation
 import Speech
 import Combine
-
+import MicrosoftCognitiveServicesSpeech
 struct ChatView: View {
     
     var chatTeacherName: String // pass in
@@ -34,7 +34,7 @@ struct ChatView: View {
         }
     }
     
-    // updated by Timer Thread
+    // MARK: updated by Timer Thread
     @State var lastTimeStatus: Bool = false
     @State var allowRecord: Bool = true
     @State var isInit: Bool = true
@@ -55,8 +55,10 @@ struct ChatView: View {
     }
     
     @State var speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
+    @State var azureS2tService = AzureS2T(languageIndentifier: "en-US")
     @State var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     
+    @State var azureRecognitionTask: Task<String, Error>?
     @State var recognitionTask: SFSpeechRecognitionTask?
     @State var isPaused = false
     @State var maxARQTimes = 5
@@ -203,7 +205,9 @@ struct ChatView: View {
             self.chatTeacher = teachers[chatTeacherName]
             self.sessionConstrain = constrains[chatTeacher!.language]
             self.language_identifier = chatTeacher?.languageIdentifier
+            
             speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: chatTeacher!.languageIdentifier))!
+            azureS2tService = AzureS2T(languageIndentifier: chatTeacher!.languageIdentifier)
             
             
             let strList = initPrompts[chatTeacher!.type]?.components(separatedBy: ";")
@@ -232,6 +236,10 @@ struct ChatView: View {
         timer?.invalidate()
         timer = nil
         recognitionTask?.cancel()
+        azureRecognitionTask?.cancel()
+        print("azureRecognitionTask status: \(azureRecognitionTask?.isCancelled)")
+        try! azureS2tService.recognizer?.stopContinuousRecognition()
+        azureRecognitionTask = nil
         if audioEngine.isRunning {
            audioEngine.stop()
            audioEngine.inputNode.removeTap(onBus: 0)
@@ -247,8 +255,16 @@ struct ChatView: View {
     }
     
     func resumeSession() {
-        startTimer()
-        isRecording = true
+        
+        print("251: \(isRecording)")
+        // TODO: fast pause error
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            isRecording = true
+            startTimer()
+            print("253: \(isRecording)")
+        }
+
+        
     }
     
     func startTimer() {
@@ -293,32 +309,7 @@ struct ChatView: View {
         return String(format: "%02d:%02d", minutes, seconds)
     }
     
-   /*
-    func sendInitMsgAndfilter() {
-        let words = filterWords[chatTeacher!.language]
-        
-        func getInitResponse() {
-            getGPTChatResponse(client: client!, input: [initPrompt(), createChatMessage(role: .Sender, content: "hello")], completion: { result in
-                initResponse = result.trimmingCharacters(in: .whitespacesAndNewlines)
-//                if initResponse != "" && !initResponse.lowercased().contains(words!.lowercased()) {
-                    finalInput.append(initPrompt())
-//                    finalInput.append(createChatMessage(role: .Sender, content: "hello"))
-//                    finalInput.append(createChatMessage(role: .Response, content: initResponse))
-//                    print("init final input: \(finalInput)")
-//                    isRecording = true
-//                    startTimer()
-//                } else {
-//                    client = APICaller().getClient()
-//                    getInitResponse()
-//                }
-            })
-        }
-        isRecording = true
-        startTimer()
-//        getInitResponse()
-    }
-    */
-    
+   
     func timeoutARQ(msg: [ChatMessage], completion: @escaping (Result<String, Error>) -> Void) {
         
         maxARQTimes = 5
@@ -466,6 +457,64 @@ struct ChatView: View {
     
     // MARK: - speech recognization usage
     
+    func startRecordingWithAzure() throws {
+        
+        azureRecognitionTask?.cancel()
+        azureRecognitionTask = nil
+        
+        
+        // Configure the audio session for the app.
+        let audioSession = AVAudioSession.sharedInstance()
+        try audioSession.setCategory(AVAudioSession.Category.playAndRecord,options: [.defaultToSpeaker, .allowBluetooth, .allowAirPlay, .allowBluetoothA2DP, .mixWithOthers])
+        try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        let inputNode = audioEngine.inputNode
+        
+        //
+        
+        azureRecognitionTask = Task(priority: .background) {
+            guard await AVAudioSession.sharedInstance().hasPermissionToRecord() else {
+                throw AzureS2T.RecognizerError.notPermittedToRecord
+            }
+            
+//            DispatchQueue.global(qos: .background).async {
+                azureS2tService.recognizer!.addRecognizingEventHandler() { [self] reco, evt in
+//                    latestTranscript = evt.result.text ?? ""
+                    print("intermediate recognition result: \(evt.result.text ?? "(no result)")")
+                }
+                
+                print("Listening...")
+                
+                let result = try! azureS2tService.recognizer!.recognizeOnce()
+                latestTranscript = result.text ?? ""
+                print("recognition result: \(result.text ?? "(no result)"), reason: \(result.reason.rawValue)")
+                if result.reason != SPXResultReason.recognizedSpeech {
+                    let cancellationDetails = try! SPXCancellationDetails(fromCanceledRecognitionResult: result)
+                    print("cancelled: \(result.reason), \(cancellationDetails.errorDetails)")
+                    print("Did you set the speech resource key and region values?")
+                    // Stop recognizing speech if there is a problem.
+                    self.audioEngine.stop()
+                    inputNode.removeTap(onBus: 0)
+                    
+                    self.azureRecognitionTask = nil
+                    
+                    isRecording = false
+                }
+                
+//            }
+            return "finished"
+        }
+        
+        
+
+        
+        // Configure the microphone input.
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        audioEngine.prepare()
+        try audioEngine.start()
+        
+    }
+    
+    
     func startRecording() throws {
         
         print("start recording")
@@ -515,6 +564,7 @@ struct ChatView: View {
                     
             }
         }
+        
         
         // Configure the microphone input.
         let recordingFormat = inputNode.outputFormat(forBus: 0)
@@ -567,7 +617,8 @@ struct ChatView: View {
                 do {
                     lastTimeStatus = isRecording
                     buttonMsg = "Start Speaking, I'm listening..."
-                    try startRecording()
+//                    try startRecording()
+                    try startRecordingWithAzure()
                 } catch {
                     // TODO: - pop up error msg
                     print("error: speech not available")
