@@ -25,6 +25,31 @@ class MainPageDataUtils: ObservableObject {
         }
     }
     
+    // MARK: get taskByTeacher -> []
+    func convertDocumentToTaskByTeacher(_ languageDict: [String: Any]) -> TaskByTeacher {
+        let task = languageDict["task"] as? [String] ?? []
+        let answer = languageDict["answer"] as? [String] ?? []
+        let newTaskByTeacher = TaskByTeacher(task: task, answer: answer)
+        return newTaskByTeacher
+    }
+    
+    func fetchTaskByTeacher() {
+        collectionRef = db.collection("task_by_teacher")
+        collectionRef.getDocuments { querySnapshot, error in
+            if let error = error {
+                print("Error getti: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let dict = document.data()
+                    taskByTeacher[document.documentID] = self.convertDocumentToTaskByTeacher(dict)
+                }
+                self.addInMainThread()
+                print("taskByTeacher \(taskByTeacher)")
+            }
+        }
+       
+    }
+    
 
     // MARK: get all teacher, separated by languages: [LanguageTeacherModel]
     func convertDictionaryToLanguageTeacherModel(_ document: [String: Any]) -> LanguageTeacherModel {
@@ -191,12 +216,12 @@ class MainPageDataUtils: ObservableObject {
 
         fetchConfig(with: "config_local")
         fetchTeachers()
-        fetchLanguages(with: "languages_v1")
+//        fetchLanguages(with: "languages_v1")
         fetchLanguageTeacherModels()
         fetchConstrains()
         fetchInitPrompt()
         fetchFilterWords()
-        
+        fetchTaskByTeacher()
         
     }
 

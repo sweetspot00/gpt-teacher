@@ -37,6 +37,9 @@
 		EC6144A329C7493900CDF540 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144A229C7493900CDF540 /* Keys.swift */; };
 		EC6144A529C9F8A000CDF540 /* AzureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144A429C9F8A000CDF540 /* AzureService.swift */; };
 		EC6144A729CB510200CDF540 /* AzureSpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144A629CB510200CDF540 /* AzureSpeechRecognizer.swift */; };
+		EC6144A929D3281500CDF540 /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144A829D3281500CDF540 /* TaskView.swift */; };
+		EC6144AB29D33ED500CDF540 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144AA29D33ED500CDF540 /* ReportView.swift */; };
+		EC6144AD29D33F3400CDF540 /* TranslationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144AC29D33F3400CDF540 /* TranslationView.swift */; };
 		ECA98CC329B37249008DDFED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA98CC229B37249008DDFED /* Assets.xcassets */; };
 		ECA98CD129B37249008DDFED /* bot_teacherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CD029B37249008DDFED /* bot_teacherTests.swift */; };
 		ECA98CDB29B37249008DDFED /* bot_teacherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CDA29B37249008DDFED /* bot_teacherUITests.swift */; };
@@ -88,6 +91,9 @@
 		EC6144A229C7493900CDF540 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		EC6144A429C9F8A000CDF540 /* AzureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureService.swift; sourceTree = "<group>"; };
 		EC6144A629CB510200CDF540 /* AzureSpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureSpeechRecognizer.swift; sourceTree = "<group>"; };
+		EC6144A829D3281500CDF540 /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
+		EC6144AA29D33ED500CDF540 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		EC6144AC29D33F3400CDF540 /* TranslationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationView.swift; sourceTree = "<group>"; };
 		ECA98CB629B37248008DDFED /* bot_teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bot_teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA98CC229B37249008DDFED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECA98CC729B37249008DDFED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -259,6 +265,9 @@
 				ECEA380329B74F5400A069C8 /* MessageCellView.swift */,
 				ECEA37FF29B619E100A069C8 /* ChatView.swift */,
 				EC115C0A29C1D93C001B08DA /* TeacherListView.swift */,
+				EC6144A829D3281500CDF540 /* TaskView.swift */,
+				EC6144AA29D33ED500CDF540 /* ReportView.swift */,
+				EC6144AC29D33F3400CDF540 /* TranslationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -476,6 +485,7 @@
 				EC6144A729CB510200CDF540 /* AzureSpeechRecognizer.swift in Sources */,
 				EC115C0B29C1D93C001B08DA /* TeacherListView.swift in Sources */,
 				EC61449029C4732D00CDF540 /* UserProfileView.swift in Sources */,
+				EC6144AD29D33F3400CDF540 /* TranslationView.swift in Sources */,
 				EC6144A329C7493900CDF540 /* Keys.swift in Sources */,
 				EC61447929C431BD00CDF540 /* AuthenticationViewModel.swift in Sources */,
 				ECEA381329B7702300A069C8 /* SpeechRecognizer.swift in Sources */,
@@ -483,6 +493,8 @@
 				ECEA380229B61A8300A069C8 /* BotResponse.swift in Sources */,
 				EC61447729C42F9A00CDF540 /* LoginView.swift in Sources */,
 				EC61448C29C4703100CDF540 /* AilinApp.swift in Sources */,
+				EC6144A929D3281500CDF540 /* TaskView.swift in Sources */,
+				EC6144AB29D33ED500CDF540 /* ReportView.swift in Sources */,
 				ECEA37FE29B60FFA00A069C8 /* MessageModel.swift in Sources */,
 				ECEA380429B74F5400A069C8 /* MessageCellView.swift in Sources */,
 				EC6144A529C9F8A000CDF540 /* AzureService.swift in Sources */,

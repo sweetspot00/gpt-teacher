@@ -28,8 +28,8 @@
             filePath = "bot_teacher/Views/ChatView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "454"
-            endingLineNumber = "454"
+            startingLineNumber = "488"
+            endingLineNumber = "488"
             landmarkName = "playSpeechViaAzure(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -60,8 +60,8 @@
             filePath = "bot_teacher/Views/ChatView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "340"
-            endingLineNumber = "340"
+            startingLineNumber = "368"
+            endingLineNumber = "368"
             landmarkName = "getResponse()"
             landmarkType = "9">
          </BreakpointContent>
@@ -92,8 +92,8 @@
             filePath = "bot_teacher/Views/ChatView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
             landmarkName = "resumeSession()"
             landmarkType = "7">
          </BreakpointContent>
@@ -108,8 +108,8 @@
             filePath = "bot_teacher/Views/ChatView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
             landmarkName = "stopSession()"
             landmarkType = "7">
          </BreakpointContent>

@@ -64,6 +64,13 @@ func initTeacher() -> Teacher {
     return Teacher(name: "", speakerName: "en-US-JennyNeural", languageIdentifier: "en-US", language: "English", type: "teacher")
 }
 
+struct TaskByTeacher {
+    let task: [String]
+    let answer: [String]
+}
+
+var taskByTeacher : [String: TaskByTeacher] = ["Steve Jobs": TaskByTeacher(task: ["task1"], answer: ["answer1"])]
+
 
 //var teachers: [String: Teacher] = [
 //    "Kim Kardashian": Teacher(name: "Kim Kardashian", speakerName: "en-US-JennyNeural", languageIdentifier: "en-US", language: "English"),

@@ -65,6 +65,12 @@ struct ChatView: View {
     @State var tmpResponse = ""
     @State var alertMsg = "Time's up!"
     
+    /// flip image
+    @State private var flipped = false
+    @State var isTaskCompleted: [Bool] = [false]
+    @State var currentTaskIdx: Int = 0
+    @State var answers: [String] = []
+    
     private let audioEngine = AVAudioEngine()
     
     // Create a speech synthesizer.
@@ -127,12 +133,29 @@ struct ChatView: View {
         VStack {
             VStack {
                 
-                Image(chatTeacherName)
-                    .resizable()
-                    .font(.system(size: 30))
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(10)
-                    .frame(width: 300, height: 300)
+                ZStack {
+                    if flipped {
+                        TaskView(isTaskCompleted: $isTaskCompleted, teacherName: chatTeacherName, tasks: taskByTeacher[chatTeacherName]!.task)
+                    } else {
+                        Image(chatTeacherName)
+                            .resizable()
+                            .font(.system(size: 30))
+                            .aspectRatio(contentMode: .fit)
+                            .cornerRadius(10)
+                            .frame(width: 300, height: 300)
+                    }
+                }.rotation3DEffect(
+                    .degrees(flipped ? 180 : 0),
+                    axis: (x: 0.0, y: 1.0, z: 0.0)
+                )
+                .onTapGesture {
+                    withAnimation {
+                        flipped.toggle()
+                    }
+                }
+                
+
+                    
                 
                 Text("Chat all made up by AI. It's private.")
                     .font(.system(size: 18))
@@ -205,6 +228,9 @@ struct ChatView: View {
             self.chatTeacher = teachers[chatTeacherName]
             self.sessionConstrain = constrains[chatTeacher!.language]
             self.language_identifier = chatTeacher?.languageIdentifier
+            self.answers = taskByTeacher[chatTeacherName]!.answer
+            let cnt = answers.count
+            self.isTaskCompleted = Array(repeating: false, count: cnt)
             
             speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: chatTeacher!.languageIdentifier))!
             azureS2tService = AzureS2T(languageIndentifier: chatTeacher!.languageIdentifier)
@@ -227,6 +253,8 @@ struct ChatView: View {
         }
         
     }
+    
+    ///
     
 
     // TODO: This function blocked
@@ -375,8 +403,8 @@ struct ChatView: View {
     func initPrompt() -> ChatMessage {
         let initMsg = sessionInitPrompt!
 //        print("initMsg:\(initMsg)")
-        let initCharMsg = ChatMessage(role: .system, content: initMsg)
-        return initCharMsg
+        let initChatMsg = ChatMessage(role: .system, content: initMsg)
+        return initChatMsg
     }
     
     func createChatMessage(role: MessageType, content: String) -> ChatMessage {
@@ -425,7 +453,13 @@ struct ChatView: View {
                                                       messageType: .Response,
                                                       content: msg))
                                 finalInput.append(createChatMessage(role: .Response, content: msg))
-
+                                /// validate if task completed
+                                if (currentTaskIdx < answers.count && msg.contains(answers[currentTaskIdx])) {
+                                    isTaskCompleted[currentTaskIdx] = true
+                                    currentTaskIdx += 1
+                                }
+//                                isTaskCompleted[currentTaskIdx] = true
+//                                currentTaskIdx += 1
                                 playSpeechViaAzure(with: msg)
                             case.failure(let error):
                                 alertMsg = "AI Connection Fails"
@@ -503,9 +537,6 @@ struct ChatView: View {
 //            }
             return "finished"
         }
-        
-        
-
         
         // Configure the microphone input.
         let recordingFormat = inputNode.outputFormat(forBus: 0)
