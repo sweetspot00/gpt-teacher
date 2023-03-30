@@ -8,42 +8,40 @@
 import Foundation
 import SwiftUI
 
-@ViewBuilder func getMessageCellView(with messageModel: MessageModel) -> some View {
-
-    if (messageModel.messageType == MessageType.Sender) {
-        let newMessage = messageModel.content
-        // User message styles
-        HStack {
-            Spacer()
-            Text(newMessage)
-                .padding()
-                .foregroundColor(Color.white)
-                .background(Color.black)
-                .cornerRadius(10)
-                .padding(.horizontal, 16)
-                .padding(.bottom, 10)
-
-        }
-    } else {
-        // Bot message styles
-        HStack {
-            Text(messageModel.content)
-                .padding()
-                .background(Color.gray.opacity(0.15))
-                .cornerRadius(10)
-                .padding(.horizontal, 16)
-                .padding(.bottom, 10)
-            Spacer()
-        }
-    }
-}
-
-
 struct MessageCellView: View {
+    var messageModel: MessageModel
+    @State private var isPresentingDetail = false
     
-    @State var messageModel: MessageModel
     var body: some View {
-        getMessageCellView(with: messageModel)
+        if messageModel.messageType == .Sender {
+            // User message styles
+            HStack {
+                Spacer()
+                Text(messageModel.content)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.black)
+                    .cornerRadius(10)
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 10)
+            }
+        } else {
+            // Bot message styles
+            HStack {
+                Text(messageModel.content)
+                    .padding()
+                    .background(Color.gray.opacity(0.15))
+                    .cornerRadius(10)
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 10)
+                    .onTapGesture {
+                        isPresentingDetail = true
+                    }
+                    .sheet(isPresented: $isPresentingDetail) {
+                        TranslationView(originalText: messageModel.content)
+                    }
+                Spacer()
+            }
+        }
     }
-    
 }

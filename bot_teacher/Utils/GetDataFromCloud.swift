@@ -15,7 +15,7 @@ class MainPageDataUtils: ObservableObject {
     let db = Firestore.firestore()
     var docRef: DocumentReference!
     var collectionRef: CollectionReference!
-    let numToComplete = 7
+    let numToComplete = 8
     
     func addInMainThread() {
         DispatchQueue.main.async {
@@ -208,6 +208,24 @@ class MainPageDataUtils: ObservableObject {
         }
     }
     
+    // MARK: get report prompt
+    func fetchReportPrompt() {
+        collectionRef = Firestore.firestore().collection("report_prompt")
+        collectionRef.getDocuments { configSnapshot, error in
+            if error != nil {
+                print("error fetching report prompts")
+            } else {
+                for document in configSnapshot!.documents {
+                    let dict = document.data()
+                    reportPrompt = dict["prompt"] as? String ?? ""
+                }
+                self.addInMainThread()
+                print("report prompt: \(reportPrompt)")
+                
+            }
+        }
+    }
+    
     init() {
         loadMainPageData()
     }
@@ -222,7 +240,7 @@ class MainPageDataUtils: ObservableObject {
         fetchInitPrompt()
         fetchFilterWords()
         fetchTaskByTeacher()
-        
+        fetchReportPrompt()
     }
 
 }

@@ -71,6 +71,10 @@ struct ChatView: View {
     @State var currentTaskIdx: Int = 0
     @State var answers: [String] = []
     
+    /// for report
+    @State var userMsgs: [String] = []
+    @State var isConversationOver = false
+    
     private let audioEngine = AVAudioEngine()
     
     // Create a speech synthesizer.
@@ -104,7 +108,7 @@ struct ChatView: View {
                             self.timeRemaining -= 1
                         }
                     }
-            } // MARK: time to stop and quit page
+            } ///  time to stop and quit page
             .alert(isPresented: $showingAlert) {
                 Alert(
                     title: Text(alertMsg),
@@ -121,7 +125,9 @@ struct ChatView: View {
                     self.timeRemaining -= 1
                 } else {
                     self.conversationTimer.upstream.connect().cancel()
-                    showingAlert = true
+//                    showingAlert = true
+                    /// generate report
+                    isConversationOver = true
                 }
 
             }
@@ -253,9 +259,7 @@ struct ChatView: View {
         }
         
     }
-    
-    ///
-    
+ 
 
     // TODO: This function blocked
     func stopSession() {
@@ -314,15 +318,15 @@ struct ChatView: View {
                             isRecording = false
                             print("isRecording should be false, real is \(isRecording)")
                             sendMessage(message: latestTranscript)
+                            userMsgs.append(latestTranscript)
                         }
                         
                         
                     }
                 } else {
-                    /* Not recording
-                     1. pause
-                     2. waiting for response and azure's speech
-                     */
+                    /// Not recording
+                    /// 1. pause
+                    /// 2. waiting for response and azure's speech
                     latestTranscript = ""
                     
                 }

@@ -71,6 +71,9 @@ struct TaskByTeacher {
 
 var taskByTeacher : [String: TaskByTeacher] = ["Steve Jobs": TaskByTeacher(task: ["task1"], answer: ["answer1"])]
 
+var userMotherLanguage: String = "Chinese"
+
+var reportPrompt: String = ""
 
 //var teachers: [String: Teacher] = [
 //    "Kim Kardashian": Teacher(name: "Kim Kardashian", speakerName: "en-US-JennyNeural", languageIdentifier: "en-US", language: "English"),
