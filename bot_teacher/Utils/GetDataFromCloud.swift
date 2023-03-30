@@ -232,7 +232,7 @@ class MainPageDataUtils: ObservableObject {
     
     func loadMainPageData() {
 
-        fetchConfig(with: "config_local")
+        fetchConfig(with: "config_v1")
         fetchTeachers()
 //        fetchLanguages(with: "languages_v1")
         fetchLanguageTeacherModels()

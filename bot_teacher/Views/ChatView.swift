@@ -127,11 +127,13 @@ struct ChatView: View {
                     self.conversationTimer.upstream.connect().cancel()
 //                    showingAlert = true
                     /// generate report
+                    stopSession()
                     isConversationOver = true
                 }
-
             }
-            
+            .fullScreenCover(isPresented: $isConversationOver) {
+                ReportView(userConversations: userMsgs)
+            }
             
         }
 
@@ -225,9 +227,8 @@ struct ChatView: View {
                   .cornerRadius(7)
                 
             }
-
-        }.onAppear {
-
+        }
+        .onAppear {
 
             // get chatTeacher
 
@@ -245,19 +246,18 @@ struct ChatView: View {
             let strList = initPrompts[chatTeacher!.type]?.components(separatedBy: ";")
             self.sessionInitPrompt = (strList?[0] ?? "") + " " + chatTeacherName + ";" + (strList?[1] ?? "")
             print("202:\(sessionInitPrompt)")
-//                buttonMsg = "Please wait for the session to start..."
             finalInput.append(initPrompt())
             isRecording = true
             startTimer()
             azureServeice.speakerName = chatTeacher?.speakerName
-        }.onDisappear {
+        }
+        .onDisappear {
             
             print("exit page")
             stopSession()
             isQuit = true
            
         }
-        
     }
  
 
