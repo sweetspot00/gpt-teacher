@@ -44,6 +44,7 @@ struct ChatView: View {
     @State var oldTranscript = ""
     @State var latestTranscript = ""
     @State var timer : Timer?
+    @State var isButtonHidden = false
     
     // MARK: conversation timer
     @State var timeRemaining = conversationTime
@@ -73,7 +74,7 @@ struct ChatView: View {
     
     /// for report
     @State var userMsgs: [String] = []
-    @State var isConversationOver = false
+    @State var showReport = false
     
     private let audioEngine = AVAudioEngine()
     
@@ -112,11 +113,12 @@ struct ChatView: View {
             .alert(isPresented: $showingAlert) {
                 Alert(
                     title: Text(alertMsg),
-                    message: Text("Your progress will not be saved."),
-                    dismissButton: .destructive(Text("Quit"), action: {
+                    message: Text("You can get your report by clicking the button."),
+                    dismissButton: .destructive(Text("OK"), action: {
                         // handle quitting here
                         stopSession()
-                        closeButtonClick()
+                        buttonMsg = ""
+//                        closeButtonClick()
                     })
                 )
             }
@@ -127,11 +129,12 @@ struct ChatView: View {
                     self.conversationTimer.upstream.connect().cancel()
 //                    showingAlert = true
                     /// generate report
-                    stopSession()
-                    isConversationOver = true
+//                    stopSession()
+                    showingAlert = true
+                    conversationStop()
                 }
             }
-            .fullScreenCover(isPresented: $isConversationOver) {
+            .fullScreenCover(isPresented: $showReport) {
                 ReportView(userConversations: userMsgs)
             }
             
@@ -194,39 +197,58 @@ struct ChatView: View {
                     .font(.system(size: 16, weight: .light, design: .serif))
                     .bold()
             }
-            
-            VStack {
-                Button(action: {
-                    if isPaused {
-                        isPaused.toggle()
-                        conversationTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                        resumeSession()
-                        buttonMsg = "Start Speaking, I'm listening..."
-                    } else {
-                        self.conversationTimer.upstream.connect().cancel()
-                        stopSession()
-                        DispatchQueue.main.async {
-                            buttonMsg = "Conversation Stopped"
+            ZStack {
+                VStack {
+                    Button(action: {
+                        if isPaused {
+                            isPaused.toggle()
+                            conversationTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                            resumeSession()
+                            buttonMsg = "Start Speaking, I'm listening..."
+                        } else {
+                            self.conversationTimer.upstream.connect().cancel()
+                            stopSession()
+                            DispatchQueue.main.async {
+                                buttonMsg = "Conversation Stopped"
+                            }
+                            
+                            isPaused.toggle()
                         }
-                        
-                        isPaused.toggle()
-                    }
-                  }) {
-                      if isPaused {
-                          Text("Resume Conversation")
-                              .foregroundColor(.white)
-                              .font(.headline)
-                      } else {
-                          Text("Pause conversation")
-                              .foregroundColor(.white)
-                              .font(.headline)
+                      }) {
+                          if isPaused {
+                              Text("Resume Conversation")
+                                  .foregroundColor(.white)
+                                  .font(.headline)
+                          } else {
+                              Text("Pause conversation")
+                                  .foregroundColor(.white)
+                                  .font(.headline)
+                          }
                       }
-                  }
-                  .frame(width: CGFloat(300), height: CGFloat(40))
-                  .background(Color("ailinPink"))
-                  .cornerRadius(7)
+                      .frame(width: CGFloat(300), height: CGFloat(40))
+                      .background(Color("ailinPink"))
+                      .cornerRadius(7)
+                      .opacity(isButtonHidden ? 0 : 1)
+                }
                 
+                VStack {
+                    Button(action: {
+                        showReport = true
+                        
+                      })
+                    {
+                        Text("Get your report!")
+                            .foregroundColor(.white)
+                            .font(.headline)
+                    }
+                      .frame(width: CGFloat(300), height: CGFloat(40))
+                      .background(Color("ailinPink"))
+                      .cornerRadius(7)
+                      .opacity(isButtonHidden ? 1 : 0)
+                }
             }
+
+            
         }
         .onAppear {
 
@@ -284,6 +306,12 @@ struct ChatView: View {
             print("error stop speech")
         }
 
+    }
+    
+    func conversationStop() {
+        stopSession()
+        /// change button
+        isButtonHidden = true
     }
     
     func resumeSession() {
@@ -457,6 +485,7 @@ struct ChatView: View {
                                                       messageType: .Response,
                                                       content: msg))
                                 finalInput.append(createChatMessage(role: .Response, content: msg))
+                                playSpeechViaAzure(with: msg)
                                 /// validate if task completed
                                 if (currentTaskIdx < answers.count && msg.contains(answers[currentTaskIdx])) {
                                     isTaskCompleted[currentTaskIdx] = true
@@ -464,7 +493,6 @@ struct ChatView: View {
                                 }
 //                                isTaskCompleted[currentTaskIdx] = true
 //                                currentTaskIdx += 1
-                                playSpeechViaAzure(with: msg)
                             case.failure(let error):
                                 alertMsg = "AI Connection Fails"
                                 showingAlert = true

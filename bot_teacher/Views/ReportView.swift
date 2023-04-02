@@ -63,14 +63,16 @@ struct ReportView: View {
                         }
                 } else {
                     if let reportReceived = reportReceived {
-                        
-                        VStack{
-                            Text(reportReceived)
-                                .font(.custom("HelveticaNeue", size: 18))
-                                .fontWeight(.semibold)
-                                .foregroundColor(.black)
+                        ScrollView {
+                            VStack{
+                                Text(reportReceived)
+//                                    .font(.custom("HelveticaNeue", size: 18))
+//                                    .fontWeight(.semibold)
+//                                    .foregroundColor(.black)
+                            }
+                            .padding(.horizontal, 30)
                         }
-                        .padding(.horizontal, 30)
+                        
 
                         
                     } else {

@@ -23,6 +23,7 @@
 				EC61449929C4A6BF00CDF540 /* FirebaseAnalyticsSwift */,
 				EC61449A29C4A6BF00CDF540 /* FirebaseDatabase */,
 				EC61449B29C4A6BF00CDF540 /* FirebaseDatabaseSwift */,
+				EC6144B629D705D700CDF540 /* Alamofire */,
 			);
 			productName = "MicrosoftCognitiveServicesSpeech-iOS";
 		};
@@ -424,6 +425,7 @@
 				EC115BFB29BD96C2001B08DA /* XCRemoteSwiftPackageReference "OpenAIKit" */,
 				EC61447A29C45CCF00CDF540 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				EC61449729C4A6BF00CDF540 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				EC6144B529D705D700CDF540 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 361ED87E4ED3039396627F3860B8FDC9 /* Products */;
 			projectDirPath = "";
@@ -928,6 +930,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		EC6144B529D705D700CDF540 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -970,6 +980,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC61449729C4A6BF00CDF540 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabaseSwift;
+		};
+		EC6144B629D705D700CDF540 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC6144B529D705D700CDF540 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

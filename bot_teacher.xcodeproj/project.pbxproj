@@ -42,6 +42,7 @@
 		EC6144AD29D33F3400CDF540 /* TranslationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144AC29D33F3400CDF540 /* TranslationView.swift */; };
 		EC6144AF29D45D2000CDF540 /* ChooseLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144AE29D45D2000CDF540 /* ChooseLanguageView.swift */; };
 		EC6144B129D46F1900CDF540 /* ChatViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144B029D46F1900CDF540 /* ChatViewExtension.swift */; };
+		EC6144B429D705A600CDF540 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EC6144B329D705A600CDF540 /* Alamofire */; };
 		ECA98CC329B37249008DDFED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA98CC229B37249008DDFED /* Assets.xcassets */; };
 		ECA98CD129B37249008DDFED /* bot_teacherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CD029B37249008DDFED /* bot_teacherTests.swift */; };
 		ECA98CDB29B37249008DDFED /* bot_teacherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CDA29B37249008DDFED /* bot_teacherUITests.swift */; };
@@ -133,6 +134,7 @@
 				EC61449D29C4A70100CDF540 /* FirebaseFirestore in Frameworks */,
 				EC61447F29C45D0D00CDF540 /* GoogleSignIn in Frameworks */,
 				EC61449F29C4A70800CDF540 /* FirebaseFirestoreSwift in Frameworks */,
+				EC6144B429D705A600CDF540 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +321,7 @@
 				EC61448029C45D0D00CDF540 /* GoogleSignInSwift */,
 				EC61449C29C4A70100CDF540 /* FirebaseFirestore */,
 				EC61449E29C4A70800CDF540 /* FirebaseFirestoreSwift */,
+				EC6144B329D705A600CDF540 /* Alamofire */,
 			);
 			productName = bot_teacher;
 			productReference = ECA98CB629B37248008DDFED /* bot_teacher.app */;
@@ -395,6 +398,7 @@
 			packageReferences = (
 				EC61446729C3695100CDF540 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				EC61447D29C45D0D00CDF540 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				EC6144B229D705A600CDF540 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = ECA98CB729B37248008DDFED /* Products */;
 			projectDirPath = "";
@@ -870,6 +874,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		EC6144B229D705A600CDF540 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -927,6 +939,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC61446729C3695100CDF540 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		EC6144B329D705A600CDF540 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC6144B229D705A600CDF540 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

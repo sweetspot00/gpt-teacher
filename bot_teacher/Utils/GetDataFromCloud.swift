@@ -100,6 +100,7 @@ class MainPageDataUtils: ObservableObject {
                 AZURE_REGION = data["AZURE_REGION"] as? String ?? ""
                 OPENAI_KEY = data["OPENAI_KEY"] as? String ?? ""
                 conversationTime = data["CONVERSATION_TIME"] as? Int ?? 600
+                AZURE_TRANSLATION_KEY = data["AZURE_TRANSLATION_KEY"] as? String ?? ""
                 self.addInMainThread()
                 print("config: \(AZURE_KEY), \(AZURE_REGION)")
             }

@@ -75,12 +75,33 @@ var userMotherLanguage: String = "Chinese"
 
 var reportPrompt: String = ""
 
-//var teachers: [String: Teacher] = [
-//    "Kim Kardashian": Teacher(name: "Kim Kardashian", speakerName: "en-US-JennyNeural", languageIdentifier: "en-US", language: "English"),
-//    "Steve Jobs": Teacher(name: "Steve Jobs", speakerName: "en-US-TonyNeural", languageIdentifier: "en-US", language: "English"),
-//    "Donald Trump": Teacher(name: "Donald Trump", speakerName: "en-US-DavisNeural", languageIdentifier: "en-US", language: "English"),
-//    "Zinadine Zidane": Teacher(name: "Zinadine Zidane", speakerName: "fr-FR-AlainNeural", languageIdentifier: "fr-FR", language: "French")
-//]
+let languageNames: [String: String] = [
+"Afrikaans": "af",
+"Arabic": "ar",
+"Azerbaijani": "az",
+"Belarusian": "be",
+"Bulgarian": "bg",
+"Bengali": "bn",
+"Bosnian": "bs",
+"Catalan": "ca",
+"Cebuano": "ceb",
+"Czech": "cs",
+"Chinese": "zh-Hans",
+"Welsh": "cy",
+"Danish": "da",
+"German": "de",
+"Greek": "el",
+"English": "en",
+"Esperanto": "eo",
+"Spanish": "es",
+"Estonian": "et",
+"Basque": "eu",
+"Persian": "fa",
+"Finnish": "fi",
+"French": "fr",
+"Western Frisian": "fy",
+"Irish": "ga"
+]
 
 var teachers = [String: Teacher]()
 
