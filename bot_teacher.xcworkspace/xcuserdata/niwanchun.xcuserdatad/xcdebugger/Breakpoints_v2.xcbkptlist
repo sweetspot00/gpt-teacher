@@ -28,8 +28,8 @@
             filePath = "bot_teacher/Views/ChatView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "521"
-            endingLineNumber = "521"
+            startingLineNumber = "518"
+            endingLineNumber = "518"
             landmarkName = "playSpeechViaAzure(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -60,8 +60,8 @@
             filePath = "bot_teacher/Views/ChatView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "401"
-            endingLineNumber = "401"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
             landmarkName = "getResponse()"
             landmarkType = "9">
          </BreakpointContent>
@@ -108,8 +108,8 @@
             filePath = "bot_teacher/Views/TranslationView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -156,10 +156,42 @@
             filePath = "bot_teacher/Views/TranslationView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "translateText(text:toLanguage:completionHandler:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "644CE89F-81B0-4D8F-8567-C464EA5C3BE4 - b8de1f4ec9d9d9a5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.String, Alamofire.AFError&gt;) -&gt; () in bot_teacher.TranslationView.translateText(text: Swift.String, toLanguage: Swift.String, completionHandler: (Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "bot_teacher"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niwanchun/Documents/ai_teach/bot_teacher/bot_teacher/Views/TranslationView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "764">
+               </Location>
+               <Location
+                  uuid = "644CE89F-81B0-4D8F-8567-C464EA5C3BE4 - b8de1f4ec9d9d984"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.String, Alamofire.AFError&gt;) -&gt; () in bot_teacher.TranslationView.translateText(text: Swift.String, toLanguage: Swift.String, completionHandler: (Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "bot_teacher"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niwanchun/Documents/ai_teach/bot_teacher/bot_teacher/Views/TranslationView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "764">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

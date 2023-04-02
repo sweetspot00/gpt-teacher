@@ -28,27 +28,30 @@ struct MessageCellView: View {
         } else {
             // Bot message styles
             ZStack(alignment: .bottomTrailing) {
-                Text(messageModel.content)
-                    .padding()
-                    .background(Color.gray.opacity(0.15))
-                    .cornerRadius(10)
-                    .padding(.horizontal, 16)
-                    .padding(.bottom, 10)
-                Button(action: {
-                    isPresentingDetail = true
-                }) {
-                    Circle()
-                        .fill(Color.blue)
-                        .frame(width: 30, height: 30)
-                        .overlay(
-                            Image(systemName: "globe")
-                                .foregroundColor(.white)
-                        )
-                }
-                .sheet(isPresented: $isPresentingDetail) {
+                VStack(alignment: .leading) {
+                    Text(messageModel.content)
+                    Button(action: {
+                        isPresentingDetail = true
+                    }) {
+                        Circle()
+                            .fill(Color.blue)
+                            .frame(width: 23, height: 23)
+                            .overlay(
+                                Image(systemName: "globe")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 13))
+                            )
+                    }
+                    .sheet(isPresented: $isPresentingDetail) {
                         TranslationView(originalText: messageModel.content)
                     }
-                .padding(.bottom, 5)
+                    .padding(.top, 1)
+                }
+                .padding()
+                .padding(.leading, 3)
+                .background(Color.gray.opacity(0.15))
+                .cornerRadius(10)
+                .padding(.horizontal, 8)
             }
         }
     }

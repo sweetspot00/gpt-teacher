@@ -165,9 +165,6 @@ struct ChatView: View {
                     }
                 }
                 
-
-                    
-                
                 Text("Click image above to see tasks 🤩")
                     .font(.system(size: 18))
                     .lineLimit(1)

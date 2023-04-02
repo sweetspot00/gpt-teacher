@@ -16,9 +16,24 @@ struct TranslationView: View {
     
     var body: some View {
         VStack {
-            
-            Text(originalText)
-                .frame(maxHeight: .infinity)
+            Spacer()
+            ScrollView {
+                VStack {
+                    HStack {
+                        Spacer()
+                        Text(originalText)
+                            .font(.system(size: 18))
+                            .foregroundColor(.primary)
+                            .multilineTextAlignment(.leading)
+                            .lineSpacing(6)
+                            .frame(maxHeight: .infinity)
+                        Spacer()
+                    }
+                }
+                .padding()
+            }
+            .edgesIgnoringSafeArea(.bottom)
+            Spacer()
             Divider()
             HStack(spacing: 10) {
                 
@@ -37,8 +52,22 @@ struct TranslationView: View {
                 Spacer()
             }.padding(.horizontal, 10)
             
-            TextEditor(text: $translatedText)
-                .frame(maxHeight: .infinity)
+            ScrollView {
+                VStack {
+                    HStack {
+                        Spacer()
+                        Text(translatedText)
+                            .font(.system(size: 18))
+                            .foregroundColor(.primary)
+                            .multilineTextAlignment(.leading)
+                            .lineSpacing(6)
+                            .frame(maxHeight: .infinity)
+                        Spacer()
+                    }
+                }
+                .padding()
+            }
+            .edgesIgnoringSafeArea(.bottom)
             
         }.padding(.all, 15)
         .onAppear {
@@ -51,6 +80,7 @@ struct TranslationView: View {
         }
         
     }
+    /// azure
     func translateText(text: String,toLanguage: String, completionHandler: @escaping (String?) -> Void) {
 
         let urlString = "https://api.cognitive.microsofttranslator.com/translator/text/v3.0/translate?to=\(toLanguage)"
