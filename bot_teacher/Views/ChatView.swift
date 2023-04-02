@@ -146,7 +146,7 @@ struct ChatView: View {
                 
                 ZStack {
                     if flipped {
-                        TaskView(isTaskCompleted: $isTaskCompleted, teacherName: chatTeacherName, tasks: taskByTeacher[chatTeacherName]!.task)
+                        TaskView(isTaskCompleted: $isTaskCompleted, teacherName: chatTeacherName, tasks: taskByTeacher[chatTeacherName]?.task ?? [])
                     } else {
                         Image(chatTeacherName)
                             .resizable()
@@ -168,7 +168,7 @@ struct ChatView: View {
 
                     
                 
-                Text("Chat all made up by AI. It's private.")
+                Text("Click image above to see tasks 🤩")
                     .font(.system(size: 18))
                     .lineLimit(1)
                     .frame(width: 300)
@@ -257,7 +257,8 @@ struct ChatView: View {
             self.chatTeacher = teachers[chatTeacherName]
             self.sessionConstrain = constrains[chatTeacher!.language]
             self.language_identifier = chatTeacher?.languageIdentifier
-            self.answers = taskByTeacher[chatTeacherName]!.answer
+            /// task related
+            self.answers = taskByTeacher[chatTeacherName]?.answer ?? []
             let cnt = answers.count
             self.isTaskCompleted = Array(repeating: false, count: cnt)
             

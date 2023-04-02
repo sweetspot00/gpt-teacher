@@ -28,10 +28,11 @@ struct TaskView: View {
                VStack(spacing: 20) {
                    ForEach(tasks.indices, id: \.self) { index in
                        let taskText = tasks[index] + (isTaskCompleted[index] ? " ✅" : "")
-                       Text(taskText)
-                           .font(.headline)
+                       Text("\(index + 1)" + ". " + "\(taskText)")
+                           .font(.subheadline)
                            .foregroundColor(isTaskCompleted[index] ? .gray : .black)
     //                       .strikethrough(completedTasks.contains(index))
+                           .frame(maxWidth: .infinity, alignment: .leading)
                    }
                }.padding()
                 
