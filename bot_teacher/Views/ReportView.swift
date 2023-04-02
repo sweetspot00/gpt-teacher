@@ -29,19 +29,19 @@ struct ReportView: View {
                 }
                 Spacer()
             }.padding([.horizontal], 15)
-            
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color("ailinPink"))
+                    .frame(height: 80)
+                    .padding(.horizontal, 30)
+                
+                
+                Text("Ailin Assessment")
+                    .font(.largeTitle)
+                    .foregroundColor(.white)// Increase the top padding to make sure the view is visible
+            }.padding(.top, 30)
             VStack {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color("ailinPink"))
-                        .frame(height: 80)
-                        .padding(.horizontal, 30)
-                    
-                    
-                    Text("Ailin Assessment")
-                        .font(.largeTitle)
-                        .foregroundColor(.white)// Increase the top padding to make sure the view is visible
-                }.padding(.top, 30)
+
                 if isLoading {
                     VStack {
                         Text("Waiting for report...")
@@ -59,7 +59,6 @@ struct ReportView: View {
                             }
                     }.onAppear {
                             getReport()
-                            //                        simulateReport()
                         }
                 } else {
                     if let reportReceived = reportReceived {
