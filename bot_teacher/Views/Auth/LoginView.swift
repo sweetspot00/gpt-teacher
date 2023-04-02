@@ -52,68 +52,78 @@ struct LoginView: View {
   var body: some View {
     VStack {
 
-      Text("Login")
-        .font(.largeTitle)
-        .fontWeight(.bold)
-        .frame(maxWidth: .infinity, alignment: .leading)
+        ZStack{
+            Image("login")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .edgesIgnoringSafeArea(.top)
+                    .scaleEffect(0.86)
+                    
+                    .overlay(
+                        LinearGradient(gradient: Gradient(colors: [Color.black.opacity(0.0), Color.white.opacity(0.9)]),
+                                       startPoint: .top,
+                                       endPoint: .bottom)
+                    )
+                    .edgesIgnoringSafeArea(.top)
+                    .offset(x: -10, y: -80)
+                    
+            
 
-      HStack {
-        Image(systemName: "at")
-        TextField("Email", text: $viewModel.email)
-          .textInputAutocapitalization(.never)
-          .disableAutocorrection(true)
-          .focused($focus, equals: .email)
-          .submitLabel(.next)
-          .onSubmit {
-            self.focus = .password
-          }
-      }
-      .padding(.vertical, 6)
-      .background(Divider(), alignment: .bottom)
-      .padding(.bottom, 4)
+                 VStack(alignment: .leading) {
+                     // push to bottom
+                     Spacer()
+                     VStack {
+                         Text("Chat with the AI doubles of your fav characters. Examples :")
+                             .font(.title2)
+                             .bold()
+                             .multilineTextAlignment(.leading)
 
-      HStack {
-        Image(systemName: "lock")
-        SecureField("Password", text: $viewModel.password)
-          .focused($focus, equals: .password)
-          .submitLabel(.go)
-          .onSubmit {
-            signInWithEmailPassword()
-          }
-      }
-      .padding(.vertical, 6)
-      .background(Divider(), alignment: .bottom)
-      .padding(.bottom, 8)
+    //                     Spacer()
+                     }
 
-      if !viewModel.errorMessage.isEmpty {
-        VStack {
-          Text(viewModel.errorMessage)
-            .foregroundColor(Color(UIColor.systemRed))
-        }
-      }
+                     VStack(alignment: .leading) {
+                         HStack {
+                             Image("yes")
+                                 .resizable()
+                                 .frame(width: 28, height: 28)
+                                 .padding(.horizontal, 5)
+                             Text("Practice your language speaking skill")
+                                 .font(.custom("Inter-Regular", size: 18))
+                                 .foregroundColor(Color.black)
+                                 .multilineTextAlignment(.leading)
+                                 .background(Color.white)
+                         }
+                         HStack {
+                             Image("yes")
+                                 .resizable()
+                                 .frame(width: 28, height: 28)
+                                 .padding(.horizontal, 5)
+                             Text("Ask for insights and ideas")
+                                 .font(.custom("Inter-Regular", size: 18))
+                                 .foregroundColor(Color.black)
+                                 .multilineTextAlignment(.leading)
+                                 .background(Color.white)
+//                             Spacer()
+                             
+                         }
+                         HStack {
+                             Image("yes")
+                                 .resizable()
+                                 .frame(width: 28, height: 28)
+                                 .padding(.horizontal, 5)
+                             Text("Chat about your life to relieve stress")
+                                 .font(.custom("Inter-Regular", size: 18))
+                                 .foregroundColor(Color.black)
+                                 .multilineTextAlignment(.leading)
+                                 .background(Color.white)
+//                             Spacer()
+                         }
+                     }
+                 }
+        }.padding()
+    
 
-      Button(action: signInWithEmailPassword) {
-        if viewModel.authenticationState != .authenticating {
-          Text("Login")
-            .padding(.vertical, 8)
-            .frame(maxWidth: .infinity)
-        }
-        else {
-          ProgressView()
-            .progressViewStyle(CircularProgressViewStyle(tint: .white))
-            .padding(.vertical, 8)
-            .frame(maxWidth: .infinity)
-        }
-      }
-      .disabled(!viewModel.isValid)
-      .frame(maxWidth: .infinity)
-      .buttonStyle(.borderedProminent)
 
-      HStack {
-        VStack { Divider() }
-        Text("or")
-        VStack { Divider() }
-      }
 
         VStack {
             SignInWithAppleButton { request in
@@ -125,6 +135,7 @@ struct LoginView: View {
             .frame(maxWidth: .infinity)
             .frame(height: 44)
             .cornerRadius(8)
+            .padding(.horizontal)
             
           Button(action: signInWithGoogle) {
               HStack(spacing: 5) {
@@ -147,19 +158,9 @@ struct LoginView: View {
 
         }
 
-      HStack {
-        Text("Don't have an account yet?")
-        Button(action: { viewModel.switchFlow() }) {
-          Text("Sign up")
-            .fontWeight(.semibold)
-            .foregroundColor(.blue)
-        }
-      }
-      .padding([.top, .bottom], 50)
-
     }
     .listStyle(.plain)
-    .padding()
+//    .padding()
     .analyticsScreen(name: "\(Self.self)")
   }
 }

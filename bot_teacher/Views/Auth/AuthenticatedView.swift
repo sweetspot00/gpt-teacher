@@ -49,22 +49,24 @@ struct AuthenticatedView<Content, Unauthenticated>: View where Content: View, Un
   var body: some View {
     switch viewModel.authenticationState {
     case .unauthenticated, .authenticating:
-      VStack {
-        if let unauthenticated {
-          unauthenticated
-        }
-        else {
-          Text("You're not logged in.")
-        }
-        Button("Tap here to log in") {
-          viewModel.reset()
-          presentingLoginScreen.toggle()
-        }
-      }
-      .sheet(isPresented: $presentingLoginScreen) {
-        AuthenticationView()
-          .environmentObject(viewModel)
-      }
+        AuthenticationView().environmentObject(viewModel)
+        
+//      VStack {
+//        if let unauthenticated {
+//          unauthenticated
+//        }
+//        else {
+//          Text("You're not logged in.")
+//        }
+//        Button("Tap here to log in") {
+//          viewModel.reset()
+//          presentingLoginScreen.toggle()
+//        }
+//      }
+//      .sheet(isPresented: $presentingLoginScreen) {
+//        AuthenticationView()
+//          .environmentObject(viewModel)
+//      }
     case .authenticated:
         if (dataViewModel.showTeacherListView) {
             VStack {
@@ -73,16 +75,16 @@ struct AuthenticatedView<Content, Unauthenticated>: View where Content: View, Un
                 // TODO:
       //        Text("You're logged in as \(viewModel.displayName).")
                 TeacherListView()
-              Button("Tap here to view your profile") {
-                presentingProfileScreen.toggle()
-              }
+//              Button("Tap here to view your profile") {
+//                presentingProfileScreen.toggle()
+//              }
             }
-            .sheet(isPresented: $presentingProfileScreen) {
-              NavigationStack {
-                UserProfileView()
-                  .environmentObject(viewModel)
-              }
-            }
+//            .sheet(isPresented: $presentingProfileScreen) {
+//              NavigationStack {
+//                UserProfileView()
+//                  .environmentObject(viewModel)
+//              }
+//            }
         }
 
         

@@ -23,7 +23,8 @@ struct UserProfileView: View {
   @EnvironmentObject var viewModel: AuthenticationViewModel
   @Environment(\.dismiss) var dismiss
   @State var presentingConfirmationDialog = false
-
+  let languages = ["English", "Spanish", "French", "German", "Chinese", "Japanese", "Korean", "Russian", "Italian", "Portuguese"]
+    @State private var selectedLanguage = "English"
   private func deleteAccount() {
     Task {
       if await viewModel.deleteAccount() == true {
@@ -42,7 +43,7 @@ struct UserProfileView: View {
         VStack {
           HStack {
             Spacer()
-            Image("portriat")
+            Image("portrait")
               .resizable()
               .frame(width: 100 , height: 100)
               .aspectRatio(contentMode: .fit)
@@ -61,6 +62,18 @@ struct UserProfileView: View {
       Section("Email") {
         Text(viewModel.displayName)
       }
+
+        Section(header: Text("Choose Native Language")) {
+            Picker("Native Language", selection: $selectedLanguage) {
+                ForEach(languages, id: \.self) { language in
+                    Text(language)
+                }
+            }.onSubmit {
+                userMotherLanguage = selectedLanguage
+            }
+        }
+
+        
       Section {
         Button(role: .cancel, action: signOut) {
           HStack {

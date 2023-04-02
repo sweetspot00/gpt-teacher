@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChooseLanguageView: View {
-    let languages = ["English", "Spanish", "French", "German", "Chinese"]
+    let languages = ["English", "Spanish", "French", "German", "Chinese", "Japanese", "Korean", "Russian", "Italian", "Portuguese"]
     @State private var selectedLanguage: String?
     @State private var isNextViewActive = false
     

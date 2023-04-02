@@ -41,7 +41,6 @@
 		EC6144AB29D33ED500CDF540 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144AA29D33ED500CDF540 /* ReportView.swift */; };
 		EC6144AD29D33F3400CDF540 /* TranslationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144AC29D33F3400CDF540 /* TranslationView.swift */; };
 		EC6144AF29D45D2000CDF540 /* ChooseLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144AE29D45D2000CDF540 /* ChooseLanguageView.swift */; };
-		EC6144B129D46F1900CDF540 /* ChatViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144B029D46F1900CDF540 /* ChatViewExtension.swift */; };
 		EC6144B429D705A600CDF540 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EC6144B329D705A600CDF540 /* Alamofire */; };
 		ECA98CC329B37249008DDFED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA98CC229B37249008DDFED /* Assets.xcassets */; };
 		ECA98CD129B37249008DDFED /* bot_teacherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CD029B37249008DDFED /* bot_teacherTests.swift */; };
@@ -98,7 +97,6 @@
 		EC6144AA29D33ED500CDF540 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		EC6144AC29D33F3400CDF540 /* TranslationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationView.swift; sourceTree = "<group>"; };
 		EC6144AE29D45D2000CDF540 /* ChooseLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLanguageView.swift; sourceTree = "<group>"; };
-		EC6144B029D46F1900CDF540 /* ChatViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewExtension.swift; sourceTree = "<group>"; };
 		ECA98CB629B37248008DDFED /* bot_teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bot_teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA98CC229B37249008DDFED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECA98CC729B37249008DDFED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -275,7 +273,6 @@
 				EC6144AA29D33ED500CDF540 /* ReportView.swift */,
 				EC6144AC29D33F3400CDF540 /* TranslationView.swift */,
 				EC6144AE29D45D2000CDF540 /* ChooseLanguageView.swift */,
-				EC6144B029D46F1900CDF540 /* ChatViewExtension.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -506,7 +503,6 @@
 				EC6144A929D3281500CDF540 /* TaskView.swift in Sources */,
 				EC6144AB29D33ED500CDF540 /* ReportView.swift in Sources */,
 				ECEA37FE29B60FFA00A069C8 /* MessageModel.swift in Sources */,
-				EC6144B129D46F1900CDF540 /* ChatViewExtension.swift in Sources */,
 				EC6144AF29D45D2000CDF540 /* ChooseLanguageView.swift in Sources */,
 				ECEA380429B74F5400A069C8 /* MessageCellView.swift in Sources */,
 				EC6144A529C9F8A000CDF540 /* AzureService.swift in Sources */,

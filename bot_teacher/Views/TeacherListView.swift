@@ -12,21 +12,33 @@ import Speech
 
 struct TeacherListView: View {
 
+    @StateObject private var viewModel = AuthenticationViewModel()
     @State private var selectedButtonIndex = 1
     @State var selectedChatTeacher: String = ""
     var userName = "MOMO"
     @State var isSelected = false
     @State var language = ""
+    @State var presentingProfileScreen = false
     
     
     var body: some View {
         VStack {
             // user info
             HStack {
-                Image("portriat")
-                    .resizable()
-                    .frame(width: 40, height: 40)
-                    .clipShape(Circle())
+                Button(action: {
+                    presentingProfileScreen.toggle()
+                }) {
+                    Image("portrait")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                        .clipShape(Circle())
+                }.sheet(isPresented: $presentingProfileScreen) {
+//                  NavigationStack {
+                    UserProfileView()
+                      .environmentObject(viewModel)
+//                  }
+                }
+                
                 HStack {
                     VStack(alignment: .leading) {
                         Text(userName)
