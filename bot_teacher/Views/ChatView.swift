@@ -77,6 +77,7 @@ struct ChatView: View {
     @State var showReport = false
     
     private let audioEngine = AVAudioEngine()
+    @State var audioSession = AVAudioSession.sharedInstance()
     
     // Create a speech synthesizer.
     let synthesizer = AVSpeechSynthesizer()
@@ -300,6 +301,7 @@ struct ChatView: View {
         
         do {
             try azureServeice.synthesizer.stopSpeaking()
+            try audioSession.setActive(false)
         } catch {
             print("error stop speech")
         }
@@ -528,7 +530,7 @@ struct ChatView: View {
         
         
         // Configure the audio session for the app.
-        let audioSession = AVAudioSession.sharedInstance()
+//        let audioSession = AVAudioSession.sharedInstance()
         try audioSession.setCategory(AVAudioSession.Category.playAndRecord,options: [.defaultToSpeaker, .allowBluetooth, .allowAirPlay, .allowBluetoothA2DP, .mixWithOthers])
         try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         let inputNode = audioEngine.inputNode

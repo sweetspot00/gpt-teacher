@@ -28,8 +28,8 @@
             filePath = "bot_teacher/Views/ChatView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "518"
-            endingLineNumber = "518"
+            startingLineNumber = "520"
+            endingLineNumber = "520"
             landmarkName = "playSpeechViaAzure(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -60,8 +60,8 @@
             filePath = "bot_teacher/Views/ChatView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "398"
-            endingLineNumber = "398"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
             landmarkName = "getResponse()"
             landmarkType = "9">
          </BreakpointContent>
@@ -108,8 +108,8 @@
             filePath = "bot_teacher/Views/TranslationView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -156,13 +156,28 @@
             filePath = "bot_teacher/Views/TranslationView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "translateText(text:toLanguage:completionHandler:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "644CE89F-81B0-4D8F-8567-C464EA5C3BE4 - b8de1f4ec9d9d9a5"
+                  uuid = "644CE89F-81B0-4D8F-8567-C464EA5C3BE4 - 54cb95258ba061fc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static bot_teacher.TranslationView_Previews.previews.getter : some"
+                  moduleName = "bot_teacher"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niwanchun/Documents/ai_teach/bot_teacher/bot_teacher/Views/TranslationView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "360">
+               </Location>
+               <Location
+                  uuid = "644CE89F-81B0-4D8F-8567-C464EA5C3BE4 - b8de1f4ec9d9d452"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -172,12 +187,12 @@
                   urlString = "file:///Users/niwanchun/Documents/ai_teach/bot_teacher/bot_teacher/Views/TranslationView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "98"
-                  endingLineNumber = "98"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
                   offsetFromSymbolStart = "764">
                </Location>
                <Location
-                  uuid = "644CE89F-81B0-4D8F-8567-C464EA5C3BE4 - b8de1f4ec9d9d984"
+                  uuid = "644CE89F-81B0-4D8F-8567-C464EA5C3BE4 - b8de1f4ec9d9d410"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -187,24 +202,9 @@
                   urlString = "file:///Users/niwanchun/Documents/ai_teach/bot_teacher/bot_teacher/Views/TranslationView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "99"
-                  endingLineNumber = "99"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
                   offsetFromSymbolStart = "764">
-               </Location>
-               <Location
-                  uuid = "644CE89F-81B0-4D8F-8567-C464EA5C3BE4 - b8de1f4ec9d9d984"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.String, Alamofire.AFError&gt;) -&gt; () in bot_teacher.TranslationView.translateText(text: Swift.String, toLanguage: Swift.String, completionHandler: (Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "bot_teacher"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/niwanchun/Documents/ai_teach/bot_teacher/bot_teacher/Views/TranslationView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "99"
-                  endingLineNumber = "99"
-                  offsetFromSymbolStart = "848">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -223,6 +223,102 @@
             endingLineNumber = "16"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E2A924CC-E9B1-4062-A9F1-DA944503915A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bot_teacher/Views/TranslationView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "translateAgain()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E2A924CC-E9B1-4062-A9F1-DA944503915A - d319b1e4101e7095"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; () in bot_teacher.TranslationView.translateAgain() -&gt; ()"
+                  moduleName = "bot_teacher"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niwanchun/Documents/ai_teach/bot_teacher/bot_teacher/Views/TranslationView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "E2A924CC-E9B1-4062-A9F1-DA944503915A - d319b1e4101e70d7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; () in bot_teacher.TranslationView.translateAgain() -&gt; ()"
+                  moduleName = "bot_teacher"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niwanchun/Documents/ai_teach/bot_teacher/bot_teacher/Views/TranslationView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5DF075C6-8890-44C9-A3F9-49B691FDCB3C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bot_teacher/Views/TranslationView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "translateAgain()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5DF075C6-8890-44C9-A3F9-49B691FDCB3C - 305857d55bc00a38"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bot_teacher.TranslationView.translateAgain() -&gt; ()"
+                  moduleName = "bot_teacher"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niwanchun/Documents/ai_teach/bot_teacher/bot_teacher/Views/TranslationView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "5DF075C6-8890-44C9-A3F9-49B691FDCB3C - 305857d55bc00a86"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bot_teacher.TranslationView.translateAgain() -&gt; ()"
+                  moduleName = "bot_teacher"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niwanchun/Documents/ai_teach/bot_teacher/bot_teacher/Views/TranslationView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "96"
+                  endingLineNumber = "96"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

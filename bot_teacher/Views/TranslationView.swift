@@ -13,7 +13,8 @@ import OpenAISwift
 struct TranslationView: View {
     var originalText: String = ""
     @State private var translatedText: String = ""
-    
+    @State private var selectedLanguage = userMotherLanguage
+    let languages = ["English", "Spanish", "French", "German", "Chinese", "Japanese", "Korean", "Russian", "Italian", "Portuguese"]
     var body: some View {
         VStack {
             Spacer()
@@ -43,11 +44,21 @@ struct TranslationView: View {
                     .bold()
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color("ailinPink"), lineWidth: 1)
-                    .frame(width: 90, height: 40)
+                    .frame(width: 120, height: 40)
                     .overlay(
-                        Text("\(userMotherLanguage)")
+                        Picker(selection: $selectedLanguage, label: EmptyView()) {
+                            ForEach(languages, id: \.self) { language in
+                                Text(language)
+                                    .foregroundColor(Color("ailinPink"))
+                                    .tag(language)
+                            }
+                        }
+                        .onChange(of: selectedLanguage) { _ in
+                            translateAgain()
+                        }
                         .foregroundColor(Color("ailinPink"))
                         .font(.headline)
+                        .clipped()
                     )
                 Spacer()
             }.padding(.horizontal, 10)
@@ -80,6 +91,15 @@ struct TranslationView: View {
         }
         
     }
+    
+    func translateAgain() {
+        let input = ChatMessage(role: .system, content: "tranlate to \(selectedLanguage): \n" + originalText)
+        // TODO: API call to translate
+        getGPTChatResponse(client: APICaller().getClient(), input: [input]) { response in
+            translatedText = response
+        }
+    }
+    
     /// azure
     func translateText(text: String,toLanguage: String, completionHandler: @escaping (String?) -> Void) {
 

@@ -68,7 +68,7 @@ struct UserProfileView: View {
                 ForEach(languages, id: \.self) { language in
                     Text(language)
                 }
-            }.onSubmit {
+            }.onChange(of: selectedLanguage) { _ in
                 userMotherLanguage = selectedLanguage
             }
         }
