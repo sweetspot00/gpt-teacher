@@ -119,6 +119,7 @@ struct ChatView: View {
                         // handle quitting here
                         stopSession()
                         buttonMsg = ""
+                        isQuit = true
 //                        closeButtonClick()
                     })
                 )
@@ -487,7 +488,7 @@ struct ChatView: View {
                                 finalInput.append(createChatMessage(role: .Response, content: msg))
                                 playSpeechViaAzure(with: msg)
                                 /// validate if task completed
-                                if (currentTaskIdx < answers.count && msg.contains(answers[currentTaskIdx])) {
+                                if (currentTaskIdx < answers.count && msg.range(of: answers[currentTaskIdx], options: .caseInsensitive) != nil) {
                                     isTaskCompleted[currentTaskIdx] = true
                                     currentTaskIdx += 1
                                 }
@@ -510,12 +511,16 @@ struct ChatView: View {
     
     func playSpeechViaAzure(with speechMessage: String) {
         // When I was waiting for response, but decide to quit/pause, should not speak
-//        if (!isPaused || !isQuit) {
+        if (!isPaused && !isQuit) {
         
             azureServeice.changeInputTextAndPlay(with: speechMessage)
 //            print("speaker name:\(azureServeice.speakerName)")
-            isRecording = true
-//        }
+            if (!isQuit && !isPaused) {
+                isRecording = true
+            }
+            
+            
+        }
 
         latestTranscript = ""
 
