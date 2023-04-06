@@ -14,7 +14,7 @@ struct TranslationView: View {
     var originalText: String = ""
     @State private var translatedText: String = ""
     @State private var selectedLanguage = userMotherLanguage
-    let languages = ["English", "Spanish", "French", "German", "Chinese", "Japanese", "Korean", "Russian", "Italian", "Portuguese"]
+    let languages = ["English", "Spanish", "French", "German", "Chinese", "French"]
     var body: some View {
         VStack {
             Spacer()
@@ -44,7 +44,7 @@ struct TranslationView: View {
                     .bold()
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color("ailinPink"), lineWidth: 1)
-                    .frame(width: 140, height: 40)
+                    .frame(width: 150, height: 40)
                     .overlay(
                         Picker(selection: $selectedLanguage, label: EmptyView()) {
                             ForEach(languages, id: \.self) { language in

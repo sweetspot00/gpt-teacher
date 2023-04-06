@@ -24,7 +24,7 @@ struct UserProfileView: View {
   @Environment(\.dismiss) var dismiss
   @State var presentingConfirmationDialog = false
   let languages = ["English", "Spanish", "French", "German", "Chinese", "Japanese", "Korean", "Russian", "Italian", "Portuguese"]
-    @State private var selectedLanguage = "English"
+    @State private var selectedLanguage = userMotherLanguage
   private func deleteAccount() {
     Task {
       if await viewModel.deleteAccount() == true {
