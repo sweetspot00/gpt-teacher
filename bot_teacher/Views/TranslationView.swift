@@ -44,7 +44,7 @@ struct TranslationView: View {
                     .bold()
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color("ailinPink"), lineWidth: 1)
-                    .frame(width: 120, height: 40)
+                    .frame(width: 140, height: 40)
                     .overlay(
                         Picker(selection: $selectedLanguage, label: EmptyView()) {
                             ForEach(languages, id: \.self) { language in

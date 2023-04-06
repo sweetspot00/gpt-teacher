@@ -42,11 +42,7 @@
 	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>audio</string>
+		<string>fetch</string>
 	</array>
-	<key>CFBundleIdentifier</key>
-	<string></string>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 </dict>
 </plist>
