@@ -69,7 +69,7 @@ struct LoginView: View {
                     
             
 
-                 VStack(alignment: .leading) {
+                 VStack {
                      // push to bottom
                      Spacer()
                      VStack {
@@ -79,7 +79,7 @@ struct LoginView: View {
                              .multilineTextAlignment(.leading)
 
     //                     Spacer()
-                     }
+                     }.padding(.horizontal, 30)
 
                      VStack(alignment: .leading) {
                          HStack {
@@ -88,7 +88,7 @@ struct LoginView: View {
                                  .frame(width: 28, height: 28)
                                  .padding(.horizontal, 5)
                              Text("Practice your language speaking skill")
-                                 .font(.custom("Inter-Regular", size: 18))
+                                 .font(.custom("Inter-Regular", size: 14))
                                  .foregroundColor(Color.black)
                                  .multilineTextAlignment(.leading)
                                  .background(Color.white)
@@ -99,7 +99,7 @@ struct LoginView: View {
                                  .frame(width: 28, height: 28)
                                  .padding(.horizontal, 5)
                              Text("Ask for insights and ideas")
-                                 .font(.custom("Inter-Regular", size: 18))
+                                 .font(.custom("Inter-Regular", size: 14))
                                  .foregroundColor(Color.black)
                                  .multilineTextAlignment(.leading)
                                  .background(Color.white)
@@ -112,13 +112,13 @@ struct LoginView: View {
                                  .frame(width: 28, height: 28)
                                  .padding(.horizontal, 5)
                              Text("Chat about your life to relieve stress")
-                                 .font(.custom("Inter-Regular", size: 18))
+                                 .font(.custom("Inter-Regular", size: 14))
                                  .foregroundColor(Color.black)
                                  .multilineTextAlignment(.leading)
                                  .background(Color.white)
 //                             Spacer()
                          }
-                     }
+                     }.padding(.horizontal, 15)
                  }
         }.padding()
     
