@@ -42,7 +42,7 @@ final class APICaller: ObservableObject {
         client.sendCompletion(with: input,model:.chat(.chatgpt), maxTokens: 500, completionHandler: { result in
             switch result {
             case .success(let success):
-                let output = success.choices.first?.text ?? ""
+                let output = success.choices?.first?.text ?? ""
                 completion(.success(output))
             case .failure(let error):
                 completion(.failure(error))

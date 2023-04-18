@@ -17,9 +17,10 @@ struct TaskView: View {
         
         VStack {
             
-            Text("Task about \(teacherName)")
+            Text("Discuss following topics in sequence to complete ✅")
+                .multilineTextAlignment(.center)
                 .font(.headline)
-                .lineLimit(1)
+//                .lineLimit(1)
                 .frame(width: 300)
                 .padding(.top, 20)
 

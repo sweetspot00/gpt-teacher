@@ -41,11 +41,14 @@
 		EC6144AB29D33ED500CDF540 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144AA29D33ED500CDF540 /* ReportView.swift */; };
 		EC6144AD29D33F3400CDF540 /* TranslationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144AC29D33F3400CDF540 /* TranslationView.swift */; };
 		EC6144AF29D45D2000CDF540 /* ChooseLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144AE29D45D2000CDF540 /* ChooseLanguageView.swift */; };
-		EC6144B429D705A600CDF540 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EC6144B329D705A600CDF540 /* Alamofire */; };
 		ECA98CC329B37249008DDFED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA98CC229B37249008DDFED /* Assets.xcassets */; };
 		ECA98CD129B37249008DDFED /* bot_teacherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CD029B37249008DDFED /* bot_teacherTests.swift */; };
 		ECA98CDB29B37249008DDFED /* bot_teacherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CDA29B37249008DDFED /* bot_teacherUITests.swift */; };
 		ECA98CDD29B37249008DDFED /* bot_teacherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA98CDC29B37249008DDFED /* bot_teacherUITestsLaunchTests.swift */; };
+		ECB329B829DFF14D002CF68C /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = ECB329B729DFF14D002CF68C /* Podfile.lock */; };
+		ECB329BB29DFF278002CF68C /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = ECB329BA29DFF278002CF68C /* OpenAISwift */; };
+		ECB329BE29DFF2A5002CF68C /* OpenAIKit in Frameworks */ = {isa = PBXBuildFile; productRef = ECB329BD29DFF2A5002CF68C /* OpenAIKit */; };
+		ECB329C129DFF3B8002CF68C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = ECB329C029DFF3B8002CF68C /* Alamofire */; };
 		ECEA37EC29B5138000A069C8 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37EB29B5138000A069C8 /* APICaller.swift */; };
 		ECEA37FE29B60FFA00A069C8 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */; };
 		ECEA380029B619E100A069C8 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA37FF29B619E100A069C8 /* ChatView.swift */; };
@@ -105,6 +108,7 @@
 		ECA98CD629B37249008DDFED /* bot_teacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bot_teacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA98CDA29B37249008DDFED /* bot_teacherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bot_teacherUITests.swift; sourceTree = "<group>"; };
 		ECA98CDC29B37249008DDFED /* bot_teacherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bot_teacherUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		ECB329B729DFF14D002CF68C /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
 		ECEA37EB29B5138000A069C8 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		ECEA37FD29B60FFA00A069C8 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		ECEA37FF29B619E100A069C8 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -120,19 +124,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECB329C129DFF3B8002CF68C /* Alamofire in Frameworks */,
 				EC61447129C3695100CDF540 /* FirebaseDatabaseSwift in Frameworks */,
 				EC61446F29C3695100CDF540 /* FirebaseDatabase in Frameworks */,
+				ECB329BE29DFF2A5002CF68C /* OpenAIKit in Frameworks */,
 				EC61447529C3695100CDF540 /* FirebaseStorageCombine-Community in Frameworks */,
 				EC61446B29C3695100CDF540 /* FirebaseAnalyticsSwift in Frameworks */,
 				EC61446929C3695100CDF540 /* FirebaseAnalytics in Frameworks */,
 				EC61448129C45D0D00CDF540 /* GoogleSignInSwift in Frameworks */,
+				ECB329BB29DFF278002CF68C /* OpenAISwift in Frameworks */,
 				EC61447329C3695100CDF540 /* FirebaseStorage in Frameworks */,
 				AA0982A12AE34091F8CA228E /* Pods_bot_teacher.framework in Frameworks */,
 				EC61446D29C3695100CDF540 /* FirebaseAuth in Frameworks */,
 				EC61449D29C4A70100CDF540 /* FirebaseFirestore in Frameworks */,
 				EC61447F29C45D0D00CDF540 /* GoogleSignIn in Frameworks */,
 				EC61449F29C4A70800CDF540 /* FirebaseFirestoreSwift in Frameworks */,
-				EC6144B429D705A600CDF540 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +203,7 @@
 		ECA98CAD29B37248008DDFED = {
 			isa = PBXGroup;
 			children = (
+				ECB329B729DFF14D002CF68C /* Podfile.lock */,
 				EC61445D29C35C6300CDF540 /* .gitignore */,
 				ECA98CB829B37248008DDFED /* bot_teacher */,
 				ECA98CCF29B37249008DDFED /* bot_teacherTests */,
@@ -318,7 +325,9 @@
 				EC61448029C45D0D00CDF540 /* GoogleSignInSwift */,
 				EC61449C29C4A70100CDF540 /* FirebaseFirestore */,
 				EC61449E29C4A70800CDF540 /* FirebaseFirestoreSwift */,
-				EC6144B329D705A600CDF540 /* Alamofire */,
+				ECB329BA29DFF278002CF68C /* OpenAISwift */,
+				ECB329BD29DFF2A5002CF68C /* OpenAIKit */,
+				ECB329C029DFF3B8002CF68C /* Alamofire */,
 			);
 			productName = bot_teacher;
 			productReference = ECA98CB629B37248008DDFED /* bot_teacher.app */;
@@ -395,7 +404,9 @@
 			packageReferences = (
 				EC61446729C3695100CDF540 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				EC61447D29C45D0D00CDF540 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
-				EC6144B229D705A600CDF540 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				ECB329B929DFF278002CF68C /* XCRemoteSwiftPackageReference "OpenAISwift" */,
+				ECB329BC29DFF2A5002CF68C /* XCRemoteSwiftPackageReference "OpenAIKit" */,
+				ECB329BF29DFF3B8002CF68C /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = ECA98CB729B37248008DDFED /* Products */;
 			projectDirPath = "";
@@ -413,6 +424,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECB329B829DFF14D002CF68C /* Podfile.lock in Resources */,
 				EC61449429C4775100CDF540 /* ColorSet.xcassets in Resources */,
 				EC61445E29C35C6300CDF540 /* .gitignore in Resources */,
 				EC61446629C368B500CDF540 /* GoogleService-Info.plist in Resources */,
@@ -873,7 +885,23 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		EC6144B229D705A600CDF540 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		ECB329B929DFF278002CF68C /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adamrushy/OpenAISwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		ECB329BC29DFF2A5002CF68C /* XCRemoteSwiftPackageReference "OpenAIKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MarcoDotIO/OpenAIKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		ECB329BF29DFF3B8002CF68C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -939,9 +967,19 @@
 			package = EC61446729C3695100CDF540 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
 		};
-		EC6144B329D705A600CDF540 /* Alamofire */ = {
+		ECB329BA29DFF278002CF68C /* OpenAISwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EC6144B229D705A600CDF540 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = ECB329B929DFF278002CF68C /* XCRemoteSwiftPackageReference "OpenAISwift" */;
+			productName = OpenAISwift;
+		};
+		ECB329BD29DFF2A5002CF68C /* OpenAIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ECB329BC29DFF2A5002CF68C /* XCRemoteSwiftPackageReference "OpenAIKit" */;
+			productName = OpenAIKit;
+		};
+		ECB329C029DFF3B8002CF68C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ECB329BF29DFF3B8002CF68C /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */

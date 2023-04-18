@@ -32,12 +32,12 @@ struct ReportView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color("ailinPink"))
-                    .frame(height: 80)
+                    .frame(width: 350, height: 60)
                     .padding(.horizontal, 30)
                 
                 
                 Text("Ailin Assessment")
-                    .font(.largeTitle)
+                    .font(.title)
                     .foregroundColor(.white)// Increase the top padding to make sure the view is visible
             }.padding(.top, 30)
             VStack {

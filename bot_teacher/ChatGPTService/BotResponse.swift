@@ -12,7 +12,7 @@ public func getGPTChatResponse(client: OpenAISwift, input: [ChatMessage], comple
     client.sendChat(with: input, model: .chat(.chatgpt)) { result in
             switch result {
             case .success(let model):
-                let output = model.choices.first?.message.content ?? ""
+                let output = model.choices?.first?.message.content ?? ""
 //                print("ChatGPT: \(output)")
                 completion(output)
             case .failure(let error):
