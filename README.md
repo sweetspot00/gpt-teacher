@@ -10,8 +10,8 @@
 - Lightweight ChatGPT iOS application
 
 ### Implementation Details:
-1. Class
-- Database.swift: save all globale data and sturctures
+1. Classes
+- Database.swift: save all globle data and structures
 - GetDataFromCloud.swift: get data from firebase
 2. Backend
 - Firebase unstructured data storage to save character prompts 
