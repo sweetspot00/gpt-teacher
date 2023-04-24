@@ -1,4 +1,4 @@
-# Bot teacher: ChatGPT based AI language teacher
+# Bot teacher: ChatGPT based AI language teacher iOS application
 ### **Chat with characters to practise multiple spoken languages via iOS**
 
 ### Key features:
