@@ -9,7 +9,5 @@
 - Azure speech service
 4. Authentication
 - Google Firebase authentication
-5. Regin Router (for Azure service)
-- Check pull request
 6. Customized voice support
-- AzureServicePostRequest.swift
+- AzureServicePostRequest.swift and pull request
