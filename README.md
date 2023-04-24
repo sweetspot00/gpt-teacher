@@ -1,4 +1,4 @@
-# Ailin: ChatGPT based Ai english teacher
+# Ailin: ChatGPT based AI english teacher
 
 1. Class
 - Database.swift: save all globale data and sturctures
