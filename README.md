@@ -27,6 +27,7 @@
 2. Configure your keys in Firebase: OpenAI and Azure
 3. Add your character's data in Firebase; Data reference: `Database.swift`
 
+### Preview
 <div style="display: flex; justify-content: center;">
   <img src="https://user-images.githubusercontent.com/50688000/233969017-afa8e597-123c-4a46-b919-900a0a3cad06.jpeg" width="200"/>
   <img src="https://user-images.githubusercontent.com/50688000/233960625-b9149f5f-1a60-469d-96b1-f3cdc263c3e9.jpeg" width="200"/>
