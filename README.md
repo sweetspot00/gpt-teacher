@@ -1,5 +1,5 @@
 # Bot teacher: ChatGPT based AI language teacher
-**Chat with celebrity characters to practise multiple spoken languages**
+**Chat with celebrity characters to practise multiple spoken languages via iOS**
 
 ### Key features:
 - Voice call to a characters: no need to control button
