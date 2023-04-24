@@ -1,20 +1,20 @@
-# Bot teacher: ChatGPT based AI language teacher iOS application
+# Bot teacher: ChatGPT based lightweight AI language teacher iOS application
 ### **Chat with characters to practise multiple spoken languages via iOS**
 
-### Key features:
+### Key features
 - Voice call to a characters: no need to control button
 - Finish tasks while chat with characters
 - Support multiple languages
 - Generated reports for your conversation
-- Support translation for the words; Able to custom your own language
+- Support translation for the response; Able to custom your own language
 - Lightweight ChatGPT iOS application
 
-### Implementation Details:
+### Implementation Details
 1. Classes
 - `Database.swift`: save all globle data and structures
 - `GetDataFromCloud.swift`: get data from firebase
 2. Backend
-- Firebase unstructured data storage to save character prompts 
+- Firebase(https://firebase.google.com/) unstructured data storage to save character prompts 
 - Configure your own lightweight db via Firebase
 - Users db: authentication provided by Firebase
 3. Speech services
@@ -22,7 +22,7 @@
 - Customized voice support: AzureServicePostRequest.swift
 - Multiple regions router support for Azure: https://github.com/neebdev/load-config-worker
 
-### Start:
+### Get Start
 1. Add your own `.firebaserc` file: connect to your firebase application
 2. Configure your keys in Firebase: OpenAI and Azure
 3. Add your character's data in Firebase; Data reference: `Database.swift`
