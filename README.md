@@ -11,8 +11,8 @@
 
 ### Implementation Details:
 1. Classes
-- Database.swift: save all globle data and structures
-- GetDataFromCloud.swift: get data from firebase
+- `Database.swift`: save all globle data and structures
+- `GetDataFromCloud.swift`: get data from firebase
 2. Backend
 - Firebase unstructured data storage to save character prompts 
 - Configure your own lightweight db via Firebase
@@ -22,6 +22,10 @@
 - Customized voice support: AzureServicePostRequest.swift
 - Multiple regions router support for Azure: https://github.com/neebdev/load-config-worker
 
+### Start:
+1. Add your own `.firebaserc` file: connect to your firebase application
+2. Configure your keys in Firebase: OpenAI and Azure
+3. Add your character's data in Firebase; Data reference: `Database.swift`
 
 <div style="display: flex; justify-content: center;">
   <img src="https://user-images.githubusercontent.com/50688000/233969017-afa8e597-123c-4a46-b919-900a0a3cad06.jpeg" width="200"/>
