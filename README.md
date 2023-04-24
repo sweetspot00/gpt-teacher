@@ -1,4 +1,4 @@
-# Bot teacher: ChatGPT based AI english teacher
+# Bot teacher: ChatGPT based AI language teacher
 **Chat with celebrity characters to practise multiple spoken languages**
 
 ### Key features:
