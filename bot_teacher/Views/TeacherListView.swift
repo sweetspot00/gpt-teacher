@@ -43,7 +43,7 @@ struct TeacherListView: View {
                     VStack(alignment: .leading) {
                         Text(userName)
                             .font(.headline)
-                        Text("Practice speaking; Learn stories")
+                        Text("Speak 300+ words daily for 70 days = speaking🚀")
                             .font(.subheadline)
                             .foregroundColor(.gray)
                     }

@@ -9,7 +9,7 @@ import Foundation
 import OpenAISwift
 
 public func getGPTChatResponse(client: OpenAISwift, input: [ChatMessage], completion: @escaping(String) -> Void) {
-    client.sendChat(with: input, model: .chat(.chatgpt)) { result in
+    client.sendChat(with: input, model: .chat(.chatgpt), temperature: 0.8) { result in
             switch result {
             case .success(let model):
                 let output = model.choices?.first?.message.content ?? ""

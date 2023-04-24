@@ -58,10 +58,11 @@ struct Teacher {
     let languageIdentifier: String
     let language: String
     let type: String
+    let area: String
 }
 
 func initTeacher() -> Teacher {
-    return Teacher(name: "", speakerName: "en-US-JennyNeural", languageIdentifier: "en-US", language: "English", type: "teacher")
+    return Teacher(name: "", speakerName: "en-US-JennyNeural", languageIdentifier: "en-US", language: "English", type: "teacher", area: "technology")
 }
 
 struct TaskByTeacher {

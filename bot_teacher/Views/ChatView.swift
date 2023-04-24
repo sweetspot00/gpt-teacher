@@ -61,6 +61,7 @@ struct ChatView: View {
     
     @State var azureRecognitionTask: Task<String, Error>?
     @State var recognitionTask: SFSpeechRecognitionTask?
+    // TODO: change to
     @State var isPaused = false
     @State var maxARQTimes = 5
     @State var tmpResponse = ""
@@ -71,7 +72,7 @@ struct ChatView: View {
     @State var isTaskCompleted: [Bool] = [false]
     @State var currentTaskIdx: Int = 0
     @State var answers: [String] = []
-    
+    @State var characterTasks: [String] = []
     /// for report
     @State var userMsgs: [String] = []
     @State var showReport = false
@@ -148,7 +149,7 @@ struct ChatView: View {
                 
                 ZStack {
                     if flipped {
-                        TaskView(isTaskCompleted: $isTaskCompleted, teacherName: chatTeacherName, tasks: taskByTeacher[chatTeacherName]?.task ?? [])
+                        TaskView(isTaskCompleted: $isTaskCompleted, teacherName: chatTeacherName, tasks: characterTasks)
                     } else {
                         Image(chatTeacherName)
                             .resizable()
@@ -263,7 +264,12 @@ struct ChatView: View {
             
             speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: chatTeacher!.languageIdentifier))!
             azureS2tService = AzureS2T(languageIndentifier: chatTeacher!.languageIdentifier)
-            
+            // get task
+            let taskPrompt_1 = ChatMessage(role: .system, content: "You are an English teacher. Your response is very concise")
+            let taskPrompt_2 = ChatMessage(role: .user, content: "I want to learn entry-level English about \(chatTeacher!.area) You will give 6 simple expressions in this area. Only show the expressions. No explanation or anything else needed. response format: expression1; expression2;")
+            getGPTChatResponse(client: client!, input: [taskPrompt_1, taskPrompt_2]) { response in
+                characterTasks = response.components(separatedBy: ";")
+            }
             
             let strList = initPrompts[chatTeacher!.type]?.components(separatedBy: ";")
             self.sessionInitPrompt = (strList?[0] ?? "") + " " + chatTeacherName + ";" + (strList?[1] ?? "")
@@ -283,7 +289,6 @@ struct ChatView: View {
     }
  
 
-    // TODO: This function blocked
     func stopSession() {
         
         isRecording = false
