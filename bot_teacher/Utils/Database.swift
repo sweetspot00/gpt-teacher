@@ -7,8 +7,14 @@
 
 import Foundation
 
+var OPENAI_KEY = ""
+var AZURE_KEY = ""
+var AZURE_REGION = ""
+var AZURE_TRANSLATION_KEY = ""
+
 //var languaues = ["French", "English", "Portuguese", "Chinese", "German"]
 var languages : [String] = []
+
 
 struct LanguageTeacherModel: Hashable {
     var language: String

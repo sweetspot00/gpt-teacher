@@ -34,7 +34,6 @@
 		EC61449629C47DF200CDF540 /* GetDataFromCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC61449529C47DF200CDF540 /* GetDataFromCloud.swift */; };
 		EC61449D29C4A70100CDF540 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EC61449C29C4A70100CDF540 /* FirebaseFirestore */; };
 		EC61449F29C4A70800CDF540 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC61449E29C4A70800CDF540 /* FirebaseFirestoreSwift */; };
-		EC6144A329C7493900CDF540 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144A229C7493900CDF540 /* Keys.swift */; };
 		EC6144A529C9F8A000CDF540 /* AzureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144A429C9F8A000CDF540 /* AzureService.swift */; };
 		EC6144A729CB510200CDF540 /* AzureSpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144A629CB510200CDF540 /* AzureSpeechRecognizer.swift */; };
 		EC6144A929D3281500CDF540 /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6144A829D3281500CDF540 /* TaskView.swift */; };
@@ -93,7 +92,6 @@
 		EC61448F29C4732D00CDF540 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		EC61449329C4775100CDF540 /* ColorSet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorSet.xcassets; sourceTree = "<group>"; };
 		EC61449529C47DF200CDF540 /* GetDataFromCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataFromCloud.swift; sourceTree = "<group>"; };
-		EC6144A229C7493900CDF540 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		EC6144A429C9F8A000CDF540 /* AzureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureService.swift; sourceTree = "<group>"; };
 		EC6144A629CB510200CDF540 /* AzureSpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureSpeechRecognizer.swift; sourceTree = "<group>"; };
 		EC6144A829D3281500CDF540 /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 				ECEA380B29B7702300A069C8 /* SpeechRecognizer.swift */,
 				EC115C0C29C1DAD2001B08DA /* Database.swift */,
 				EC61449529C47DF200CDF540 /* GetDataFromCloud.swift */,
-				EC6144A229C7493900CDF540 /* Keys.swift */,
 				EC6144A629CB510200CDF540 /* AzureSpeechRecognizer.swift */,
 			);
 			path = Utils;
@@ -505,7 +502,6 @@
 				EC115C0B29C1D93C001B08DA /* TeacherListView.swift in Sources */,
 				EC61449029C4732D00CDF540 /* UserProfileView.swift in Sources */,
 				EC6144AD29D33F3400CDF540 /* TranslationView.swift in Sources */,
-				EC6144A329C7493900CDF540 /* Keys.swift in Sources */,
 				EC61447929C431BD00CDF540 /* AuthenticationViewModel.swift in Sources */,
 				ECEA381329B7702300A069C8 /* SpeechRecognizer.swift in Sources */,
 				ECEA380029B619E100A069C8 /* ChatView.swift in Sources */,

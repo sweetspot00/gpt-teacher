@@ -1,2 +1,4 @@
 bot_teacher/Utils/Keys.swift
-*.DS_Store
+.DS_Store
+.firebaserc
+Pods
