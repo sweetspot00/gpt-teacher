@@ -2,5 +2,4 @@
 1. Class
 - Database.swift: save all globale data and sturctures
 - GetDataFromCloud.swift: get data from firebase
-2. Views
-- ChatView.swift: 
+
