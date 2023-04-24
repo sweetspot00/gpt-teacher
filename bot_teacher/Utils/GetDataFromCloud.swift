@@ -114,8 +114,9 @@ class MainPageDataUtils: ObservableObject {
         let languageIdentifier = languageDict["language_identifier"] as? String ?? ""
         let language = languageDict["language"] as? String ?? ""
         let type = languageDict["type"] as? String ?? ""
+        let area = languageDict["area"] as? String ?? ""
 
-        let teacher = Teacher(name: name, speakerName: speakerName, languageIdentifier: languageIdentifier, language: language, type: type)
+        let teacher = Teacher(name: name, speakerName: speakerName, languageIdentifier: languageIdentifier, language: language, type: type, area: area)
        
 
         return teacher
