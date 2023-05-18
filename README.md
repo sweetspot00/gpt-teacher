@@ -1,5 +1,6 @@
-# GPT teacher: ChatGPT based lightweight AI language teacher iOS application
+# Ailin - GPT teacher: ChatGPT based lightweight AI language teacher iOS application
 ### **Chat with characters to practise multiple spoken languages via iOS**
+## **You can try out Ailin in Apple Store: https://apps.apple.com/sg/app/ailin/id6446430392**
 
 ### Key features
 - Voice call to a characters: no need to control button
